@@ -1,13 +1,1023 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Browser Is Dull: Understanding Color Space on the Web</title>
+
+  
+    <link
+      rel="stylesheet"
+      href="https://ryanfeigenbaum.com/assets/built/app.css?v=8fad6c1a39"
+    />
+
+    <script>
+      const colorModePref = document.documentElement.dataset.colorPref;
+
+      const colorModePrefOpposite = colorModePref === "dark" ? "light" : "dark";
+
+      if (
+        localStorage.getItem("pref") === colorModePrefOpposite ||
+        (window.matchMedia(`(prefers-color-scheme: ${colorModePrefOpposite})`)
+          .matches &&
+          !localStorage.getItem("pref"))
+      ) {
+        document.documentElement.setAttribute(
+          "data-color-pref",
+          colorModePrefOpposite
+        );
+      }
+    </script>
+
+    <script
+      src="https://ryanfeigenbaum.com/assets/built/app.js?v=8fad6c1a39"
+      type="module"
+      defer=""
+    ></script>
+
+    <script
+      src="https://ryanfeigenbaum.com/assets/built/syntax-highlighting.js?v=8fad6c1a39"
+      type="module"
+      defer=""
+    ></script>
+
+    <meta
+      name="description"
+      content="Don't fall prey to color FOMO. Learn why the browser was dull but doesn't need to be anymore. Get out of grayscale and into polychromia, baby."
+    />
+    <link
+      rel="icon"
+      href="https://ryanfeigenbaum.com/content/images/size/w256h256/2023/07/haze-ball.png"
+      type="image/png"
+    />
+    <link
+      rel="canonical"
+      href="https://ryanfeigenbaum.com/the-browser-is-dull/"
+    />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+    <meta property="og:site_name" content="Ryan Feigenbaum" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="The Browser Is Dull: Understanding Color Space on the Web"
+    />
+    <meta
+      property="og:description"
+      content="Don't fall prey to color FOMO. Learn why the browser was dull but doesn't need to be anymore. Get out of grayscale and into polychromia, baby."
+    />
+    <meta
+      property="og:url"
+      content="https://ryanfeigenbaum.com/the-browser-is-dull/"
+    />
+    <meta
+      property="og:image"
+      content="https://ryanfeigenbaum.com/content/images/size/w1200/2023/07/photo-1508440767412-59ce0b206bbc.jpeg"
+    />
+    <meta
+      property="article:published_time"
+      content="2023-07-05T13:37:15.000Z"
+    />
+    <meta property="article:modified_time" content="2023-09-28T20:02:00.000Z" />
+    <meta property="article:tag" content="Design" />
+    <meta property="article:tag" content="Color" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="The Browser Is Dull: Understanding Color Space on the Web"
+    />
+    <meta
+      name="twitter:description"
+      content="Don't fall prey to color FOMO. Learn why the browser was dull but doesn't need to be anymore. Get out of grayscale and into polychromia, baby."
+    />
+    <meta
+      name="twitter:url"
+      content="https://ryanfeigenbaum.com/the-browser-is-dull/"
+    />
+    <meta
+      name="twitter:image"
+      content="https://ryanfeigenbaum.com/content/images/size/w1200/2023/07/photo-1508440767412-59ce0b206bbc.jpeg"
+    />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Ryan Feigenbaum" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Design, Color" />
+    <meta name="twitter:site" content="@theroyalfig" />
+    <meta name="twitter:creator" content="@theroyalfig" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+
+   
+
+    <meta name="generator" content="Ghost 5.75" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Ryan Feigenbaum"
+      href="https://ryanfeigenbaum.com/rss/"
+    />
+    <script
+      defer=""
+      src="https://cdn.jsdelivr.net/ghost/portal@~2.36/umd/portal.min.js"
+      data-i18n="false"
+      data-ghost="https://ryanfeigenbaum.com/"
+      data-key="51b4394e5b1d6ed0efd034d969"
+      data-api="https://ryan-feigenbaum.ghost.io/ghost/api/content/"
+      crossorigin="anonymous"
+    ></script>
+    <style id="gh-members-styles">
+      .gh-post-upgrade-cta-content,
+      .gh-post-upgrade-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        text-align: center;
+        width: 100%;
+        color: #ffffff;
+        font-size: 16px;
+      }
+
+      .gh-post-upgrade-cta-content {
+        border-radius: 8px;
+        padding: 40px 4vw;
+      }
+
+      .gh-post-upgrade-cta h2 {
+        color: #ffffff;
+        font-size: 28px;
+        letter-spacing: -0.2px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .gh-post-upgrade-cta p {
+        margin: 20px 0 0;
+        padding: 0;
+      }
+
+      .gh-post-upgrade-cta small {
+        font-size: 16px;
+        letter-spacing: -0.2px;
+      }
+
+      .gh-post-upgrade-cta a {
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: 500;
+        box-shadow: none;
+        text-decoration: underline;
+      }
+
+      .gh-post-upgrade-cta a:hover {
+        color: #ffffff;
+        opacity: 0.8;
+        box-shadow: none;
+        text-decoration: underline;
+      }
+
+      .gh-post-upgrade-cta a.gh-btn {
+        display: block;
+        background: #ffffff;
+        text-decoration: none;
+        margin: 28px 0 0;
+        padding: 8px 18px;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .gh-post-upgrade-cta a.gh-btn:hover {
+        opacity: 0.92;
+      }
+    </style>
+    <script async="" src="https://js.stripe.com/v3/"></script>
+    <script
+      defer=""
+      src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js"
+      data-key="51b4394e5b1d6ed0efd034d969"
+      data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css"
+      data-sodo-search="https://ryan-feigenbaum.ghost.io/"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      href="https://ryanfeigenbaum.com/webmentions/receive/"
+      rel="webmention"
+    />
+    
+    
+    
+    
+    <link rel="me" href="https://mastodon.social/@royalfig" />
+    <style>
+      :root {
+        --ghost-accent-color: #003ccb;
+      }
+    </style>
+
+    <style>
+      .kg-bookmark-card a.kg-bookmark-container {
+        font-family: var(--ui-typeface);
+        border-color: hsl(var(--border-color));
+        border-radius: var(--radius);
+        transition: border-color 0.3s;
+      }
+      .kg-bookmark-card .kg-bookmark-icon {
+        margin-inline: 0 6px;
+      }
+      .kg-bookmark-title {
+        font-size: 1rem;
+      }
+      .kg-bookmark-content {
+        padding: 1rem;
+      }
+      .kg-bookmark-description {
+        font-size: var(--small);
+        color: hsl(var(--element-light));
+      }
+      .kg-bookmark-metadata {
+        font-size: var(--small);
+      }
+      .kg-bookmark-card:hover a.kg-bookmark-container {
+        border-color: hsl(var(--color-1-light));
+        border-radius: var(--radius);
+      }
+      .kg-toggle-card {
+        padding: 1rem;
+        border: 1px solid hsl(var(--border-color));
+        border-radius: var(--radius);
+        box-shadow: none;
+      }
+      .kg-btn,
+      .kg-button-card,
+      .kg-callout-card {
+        border-radius: var(--radius);
+      }
+      .kg-toggle-heading svg {
+        color: hsl(var(--color-1-light));
+      }
+      .kg-toggle-card:hover .kg-toggle-heading svg {
+        color: hsl(var(--color-1));
+      }
+      .kg-button-card {
+        font-family: var(--ui-typeface);
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .kg-btn {
+        height: initial;
+        padding: var(--button-padding);
+      }
+      .kg-btn-accent {
+        color: var(--button-text);
+        background-color: hsl(var(--color-1));
+        transition: background-color 0.3s;
+      }
+      .kg-btn-accent:hover {
+        background-color: hsl(var(--color-1-light));
+        opacity: 1;
+      }
+      .kg-callout-card {
+        padding: 1rem;
+        background-color: hsl(var(--border-color));
+      }
+    </style>
+    <style type="text/css">
+      .medium-zoom-overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.3s;
+        will-change: opacity;
+      }
+      .medium-zoom--opened .medium-zoom-overlay {
+        cursor: pointer;
+        cursor: zoom-out;
+        opacity: 1;
+      }
+      .medium-zoom-image {
+        cursor: pointer;
+        cursor: zoom-in;
+        transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1) !important;
+      }
+      .medium-zoom-image--hidden {
+        visibility: hidden;
+      }
+      .medium-zoom-image--opened {
+        position: relative;
+        cursor: pointer;
+        cursor: zoom-out;
+        will-change: transform;
+      }
+    </style>
+    <style>
+      .gh-portal-account-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 0 32px;
+      }
+      .gh-portal-account-header .gh-portal-avatar {
+        margin: 6px 0 8px !important;
+      }
+      .gh-portal-account-data {
+        margin-bottom: 40px;
+      }
+      footer.gh-portal-account-footer {
+        display: flex;
+      }
+      .gh-portal-account-footer.paid {
+        margin-top: 12px;
+      }
+      .gh-portal-account-footermenu {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .gh-portal-account-footerright {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .gh-portal-account-footermenu li {
+        margin-right: 16px;
+      }
+      .gh-portal-account-footermenu li:last-of-type {
+        margin-right: 0;
+      }
+      .gh-portal-freeaccount-newsletter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 24px;
+      }
+      .gh-portal-freeaccount-newsletter .label {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      .gh-portal-free-ctatext {
+        margin-top: -12px;
+      }
+      .gh-portal-cancelcontinue-container {
+        margin: 24px 0 32px;
+      }
+      .gh-portal-list-detail .gh-portal-email-notice {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 6px;
+        color: var(--red);
+        font-weight: 500;
+        font-size: 1.25rem;
+        letter-spacing: 0.2px;
+      }
+      .gh-portal-email-notice-icon {
+        width: 20px;
+        height: 20px;
+      }
+      .gh-portal-billing-button-loader {
+        width: 32px;
+        height: 32px;
+        margin-right: -3px;
+        opacity: 0.6;
+      }
+      .gh-portal-product-icon {
+        width: 52px;
+        margin-right: 12px;
+        border-radius: 2px;
+      }
+      .gh-portal-account-discountcontainer {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      .gh-portal-account-old-price {
+        text-decoration: line-through;
+        color: var(--grey9) !important;
+      }
+      .gh-portal-account-tagicon {
+        width: 16px;
+        height: 16px;
+        color: var(--brandcolor);
+        margin-right: 5px;
+        z-index: 999;
+      }
+      @media (max-width: 390px) {
+        .gh-portal-account-footer {
+          padding: 0 !important;
+        }
+      }
+      @media (max-width: 340px) {
+        .gh-portal-account-footer {
+          padding: 0 !important;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+        .gh-portal-account-footer .gh-portal-account-footerright {
+          justify-content: flex-start;
+        }
+      }
+      .gh-email-suppressed-page-title {
+        margin-bottom: 14px;
+      }
+      .gh-email-suppressed-page-icon {
+        display: block;
+        width: 38px;
+        height: 38px;
+        margin: 0 auto 18px;
+      }
+      .gh-email-suppressed-page-text {
+        padding: 0 14px;
+        text-align: center;
+        color: var(--grey6);
+      }
+      .gh-email-faq-footer-text {
+        color: var(--grey8);
+      }
+      .gh-portal-list-detail.email-newsletter .gh-email-faq-page-button {
+        display: block;
+        margin-top: 3px;
+      }
+      .accountEmail .gh-email-faq-page-button {
+        margin-left: 4px;
+      }
+      .emailReceivingFAQ .gh-portal-btn-back,
+      .emailReceivingFAQ .gh-portal-btn-back:hover {
+        left: calc(6vmin - 14px);
+      }
+      .emailReceivingFAQ .gh-portal-closeicon-container {
+        right: calc(6vmin - 20px);
+      }
+      @media (max-width: 480px) {
+        .emailReceivingFAQ .gh-portal-btn-back,
+        .emailReceivingFAQ .gh-portal-btn-back:hover {
+          left: 16px;
+        }
+        .emailReceivingFAQ .gh-portal-closeicon-container {
+          right: 24px;
+        }
+      }
+      .gh-email-faq-page-button {
+        color: var(--brandcolor);
+        cursor: pointer;
+        background: none;
+        transition: color linear 0.1s;
+        font-size: 1.45rem;
+      }
+    </style>
+    <style>
+      .App {
+        text-align: center;
+      }
+      .App-logo {
+        height: 40vmin;
+        pointer-events: none;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .App-logo {
+          animation: App-logo-spin infinite 20s linear;
+        }
+      }
+      .App-header {
+        background-color: #282c34;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: #fff;
+      }
+      .App-link {
+        color: #61dafb;
+      }
+      @keyframes App-logo-spin {
+        0% {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <script type="module" src="./src/main.ts"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <article
+      class="sm-content-grid sm-post-content post tag-design tag-color featured the-browser-is-dull"
+    >
+    <share-button button-text="Share" icon="4" fixed="right"></share-button>
+    <h1 style="margin-block: 5rem;">The Browser Is Dull: Some Subtitle</h1>
+    
+    </style>
+      <p>
+        The motivation for this post was a figure I came across recently:
+        <strong
+          >the browser only supports 35% of the colors visible by humans</strong
+        >. It induced color FOMO in me because we're missing out on 65% of
+        colors. That makes the browser dull and me sad.
+      </p>
+      <p>
+        But, changes are afoot that are challenging the browser's dullness.
+        Google Chrome's dev advocate Adam Argyle lays out these updates in an
+        absolute must-read article, "<a
+          href="https://developer.chrome.com/articles/high-definition-css-color-guide/?ref=ryanfeigenbaum.com"
+          >High Definition CSS Color Guide</a
+        >." The TLDR is <strong>more colors</strong>, better gradients, and
+        improved methods.
+      </p>
+      <p>
+        This article, the first of a three-part series, explains the technical
+        reasons why the browser is dull. Understanding these reasons will make
+        embracing the new CSS coming to the browser a piece of cake. And, web
+        devs and designers don't really have a choice: a reluctance to use this
+        new CSS will mire you and your users in a dull browser. Don't be like
+        Tobey Maguire in the first half of <em>Pleasantville</em>, embrace color
+        now 👩‍🎨
+      </p>
+      <figure class="kg-card kg-image-card">
+        <img
+          src="https://media.tenor.com/ifb8PQzVbO4AAAAC/pleasantville-50s.gif"
+          class="kg-image medium-zoom-image"
+          alt="Scene from pleasantville, where tobey is still in black and white like a dork"
+          loading="lazy"
+          width="498"
+          height="272"
+        />
+      </figure>
+      <p>
+        To understand the technical reasons why the browser is dull, we'll need
+        to get a handle on some terminology by defining three key terms in the
+        first section:
+        <strong>color model, color space, and color gamut</strong>. Next, in
+        section two, we'll apply these concepts to better understand why the
+        browser is dull along with some practical examples. Finally, in the last
+        section, we'll reiterate why these changes in the browser are so
+        important for web devs and designers.
+      </p>
+      <h2 id="the-foundations-of-color-in-the-browser">
+        The Foundations of Color in the Browser
+      </h2>
+      <p>
+        It turns out that the world of color—something we're looking at every
+        minute of our waking lives—is insanely complex 🤯 In getting light
+        (color) from the screen to our eyes, there's no direct flight, and
+        engineers are forced to make tradeoffs multiple times along the way.
+      </p>
+      <p>
+        Here are three key terms to understanding a short leg of that journey:
+      </p>
+      <h3 id="color-model">Color model</h3>
+      <p>
+        A <strong>color model </strong>is an abstract mathematical model that
+        describes ways to represent colors using a tuple of numbers (usually 3
+        or 4). The most common color models are RGB (red, green, blue) and CMYK
+        (cyan, magenta, yellow, key [black]).
+      </p>
+      <div class="kg-card kg-toggle-card" data-kg-toggle-state="close">
+        <div class="kg-toggle-heading">
+          <h4 class="kg-toggle-heading-text">More on color models</h4>
+          <button class="kg-toggle-card-icon">
+            <svg
+              id="Regular"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                class="cls-1"
+                d="M23.25,7.311,12.53,18.03a.749.749,0,0,1-1.06,0L.75,7.311"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div class="kg-toggle-content">
+          <p>
+            RGB is an additive model used in digital applications. "Additive"
+            refers to the fact that colors are created by mixing or adding
+            colors together. When all three colors are mixed, the result is pure
+            white: <code>rgb(255, 255, 255)</code>.
+          </p>
+          <p>
+            Conversely, CMYK is a subtractive model used in print media.
+            "Subtractive" refers to the fact that colors are created by
+            subtracting colors from a white background. The light not absorbed
+            is what we see as color. When all three colors are mixed, the result
+            is black.&nbsp;
+          </p>
+        </div>
+      </div>
+      <h3 id="color-space">Color space</h3>
+      <p>
+        <strong>Color space<em> </em></strong>is a specific implementation of a
+        color model that identifies precise color values. It moves colors out of
+        the mathematical ether and into the realm of practical use.
+      </p>
+      <p>
+        For example, the following color spaces are all derived from the RGB
+        color model: sRGB, Adobe RGB, ProPhoto RGB, DCI-P3, and Rec. 2020.
+      </p>
+      <p>Each of these color spaces was designed to meet a particular need:</p>
+      <ul>
+        <li>
+          <strong>sRGB </strong>(i.e., standard RGB) developed by HP and
+          Microsoft in 1996, is the default color space for the web. It was
+          designed to provide consistent color reproduction across monitors,
+          digital cameras, printers, scanners, and the browser.
+        </li>
+        <li>
+          Adobe RGB, which makes more colors available than sRGB, was designed
+          for photographers and publishers. The goal was to match what was
+          possible on &nbsp;CMYK color printers, but by only using RGB primary
+          colors on a digital display.
+        </li>
+        <li>
+          Developed for ultra-high-def TV, Rec. 2020's range of colors is even
+          greater than Adobe RGB, covering about 75% of all perceptible colors.
+        </li>
+      </ul>
+      <h3 id="color-gamut">Color gamut</h3>
+      <p>
+        The range of colors possible within a color space is its
+        <strong>color gamut</strong>, a term we'll discuss in detail next.
+      </p>
+      <div class="kg-card kg-callout-card kg-callout-card-grey">
+        <div class="kg-callout-emoji">🏠</div>
+        <div class="kg-callout-text">
+          It may be helpful to think of the relationship between these three
+          terms like the construction of a house. A color model is akin to the
+          building codes that govern what constitutes a sound structure. A color
+          space, then, is a blueprint that implements those building codes in a
+          particular layout. The layout, in turn, limits the available features
+          (you're not including a helipad on a 2-bedroom cape cod), just like
+          the color model limits/defines the gamut of available colors.
+        </div>
+      </div>
+      <h3 id="a-table-for-those-in-a-rush">A Table for Those in a Rush</h3>
+      <!--kg-card-begin: markdown-->
+      <div
+        style="width: 100%; overflow-x: auto; margin: 2rem 0"
+        class="sm-table-wrapper"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>Term</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Color model</td>
+              <td>Mathematical representation of colors</td>
+            </tr>
+            <tr>
+              <td>Color space</td>
+              <td>The specific arrangement of colors within a model</td>
+            </tr>
+            <tr>
+              <td>Color gamut</td>
+              <td>The range of colors available within a color space</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--kg-card-end: markdown-->
+      <h2 id="why-the-browser-is-dull">Why the Browser Is Dull</h2>
+      <p>
+        A tiny color gamut makes the browser chromatically inadequate. Until
+        very recently, most browsers mainly operated in the sRGB color space
+        (with the exception of Safari, which has had support for DCI-P3 since
+        2016). And, again,
+        <strong>sRGB only covers ~35% of the visible color gamut.</strong>
+        <strong
+          >This means we're leaving a whole truckload of colors on the
+          table.</strong
+        >
+      </p>
+      <blockquote class="kg-blockquote-alt">
+        A tiny color gamut makes the browser chromatically inadequate.
+      </blockquote>
+      <p>
+        These figures, 35% and truckload, are generally calculated by comparing
+        a target color space like sRGB to the reference color space CIE 1931.
+        The CIE<em> (</em>in English, International Commission of Illumination)
+        conducted a series of experiments in—yep—1931.
+      </p>
+      <p>
+        In these experiments, 17 observers adjusted three different colored
+        lights (red, green, blue) to match a reference colored light. Based on
+        these experiments, researchers established the relationship between the
+        wavelength of light and its human-perceived color. In other words, they
+        systemically connected the electromagnetic wavelength of light with how
+        humans perceive the color.
+      </p>
+      <p>
+        These findings led to the CIE 1931 color space, which represents all the
+        hues and saturations that can be perceived by the average human. Having
+        this baseline allows us then to compare other color spaces to it,
+        resulting in conclusions like "sRGB is no fun at parties."
+      </p>
+      <p>
+        The diagram below shows the relationship between these color spaces
+        visually. The parabola represents the colors perceptible by human vision
+        (CIE 1931) with the other color spaces overlaid. Notice that sRGB only
+        occupies a small portion of the available color space (35%), while the
+        gamut of ProPhoto RGB can exceed what's even perceptible by human
+        vision. Importantly, the wide-gamut colors that are outside of the sRGB
+        color space are generally richer, more vibrant, livelier, bolder,
+        brighter, zingier, flashier, more flamboyant, more radiant, more
+        resplendent, more dazzling, glossier, more luminous, more vivid, more
+        effulgent, punchier, more saturated, gaudier, sparklier, showier, more
+        lustrous, jazzier, more iridescent, more ebullient, and downright more
+        technicolor than watching a peacock in a disco at the end of a double
+        rainbow on acid. This is what we're missing out on.
+      </p>
+      <p></p>
+      <!--kg-card-begin: html-->
+      <figure>
+        <img
+          style="background: #fff"
+          src="https://ryanfeigenbaum.com/content/images/2023/07/CIE1931xy_gamut_comparison_of_sRGB_P3_Rec2020.svg"
+          alt="CIE 1931 chromaticity diagram, overlaid with outlines of the color gamuts of sRGB, DCI-P3, Rec2020, AdobeRGB, and ProPhoto. Actual colors are only shown for the SRGB gamut; the remainder of the chromaticity diagram has colors dimmed to indicate they are not representable on a standard monitor."
+        />
+        <figcaption>
+          CIE 1931 chromaticity diagram, overlaid with outlines of the color
+          gamuts of sRGB, DCI-P3, Rec2020, AdobeRGB, and ProPhoto. By Myndex.
+        </figcaption>
+      </figure>
+      <!--kg-card-end: html-->
+      <p>
+        Let's look at this state of things again but from a more practical point
+        of view. The screenshots below show this website's homepage. One side
+        uses the newly available color spaces to achieve colors totally outside
+        the sRGB's gamut. The other side is plain old sRGB. Can you guess which
+        one uses the new color space? Put it in the comments.
+      </p>
+      <figure class="kg-card kg-gallery-card kg-width-wide">
+        <div class="kg-gallery-container">
+          <div class="kg-gallery-row">
+            <div class="kg-gallery-image" style="flex: 1.00317 1 0%">
+              <img
+                src="https://ryanfeigenbaum.com/content/images/2023/07/screely-1688250388698.png"
+                width="1266"
+                height="1262"
+                loading="lazy"
+                alt=""
+                srcset="
+                  https://ryanfeigenbaum.com/content/images/size/w600/2023/07/screely-1688250388698.png   600w,
+                  https://ryanfeigenbaum.com/content/images/size/w1000/2023/07/screely-1688250388698.png 1000w,
+                  https://ryanfeigenbaum.com/content/images/2023/07/screely-1688250388698.png            1266w
+                "
+                sizes="(min-width: 720px) 720px"
+                class="medium-zoom-image"
+              />
+            </div>
+            <div class="kg-gallery-image" style="flex: 1.00317 1 0%">
+              <img
+                src="https://ryanfeigenbaum.com/content/images/2023/07/screely-1688250343601.png"
+                width="1266"
+                height="1262"
+                loading="lazy"
+                alt=""
+                srcset="
+                  https://ryanfeigenbaum.com/content/images/size/w600/2023/07/screely-1688250343601.png   600w,
+                  https://ryanfeigenbaum.com/content/images/size/w1000/2023/07/screely-1688250343601.png 1000w,
+                  https://ryanfeigenbaum.com/content/images/2023/07/screely-1688250343601.png            1266w
+                "
+                sizes="(min-width: 720px) 720px"
+                class="medium-zoom-image"
+              />
+            </div>
+          </div>
+        </div>
+      </figure>
+      <p>One final example to hit the point home.</p>
+      <p>
+        The screenshot below is from Chrome's new color picker in its dev tools.
+        (This means you can do this experiment, too.) The curved white line
+        shows sRGB's boundaries. Every color to the right of it has been
+        off-limits.
+      </p>
+      <p>Until now...</p>
+      <figure class="kg-card kg-image-card">
+        <img
+          src="https://ryanfeigenbaum.com/content/images/2023/06/image.png"
+          class="kg-image medium-zoom-image"
+          alt="Color picker showing the many colors unattainable until now"
+          loading="lazy"
+          width="498"
+          height="708"
+        />
+      </figure>
+      <h2 id="the-impact-of-wide-gamut-colors">
+        The Impact of Wide-Gamut Colors
+      </h2>
+      <p>
+        In a cryptic sentence: "Green is no longer green." At the moment,
+        wide-gamut colors are a novelty but as more and more sites transition to
+        new color spaces, achieving brighter, punchier colors—sites that haven't
+        will start to appear drab, dreary, and dull.
+      </p>
+      <blockquote class="kg-blockquote-alt">
+        Green is no longer green
+      </blockquote>
+      <p>
+        I know I've railed a bit on sRGB throughout this article, but it should
+        be noted that sRGB was a hugely important technological milestone: it
+        standardized color rendering across devices. Without it, colors wouldn't
+        look quite right, and we'd have been watching Jerry, George, and Elaine
+        doing nothing in the Upside Down.
+      </p>
+      <p>
+        I should also mention that (HDR) displays capable of showing colors
+        beyond the sRGB color gamut didn't reach the mainstream until recently.
+        These hardware limitations meant there would've been little motivation
+        to bring additional, wide-gamut color spaces to the browser—no one would
+        be able to use or see them!
+      </p>
+      <p>
+        Caveats aside, the real takeaway here is that
+        <strong>sRGB isn't gonna cut it any longer</strong>. Using these
+        wide-gamut colors, though, can seem overwhelming because there is an
+        absolute barrage of new complex methods and syntaxes for working with
+        them in the browser. Having an understanding of color models, spaces,
+        and gamut makes adopting these new methods immensely more manageable.
+        The next articles in this series will continue to expose other limits of
+        sRGB and teach you how to use these wide-gamut colors in the browser.
+      </p>
+      <figure class="kg-card kg-image-card">
+        <img
+          src="https://ryanfeigenbaum.com/content/images/2023/07/image.png"
+          class="kg-image medium-zoom-image"
+          alt="cage pascal meme. first frame says adding high-gamut colors to a website. second frame says look at all the pretty color"
+          loading="lazy"
+          width="888"
+          height="499"
+          srcset="
+            https://ryanfeigenbaum.com/content/images/size/w600/2023/07/image.png 600w,
+            https://ryanfeigenbaum.com/content/images/2023/07/image.png           888w
+          "
+          sizes="(min-width: 720px) 720px"
+        />
+      </figure>
+      <h2 id="additional-resources-for-the-%F0%9F%A4%93">
+        Additional Resources for the 🤓
+      </h2>
+      <p><em>Some you must read</em></p>
+      <figure class="kg-card kg-bookmark-card">
+        <a
+          class="kg-bookmark-container"
+          href="https://jamie-wong.com/post/color/?ref=ryanfeigenbaum.com"
+          ><div class="kg-bookmark-content">
+            <div class="kg-bookmark-title">
+              Color: From Hexcodes to Eyeballs
+            </div>
+            <div class="kg-bookmark-description">
+              If you’re curious about rainbows, colorimetry, gamma encoding, and
+              experiments run in the late 1920s, then this is the post for you!
+            </div>
+            <div class="kg-bookmark-metadata">
+              <img
+                class="kg-bookmark-icon"
+                src="https://jamie-wong.com/favicon.ico"
+                alt=""
+              /><span class="kg-bookmark-author">Zero Wind :: Jamie Wong</span
+              ><span class="kg-bookmark-publisher"
+                >LogoCreated using Figma</span
+              >
+            </div>
+          </div>
+          <div class="kg-bookmark-thumbnail">
+            <img
+              src="http://jamie-wong.com/images/color/TriangleSliceRGB.png"
+              alt=""
+            /></div
+        ></a>
+      </figure>
+      <p>
+        This is a pretty sweet deep dive (metamers, tetrachromats, mantis
+        shrimp, chromaticity) by Jamie Wong, where he traces how color (<code
+          >#9b51e0</code
+        >
+        in particular) gets from the screen to your eyeballs.
+      </p>
+      <figure class="kg-card kg-bookmark-card">
+        <a
+          class="kg-bookmark-container"
+          href="https://programmingdesignsystems.com/color/a-short-history-of-color-theory/index.html?ref=ryanfeigenbaum.com#"
+          ><div class="kg-bookmark-content">
+            <div class="kg-bookmark-title">
+              A short history of color theory - Programming Design Systems
+            </div>
+            <div class="kg-bookmark-description">
+              Programming Design Systems is a free digital book that teaches a
+              practical introduction to the new foundations of graphic design.
+            </div>
+            <div class="kg-bookmark-metadata">
+              <span class="kg-bookmark-author">Programming Design Systems</span
+              ><span class="kg-bookmark-publisher">Rune Madsen</span>
+            </div>
+          </div>
+          <div class="kg-bookmark-thumbnail">
+            <img
+              src="https://programmingdesignsystems.com/assets/color/a-short-history-of-color-theory/newton-color-circle.jpg"
+              alt=""
+            /></div
+        ></a>
+      </figure>
+      <p>
+        Rune Madsen delivers a beautiful history of color theory, which I cannot
+        recommend enough. The description of Josef Albers' work was so
+        interesting, I'm in the middle of reading
+        <em>The Interaction of Color</em>. Madsen has several additional
+        chapters on color—they're all 🔥
+      </p>
+      <p><em>History and reference</em></p>
+      <figure class="kg-card kg-bookmark-card">
+        <a
+          class="kg-bookmark-container"
+          href="https://www.w3.org/Graphics/Color/sRGB?ref=ryanfeigenbaum.com"
+          ><div class="kg-bookmark-content">
+            <div class="kg-bookmark-title">
+              A Standard Default Color Space for the Internet - sRGB
+            </div>
+            <div class="kg-bookmark-description"></div>
+            <div class="kg-bookmark-metadata">
+              <img
+                class="kg-bookmark-icon"
+                src="https://www.w3.org/favicon.ico"
+                alt=""
+              /><span class="kg-bookmark-author">sRGB</span
+              ><span class="kg-bookmark-publisher"
+                >Michael Stokes (Hewlett-Packard), MatthewAnderson
+                (Microsoft),</span
+              >
+            </div>
+          </div>
+          <div class="kg-bookmark-thumbnail">
+            <img src="https://www.w3.org/Graphics/Color/srgb02" alt="" /></div
+        ></a>
+      </figure>
+      <p>
+        The OG proposal by HP and Microsoft to make sRGB the standard color
+        space.
+      </p>
+      <figure class="kg-card kg-bookmark-card">
+        <a
+          class="kg-bookmark-container"
+          href="https://en.wikipedia.org/wiki/List_of_color_spaces_and_their_uses?ref=ryanfeigenbaum.com"
+          ><div class="kg-bookmark-content">
+            <div class="kg-bookmark-title">
+              List of color spaces and their uses - Wikipedia
+            </div>
+            <div class="kg-bookmark-description"></div>
+            <div class="kg-bookmark-metadata">
+              <img
+                class="kg-bookmark-icon"
+                src="https://en.wikipedia.org/static/apple-touch/wikipedia.png"
+                alt=""
+              /><span class="kg-bookmark-author"
+                >Wikimedia Foundation, Inc.</span
+              ><span class="kg-bookmark-publisher"
+                >Contributors to Wikimedia projects</span
+              >
+            </div>
+          </div>
+          <div class="kg-bookmark-thumbnail">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/AdditiveColor.svg/200px-AdditiveColor.svg.png"
+              alt=""
+            /></div
+        ></a>
+      </figure>
+      <p>As the title suggests, an overview of color spaces and their uses.</p>
+      <p>🏆 Reward for reaching the bottom</p>
+      <figure class="kg-card kg-image-card">
+        <img
+          src="https://ryanfeigenbaum.com/content/images/2023/07/Firefly-a-peacock-in-a-disco-at-the-end-of-a-double-rainbow-9995.jpg"
+          class="kg-image medium-zoom-image"
+          alt="﻿peacock in a disco at the end of a double rainbow"
+          loading="lazy"
+          width="1024"
+          height="1024"
+          srcset="
+            https://ryanfeigenbaum.com/content/images/size/w600/2023/07/Firefly-a-peacock-in-a-disco-at-the-end-of-a-double-rainbow-9995.jpg   600w,
+            https://ryanfeigenbaum.com/content/images/size/w1000/2023/07/Firefly-a-peacock-in-a-disco-at-the-end-of-a-double-rainbow-9995.jpg 1000w,
+            https://ryanfeigenbaum.com/content/images/2023/07/Firefly-a-peacock-in-a-disco-at-the-end-of-a-double-rainbow-9995.jpg            1024w
+          "
+          sizes="(min-width: 720px) 720px"
+        />
+      </figure>
+    </article>
   </body>
 </html>
