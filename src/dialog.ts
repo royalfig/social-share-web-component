@@ -1,7 +1,7 @@
 import { xIcon, fbIcon, liIcon, copyIcon, copiedIcon } from "./icons";
 
 export function createDialogEl({ url, title, img }: Record<string, string>) {
-  return `
+	return `
   <header>
     <p>Share this post</p>
     <button class="close-button">
@@ -21,8 +21,8 @@ export function createDialogEl({ url, title, img }: Record<string, string>) {
       <a
         class='social-media linkedin'
         href='http://www.linkedin.com/shareArticle?mini=true&amp;url=${encodeURI(
-          url
-        )}'
+					url,
+				)}'
         aria-label='Share on LinkedIn'
         target='_blank'
         rel='noopener noreferrer'
@@ -44,6 +44,15 @@ export function createDialogEl({ url, title, img }: Record<string, string>) {
     </div>
     <div class="preview-container">
         <div class="preview">
+            <div class="meta">
+              <div class="meta-left">
+                <div class="avatar"></div>
+                <div class="author"></div>
+              </div>
+              <div class="meta-right">
+                <div class="data"></div>
+              </div>
+            </div>
             ${title ? `<p>${title}</p>` : ""}
             ${img ? `<img src="${img}" alt="${title}" >` : ""}
         </div>

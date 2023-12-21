@@ -1,13 +1,13 @@
 .wrapper {
-  --color-border: hsl(0deg 0% 82% / 56.9%);
-  --color-surface: hsl(0deg 0% 100%); 
-  --color-element: hsl(0deg 0% 0%);
+  --color-border: #e5e7eb;
+  --color-surface: #f9fafb;
+  --color-element: hsl(221deg 39% 11%);
   --color-button: var(--color-element);
   --color-button-text: var(--color-surface);
-  --color-backdrop: rgb(255 255 255 / 50%);
-  --border-radius-lg: 5px;
-  --border-radius-md: 3.5px;
-  --border-radius-sm: 2px;
+  --color-backdrop: hsl(210deg 20% 98% / 50%);
+  --border-radius-lg: 8px;
+  --border-radius-md: 5px;
+  --border-radius-sm: 2.5px;
   --padding-button: .5em 1em;
   --padding-box: 1em;
   --gap-sm: .5em;
@@ -51,8 +51,6 @@ button svg {
   color: var(--color-button-text);
   background-color: var(--color-button);
   border-radius: 9999px;
-
-
 }
 
 /* Modal */
@@ -173,6 +171,7 @@ dialog img {
 }
 
 .copy-button:hover {
+  color: var(--color-element);
   background-color: var(--color-border);
 }
 
@@ -196,7 +195,7 @@ dialog img {
 .preview {
   display: grid;
   grid-template-rows: max-content auto;
-  padding: 1em 1em 0;
+  padding: .75em 1em 0;
   margin-inline: auto;
   color: var(--color-element);
   background-color: var(--color-border);
@@ -205,11 +204,13 @@ dialog img {
 
 .preview > p {
   margin-block: 0 1em;
-  font-size: 1em;
+  font-size: .75em;
   font-weight: 600;
   line-height: 1.2;
+  text-align: left;
   text-wrap: balance;
 }
+
 
 .preview img {
   display: block;
@@ -217,4 +218,41 @@ dialog img {
   aspect-ratio: 3 / 1;
   border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
   object-fit: cover; 
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: 1em;
+}
+
+.meta-left {
+  display: flex;
+  gap: var(--gap-sm);
+  align-items: center;
+}
+
+.avatar {
+  width: 1.5em;
+  height: 1.5em;
+  background-color: var(--color-element);
+  border-radius: 50%;
+  opacity: .15;
+}
+
+.author {
+  width: 4em;
+  height: .5em;
+  background-color: var(--color-element);
+  border-radius: 9999px;
+  opacity: .15;
+}
+
+.data {
+  width: 3em;
+  height: .5em;
+  background-color: var(--color-element);
+  border-radius: 9999px;
+  opacity: .15;
 }

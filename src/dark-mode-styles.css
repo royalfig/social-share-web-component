@@ -1,0 +1,10 @@
+@media (prefers-color-scheme: dark) {
+	.wrapper {
+		--color-border: hsl(215deg 14% 18%);
+		--color-surface: hsl(221deg 14% 11%);
+		--color-element: #f9fafb;
+		--color-button: var(--color-element);
+		--color-button-text: var(--color-surface);
+		--color-backdrop: hsl(221deg 39% 11% / 50%);
+	}
+}

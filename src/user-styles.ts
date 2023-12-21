@@ -1,59 +1,70 @@
-
 function createFixedPosition(fixed: string | null) {
-    const distance = "20px";
-    const fixedPosition = `position: fixed; bottom: ${distance};`;
-  
-    if (!fixed) {
-      return "";
-    }
-  
-    const fixLowercase = fixed.toLowerCase();
-  
-    if (fixLowercase === "left" || fixLowercase === "right") {
-      return `${fixedPosition} ${fixLowercase}: ${distance}`;
-    }
-  
-    if (fixLowercase === "center") {
-      return `${fixedPosition} left: 50%; translate: -50% 0;`;
-    }
-  
-    console.error(
-      `[Share Link] It looks you specified an unknown value (${fixed}) for the fixed attribute. Available options are "left," "right," and "center"`
-    );
-    return "";
-  }
+	const distance = "28px";
+	const fixedPosition = `position: fixed; bottom: ${distance};`;
 
-function createCustomStyle(el: HTMLElement,  variable: string)
-{
-   const value = el.getAttribute(variable);
+	if (!fixed) {
+		return "";
+	}
 
-    if (!value) {
-         return "";
-    }
+	const fixLowercase = fixed.toLowerCase();
 
-    return `--${variable}: ${value};`;
+	if (fixLowercase === "left" || fixLowercase === "right") {
+		return `${fixedPosition} ${fixLowercase}: ${distance};`;
+	}
+
+	if (fixLowercase === "center") {
+		return `${fixedPosition} left: 50%; translate: -50% 0;`;
+	}
+
+	console.error(
+		`[Share Link] It looks you specified an unknown value (${fixed}) for the fixed attribute. Available options are "left," "right," and "center"`,
+	);
+	return "";
 }
 
+function createCustomStyle(el: HTMLElement, variables: string[]) {
+	return variables
+		.map((variable) => {
+			const value = el.getAttribute(variable);
+
+			if (!value) {
+				return "";
+			}
+
+			return `--${variable}: ${value};`;
+		})
+		.join("\n");
+}
+
+export const userCustomProps = [
+	"color-button",
+	"color-button-dark",
+	"color-button-text",
+	"color-button-text-dark",
+	"color-backdrop",
+	"color-backdrop-dark",
+	"color-border",
+	"color-border-dark",
+	"color-surface",
+	"color-surface-dark",
+	"color-element",
+	"color-element-dark",
+	"dark-mode",
+];
+
 export function createUserStyles(el: HTMLElement) {
-    const fixed = el.getAttribute("fixed");
-    const position = createFixedPosition(fixed);
+	const fixed = el.getAttribute("fixed");
+	const position = createFixedPosition(fixed);
+	console.log(
+		"🚀 ~ file: user-styles.ts:60 ~ createUserStyles ~ position:",
+		position,
+	);
 
-    const colorButton = createCustomStyle(el, "color-button-text");
-    const colorBg = createCustomStyle(el, "color-button");
-  
-    const styles = document.createElement("style");
+	const customStyles = createCustomStyle(el, userCustomProps);
 
-    styles.textContent = `
-    button {
-        ${position}
-        ${colorButton}
-        ${colorBg}
-    }
-
-    dialog {
-
-    }
-    `
-
-    return styles;
+	return `
+.wrapper {
+	${position}
+	${customStyles}
+}`;
 }
