@@ -6,7 +6,10 @@ import { createDarkModeStyles } from "./dark-mode";
 
 class ShareButton extends HTMLElement {
 	connectedCallback(): void {
-		const title = document.querySelector("title")?.textContent || "";
+		const title =
+			document.querySelector("title")?.textContent ||
+			document.querySelector("h1")?.textContent ||
+			"";
 		const ogImage =
 			document
 				.querySelector('meta[property="og:image"]')
@@ -21,17 +24,27 @@ class ShareButton extends HTMLElement {
 		// user styles
 		const userStyles = createUserStyles(this);
 
+		// button
+		const button = document.createElement("button");
+		const buttonText = this.getAttribute("button-text") || "Share";
+		button.setAttribute("class", "share-button");
+		button.innerHTML = buttonText + icon;
+
 		// dialog
 		const dialog = document.createElement("dialog");
 		const dialogContent = createDialogEl({
 			url: window.location.href,
 			title,
 			img: ogImage,
+			shareText: buttonText,
 		});
 		dialog.innerHTML = dialogContent;
 		const closeButton = dialog.querySelector(".close-button");
 		closeButton?.addEventListener("click", () => {
 			dialog.close();
+		});
+		button.addEventListener("click", () => {
+			dialog.showModal();
 		});
 
 		// copy button
@@ -62,15 +75,6 @@ class ShareButton extends HTMLElement {
 			} catch (err) {
 				console.log("We could not copy this");
 			}
-		});
-
-		// button
-		const button = document.createElement("button");
-		const buttonText = this.getAttribute("button-text") || "Share";
-		button.setAttribute("class", "share-button");
-		button.innerHTML = buttonText + icon;
-		button.addEventListener("click", () => {
-			dialog.showModal();
 		});
 
 		// dark mode
