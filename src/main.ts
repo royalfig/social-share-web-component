@@ -1,10 +1,40 @@
-import style from "./style.css?inline";
-import { icons } from "./icons";
-import { createDialogEl } from "./dialog";
-import { createUserStyles, userCustomProps } from "./user-styles";
 import { createDarkModeStyles } from "./dark-mode";
+import { createDialogEl } from "./dialog";
+import { icons } from "./icons";
+import style from "./style.css?inline";
+import { createUserStyles, userCustomProps } from "./user-styles";
 
 class ShareButton extends HTMLElement {
+	static init(): void {
+		const isInjected: HTMLElement | null = document.querySelector(
+			"script[data-position]",
+		);
+
+		if (isInjected) {
+			const { dataset } = isInjected;
+			const { position } = dataset;
+
+			if (position == null || !["left", "right", "center"].includes(position)) {
+				throw Error(
+					'[Share Link] It looks like you did not specify a valid position for the button. Please add a data-inject attribute with a value of "left," "right," or "center"',
+				);
+			}
+
+			const button = document.createElement("share-button");
+			for (const key of userCustomProps) {
+				const value = isInjected.getAttribute(`data-${key}`);
+				value && button.setAttribute(key, value);
+			}
+
+			// Set attributes
+			button.setAttribute("fixed", position);
+
+			document.body.append(button);
+		}
+
+		customElements.define("share-button", ShareButton);
+	}
+
 	connectedCallback(): void {
 		const title =
 			document.querySelector("title")?.textContent ||
@@ -95,34 +125,4 @@ class ShareButton extends HTMLElement {
 	}
 }
 
-function init(): void {
-	const isInjected: HTMLElement | null = document.querySelector(
-		"script[data-position]",
-	);
-
-	if (isInjected) {
-		const { dataset } = isInjected;
-		const { position } = dataset;
-
-		if (position == null || !["left", "right", "center"].includes(position)) {
-			throw Error(
-				'[Share Link] It looks like you did not specify a valid position for the button. Please add a data-inject attribute with a value of "left," "right," or "center"',
-			);
-		}
-
-		const button = document.createElement("share-button");
-		for (const key of userCustomProps) {
-			const value = isInjected.getAttribute(`data-${key}`);
-			value && button.setAttribute(key, value);
-		}
-
-		// Set attributes
-		button.setAttribute("fixed", position);
-
-		document.body.append(button);
-	}
-
-	customElements.define("share-button", ShareButton);
-}
-
-init();
+ShareButton.init();

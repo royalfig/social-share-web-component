@@ -3,7 +3,8 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
 	build: {
-		minify: true,
+		// minify: "esbuild",
+		sourcemap: true,
 		lib: {
 			entry: "src/main.ts",
 			name: "share-button",
