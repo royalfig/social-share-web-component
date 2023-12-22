@@ -38,12 +38,6 @@ button {
   transition: outline 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-button:hover  {
-  outline: 2px solid var(--color-button);
-  outline-offset: 1px;
-
-} 
-
 button svg {
   width: 1em;
   height: 1em;
@@ -56,6 +50,11 @@ button svg {
   background-color: var(--color-button);
   border-radius: 9999px;
 }
+
+.share-button:hover  {
+  outline: 2px solid var(--color-button);
+  outline-offset: 1px;
+} 
 
 /* Modal */
 dialog {

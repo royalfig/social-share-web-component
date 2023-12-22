@@ -1,8 +1,17 @@
 {
-  "name": "social-share-web-component",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@royalfig/share-button",
+  "description": "Adds a web-component share button to your website",
+  "version": "0.0.1",
   "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Ryan Feigenbaum",
+    "url": "https://ryanfeigenbaum.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/royalfig/share-button.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
