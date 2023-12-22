@@ -2,12 +2,12 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  build: {
-    minify: true,
-    lib: {
-      entry: "src/main.ts",
-      name: "my-component",
-      formats: ["es", "umd"],
-    },
-  },
+	build: {
+		minify: true,
+		lib: {
+			entry: "src/main.ts",
+			name: "share-button",
+			formats: ["es", "umd"],
+		},
+	},
 });

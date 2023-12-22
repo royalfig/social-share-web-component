@@ -3,6 +3,9 @@
   "description": "Adds a web-component share button to your website",
   "version": "0.0.1",
   "type": "module",
+  "private": false,
+  "files": ["dist"],
+  "module": "dist/share-button.js",
   "license": "MIT",
   "author": {
     "name": "Ryan Feigenbaum",
