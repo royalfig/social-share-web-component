@@ -5,8 +5,7 @@
   "type": "module",
   "private": false,
   "files": [
-    "dist/share-button.js",
-    "dist/share-button.umd.cjs"
+    "dist"
   ],
   "module": "dist/share-button.js",
   "license": "MIT",
