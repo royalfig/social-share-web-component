@@ -14,6 +14,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "test": "biome lint ./src",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
