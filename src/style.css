@@ -46,15 +46,24 @@ button svg {
 
 /* Share button */
 .share-button {
+  position: relative;
   color: var(--color-button-text);
   background-color: var(--color-button);
   border-radius: 9999px;
 }
 
-.share-button:hover  {
-  outline: 2px solid var(--color-button);
-  outline-offset: 1px;
-} 
+.share-button::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-color: rgb(255 255 255 / 15%);
+  opacity: 0;
+  transition: opacity 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.share-button:hover::before {
+  opacity: 1;
+}
 
 /* Modal */
 dialog {
