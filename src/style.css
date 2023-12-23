@@ -57,6 +57,7 @@ button svg {
   inset: 0;
   content: "";
   background-color: rgb(255 255 255 / 15%);
+  border-radius: 9999px;
   opacity: 0;
   transition: opacity 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

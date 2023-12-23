@@ -55,11 +55,6 @@ export const userCustomProps = [
 export function createUserStyles(el: HTMLElement) {
 	const fixed = el.getAttribute("fixed");
 	const position = createFixedPosition(fixed);
-	console.log(
-		"🚀 ~ file: user-styles.ts:60 ~ createUserStyles ~ position:",
-		position,
-	);
-
 	const customStyles = createCustomStyle(el, userCustomProps);
 
 	return `
