@@ -1,10 +1,12 @@
 {
 	"name": "@royalfig/share-button",
 	"description": "Adds a web-component share button to your website",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"type": "module",
 	"private": false,
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"module": "./dist/share-button.es.js",
 	"main": "./dist/share-button.umd.js",
 	"exports": {
