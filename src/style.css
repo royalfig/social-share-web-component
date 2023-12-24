@@ -241,16 +241,9 @@ dialog img {
 }
 
 .meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+  height: 26px;
   margin-block-end: 1em;
-}
-
-.meta-left {
-  display: flex;
-  gap: var(--gap-sm);
-  align-items: center;
 }
 
 .avatar {
@@ -261,18 +254,151 @@ dialog img {
   opacity: 0.15;
 }
 
-.author {
-  width: 4em;
-  height: 0.5em;
+.ph {
   background-color: var(--color-element);
-  border-radius: 9999px;
+  border-radius: var(--border-radius-sm);
   opacity: 0.15;
 }
 
-.data {
-  width: 3em;
+.fb,
+.tw {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fb-left,
+.tw-left,
+.li-left {
+  display: flex;
+  gap: 0.35em;
+  align-items: center;
+}
+
+.fb-right,
+.tw-right,
+.li-right {
+  display: flex;
+  gap: 0.25em;
+  align-items: center;
+}
+
+.fb-data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.fb-author {
+  width: 4.5em;
+  height: 0.35em;
+}
+
+.fb-meta {
+  display: flex;
+  gap: 0.25em;
+}
+
+.fb-meta > div {
+  width: 1.5em;
+  height: 0.25em;
+}
+
+.fb-right > div {
+  width: 0.5em;
+  height: 0.35em;
+}
+
+.fb-right > div:last-child {
   height: 0.5em;
-  background-color: var(--color-element);
-  border-radius: 9999px;
-  opacity: 0.15;
+}
+
+.fb-meta > div:last-child {
+  width: 0.5em;
+}
+
+/* Twitter */
+.tw-author {
+  display: flex;
+  gap: 0.25em;
+}
+
+.tw-data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+
+.tw-author > div {
+  width: 3em;
+  height: 0.35em;
+}
+
+.tw-author > div:not(:first-child) {
+  width: 0.75em;
+}
+
+.tw-user {
+  width: 4.5em;
+  height: 0.25em;
+}
+
+.tw-right {
+  width: 1.25em;
+  height: 0.35em;
+}
+
+/* Linkedin */
+
+.li-author {
+  display: flex;
+  gap: 0.25em;
+}
+
+.li-data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.li-author > div {
+  width: 3em;
+  height: 0.35em;
+}
+
+.li-tagline {
+  width: 4.5em;
+  height: 0.25em;
+}
+
+.li-timezone {
+  display: flex;
+  gap: 0.25em;
+}
+
+.li-timezone > div {
+  width: 1.5em;
+  height: 0.25em;
+}
+
+.fb,
+.li,
+.cp {
+  opacity: 0;
+}
+
+.dialog-body:has(.twitter:hover) .meta > div:not(.tw),
+.dialog-body:has(.facebook:hover) .meta > div:not(.fb),
+.dialog-body:has(.linkedin:hover) .meta > div:not(.li),
+.dialog-body:has(.copy:hover) .meta > div:not(.cp) {
+  opacity: 0;
+}
+
+.dialog-body:has(.twitter:hover) .meta > .tw,
+.dialog-body:has(.facebook:hover) .meta > .fb,
+.dialog-body:has(.linkedin:hover) .meta > .li,
+.dialog-body:has(.copy:hover) .meta > .cp {
+  opacity: 1;
 }

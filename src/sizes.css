@@ -1,0 +1,11 @@
+.large {
+  min-width: 60px;
+  height: 60px;
+  padding-inline: 16px;
+  box-shadow: rgb(0 0 0 / 24%) 0 8px 16px -2px;
+}
+
+.large svg {
+  width: 24px;
+  height: 24px;
+}

@@ -1,4 +1,5 @@
 import { xIcon, fbIcon, liIcon, copyIcon, copiedIcon } from "./icons";
+import { renderPreview } from "./preview";
 
 export function createDialogEl({
 	url,
@@ -47,24 +48,6 @@ export function createDialogEl({
         <span>Copy link</span>
       </button>
     </div>
-    <div class="preview-container">
-        <div class="preview">
-            <div class="meta">
-              <div class="meta-left">
-                <div class="avatar"></div>
-                <div class="author"></div>
-              </div>
-              <div class="meta-right">
-                <div class="data"></div>
-              </div>
-            </div>
-            ${title ? `<p>${title}</p>` : ""}
-            ${
-							img
-								? `<img src="${img}" alt="${title}" >`
-								: "<div class='meta-placeholder-img'></div>"
-						}
-        </div>
-    </div>
+    ${renderPreview({ title, img })}
   </div>`;
 }
