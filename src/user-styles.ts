@@ -52,6 +52,7 @@ export const userCustomProps = [
 	"color-element",
 	"color-element-dark",
 	"dark-mode",
+	"icon",
 ];
 
 export function createUserStyles(el: HTMLElement) {
