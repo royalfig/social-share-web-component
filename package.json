@@ -4,9 +4,7 @@
 	"version": "0.0.10",
 	"type": "module",
 	"private": false,
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"module": "./dist/share-button.es.js",
 	"main": "./dist/share-button.umd.js",
 	"exports": {
@@ -28,7 +26,8 @@
 		"dev": "vite",
 		"test": "biome lint ./src",
 		"build": "tsc && vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"publish": "git commit -am 'publish' && npm version patch && git push --tags"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.4.1",
