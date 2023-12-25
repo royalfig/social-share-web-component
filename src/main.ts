@@ -27,7 +27,7 @@ class ShareButton extends HTMLElement {
 			}
 
 			// Set attributes
-			button.setAttribute("fixed", position);
+			button.setAttribute("position", position);
 
 			document.body.append(button);
 		}
@@ -109,10 +109,6 @@ class ShareButton extends HTMLElement {
 
 		// dark mode
 		const darkModeStyles = createDarkModeStyles(this);
-		console.log(
-			"🚀 ~ file: main.ts:82 ~ ShareButton ~ connectedCallback ~ darkModeStyles:",
-			darkModeStyles,
-		);
 
 		const wrapper = document.createElement("div");
 		wrapper.setAttribute("class", "wrapper");

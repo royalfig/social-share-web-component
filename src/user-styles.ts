@@ -1,3 +1,5 @@
+import fixedStyles from "./fixed.css?inline";
+
 function createFixedPosition(fixed: string | null) {
 	const distance = "28px";
 	const fixedPosition = `position: fixed; bottom: ${distance};`;
@@ -53,13 +55,14 @@ export const userCustomProps = [
 ];
 
 export function createUserStyles(el: HTMLElement) {
-	const fixed = el.getAttribute("fixed");
-	const position = createFixedPosition(fixed);
+	const position = el.getAttribute("position");
+	const fixedPositionStyles = createFixedPosition(position);
 	const customStyles = createCustomStyle(el, userCustomProps);
 
 	return `
 .wrapper {
-	${position}
+	${fixedPositionStyles}
 	${customStyles}
+	${position && fixedStyles}
 }`;
 }

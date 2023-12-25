@@ -1,56 +1,72 @@
 const fb = `
 <div class="fb">
-    <div class="fb-left">
+    <div class="ph-flex-h">
         <div class="avatar"></div>
-        <div class="fb-data">
-            <div class="fb-author ph"></div>
-            <div class="fb-meta">
-                <div class="ph"></div>
-                <div class="ph"></div>
+        <div class="ph-flex-v">
+            <div class="ph ph-12 ph-large"></div>
+            <div class="ph-flex-h">
+                <div class="ph ph-6"></div>
+                <div class="ph ph-3"></div>
             </div>
         </div>
     </div>
-    <div class="fb-right">
-        <div class="ph"></div>
-        <div class="ph"></div>
+    <div class="ph-flex-h">
+        <div class="ph ph-1"></div>
+        <div class="ph ph-2 ph-large"></div>
     </div>
 </div>
 `;
 
 const tw = `
 <div class="tw">
-    <div class="tw-left">
+    <div class="ph-flex-h">
         <div class="avatar"></div>
-        <div class="tw-data">
-            <div class="tw-author">
-                <div class="ph"></div>
-                <div class="ph"></div>
-                <div class="ph"></div>
+        <div class="ph-flex-v">
+            <div class="ph-flex-h">
+                <div class="ph ph-6 ph-large"></div>
+                <div class="ph ph-2"></div>
+                <div class="ph ph-2"></div>
             </div>
-            <div class="tw-user ph"></div>
+            <div class="ph ph-8"></div>
         </div>
     </div>
-    <div class="tw-right ph"></div>
+    <div class="ph ph-3"></div>
 </div>
 `;
 
 const li = `
 <div class="li">
-    <div class="li-left">
+    <div class="ph-flex-h">
         <div class="avatar"></div>
-        <div class="li-data">
-            <div class="li-author">
-                <div class="ph"></div>
-                <div class="ph"></div>
+        <div class="ph-flex-v">
+            <div class="ph-flex-h">
+                <div class="ph ph-8 ph-large"></div>
+                <div class="ph ph-2 ph-large"></div>
             </div>
-            <div class="li-tagline ph"></div>
-            <div class="li-timezone">
-                <div class="ph"></div>
-                <div class="ph"></div>
+            <div class="ph ph-12"></div>
+            <div class="ph-flex-h">
+                <div class="ph ph-4"></div>
+                <div class="ph ph-3"></div>
             </div>
         </div>
     </div>
-    <div class="li-right ph"></div>
+    <div class="ph ph-2 ph-large"></div>
+</div>
+`;
+
+const cp = `
+<div class="cp">
+    <div class="ph-flex-h">
+        <div class="avatar"></div>
+        <div class="ph-flex-v">
+            <div class="ph ph-10 ph-large"></div>
+            <div class="ph ph-6"></div>
+        </div>
+    </div>
+    <div class="ph-flex-h">
+        <div class="ph ph-2"></div>
+        <div class="ph ph-2 ph-large"></div>
+    </div>
 </div>
 `;
 
@@ -62,6 +78,7 @@ export function renderPreview({ title, img }: { title: string; img: string }) {
             ${tw}
             ${fb}
             ${li}
+            ${cp}
         </div>
         ${title ? `<p>${title}</p>` : ""}
         ${
