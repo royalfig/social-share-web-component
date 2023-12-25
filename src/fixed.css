@@ -1,9 +1,9 @@
 .share-button {
-  flex-flow: row-reverse;
   gap: 8px;
   min-width: 60px;
   height: 60px;
   padding-inline: 16px;
+  font-size: 16px;
   box-shadow: rgb(0 0 0 / 24%) 0 8px 16px -2px;
 }
 
