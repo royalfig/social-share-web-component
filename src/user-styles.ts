@@ -51,6 +51,7 @@ export const userCustomProps = [
 	"color-surface-dark",
 	"color-element",
 	"color-element-dark",
+	"button-text",
 	"dark-mode",
 	"icon",
 ];

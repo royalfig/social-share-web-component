@@ -5,6 +5,7 @@
   --color-button: var(--color-element);
   --color-button-text: var(--color-surface);
   --color-backdrop: hsl(210deg 20% 98% / 50%);
+  --color-hover: rgb(255 255 255 / 15%);
   --border-radius-lg: 8px;
   --border-radius-md: 5px;
   --border-radius-sm: 2.5px;
@@ -56,7 +57,7 @@ button svg {
   position: absolute;
   inset: 0;
   content: "";
-  background-color: rgb(255 255 255 / 15%);
+  background-color: var(--color-hover);
   border-radius: 9999px;
   opacity: 0;
   transition: opacity 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);

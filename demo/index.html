@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Share Button Web Component</title>
+    <meta property="og:image" content="/abstract.png" />
+    <script type="module" src="./src/main.ts"></script>
+    <script
+      defer
+      data-position="left"
+      data-icon="4"
+      data-button-text="Share this page"
+      src="https://unpkg.com/@royalfig/share-button/dist/share-button.umd.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/night-owl.min.css"
+    />
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navigation">
+        <div class="left">
+          <a href="/">Share Button <span>Web Component</span></a>
+        </div>
+        <nav class="center"></nav>
+        <div class="right">
+          <share-button></share-button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <header>
+        <p class="sharing">Sharing is Caring 🤗</p>
+        <h1>
+          A fully customizable button to make sharing your content as easy as
+          possible.
+        </h1>
+        <p>
+          Add the ability to easily share your page to X (Twitter), Facebook,
+          LinkedIn with the click of a button.
+        </p>
+        <div class="meta">
+          <a href="https://ryanfeigenbaum.com/" class="author"
+            >By Ryan Feigenbaum</a
+          >
+          <p class="date">Updated on <span id="updated-on"></span></p>
+          <p id="version"></p>
+        </div>
+      </header>
+    </div>
+    <div class="container">
+      <img class="feature-image" src="/abstract.png" alt="" />
+    </div>
+    <div class="container">
+      <div class="content">
+        <p>
+          Amet magna pariatur Lorem est veniam ex Lorem. Minim reprehenderit
+          aliquip et sint in mollit minim nulla ea enim mollit non reprehenderit
+          excepteur. Aliqua pariatur veniam cupidatat aliquip. Pariatur culpa
+          voluptate nisi cupidatat consectetur aliquip tempor adipisicing labore
+          commodo. Nostrud elit ad duis ipsum excepteur aute excepteur. Proident
+          proident ad mollit commodo occaecat. Labore irure dolore labore quis
+          occaecat et mollit cupidatat consequat sint.
+        </p>
+        <h2>Installation</h2>
+        <p>There are two ways to add your share button to the page.</p>
+        <h3>1. Use the CDN</h3>
+        <p>Add the following script tag to your <code>head</code>.</p>
+        <pre><code>&lt;script defer src="https://unpkg.com/@royalfig/share-button/dist/share-button.umd.js"&gt;&lt;/script&gt;</code></pre>
+
+        <h3>2. Install with NPM</h3>
+        <pre><code>npm install @royalfig/share-button</code></pre>
+
+        <h2>Usage</h2>
+        <p>There are two ways to add the share button to the page:</p>
+
+        <h3>Custom element</h3>
+        <p>
+          Add the custom element
+          <code>&lt;share-button&gt;&lt;/share-button&gt;</code> anywhere in the
+          page <code>body</code> to add the share button.
+        </p>
+        <p>That's it!</p>
+        <p>The share button is now fully active.</p>
+        <h3>Injection</h3>
+        <p>
+          If you don't have access to your HTML, then you can use the injection
+          method. When using this method, the button has fixed positioning,
+          meaning that it will float at the bottom left, center, or right of the
+          page.
+        </p>
+        <p>
+          Initialize injection by adding the
+          <code>data-position</code> attribute to the script tag along with
+          where you want the button to appear:
+        </p>
+        <pre><code>&lt;script data-position="left" src="https://unpkg.com/@royalfig/share-button/dist/share-button.umd.js"&gt;&lt;/script&gt;</code></pre>
+
+        <h2>Customization</h2>
+        <p>
+          The share button comes with great default styles out of the box,
+          including support for dark mode (when the user's OS preference is set
+          to dark mode).
+        </p>
+        <p>
+          But it's also possible to define custom styles using attributes. The
+          attribute names are the same; however, when using the injection
+          method, they're prefixed with `data-` to comply with HTML standards.
+        </p>
+
+        <table>
+          <tr>
+            <td>Attribute</td>
+            <td>Description</td>
+            <td>Default value</td>
+          </tr>
+          <tr>
+            <td><code>color-border</code></td>
+            <td>Border color on share dialog</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>color-surface</code></td>
+            <td>Share dialog background color</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>color-element</code></td>
+            <td>Share dialog text and icon color</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>color-button</code></td>
+            <td>Button background color</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>color-button-text</code></td>
+            <td>Button text color</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><code>color-backdrop</code></td>
+            <td>The blurred dialog background color</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>position</td>
+            <td>Where ...</td>
+            <td></td>
+          </tr>
+        </table>
+
+        <h3>Dark Mode Customization</h3>
+      </div>
+    </div>
+  </body>
+</html>

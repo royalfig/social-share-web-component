@@ -28,7 +28,6 @@ class ShareButton extends HTMLElement {
 
 			// Set attributes
 			button.setAttribute("position", position);
-
 			document.body.append(button);
 		}
 
