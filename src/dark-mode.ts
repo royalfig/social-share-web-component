@@ -14,5 +14,5 @@ ${darkModeStyles}
         ${darkMode}
     }
 }
-    `;
+`;
 }

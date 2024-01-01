@@ -223,7 +223,11 @@
           a string.
         </p>
 
-        <pre><code>&lt;share-button dark-mode="false" style="--color-backdrop: #000; --color-border: #fff; --color-button-text: #fff; --color-button: #000; --color-element: #fff; --color-surface: #000;"&gt;&lt;/share-button&gt;</code></pre>
+        <pre><code>&lt;share-button dark-mode="--color-backdrop: #ff0; --color-border: #ff0; --color-button-text: #82b; --color-button: #333; --color-element: #010; --color-surface: #222;"&gt;&lt;/share-button&gt;</code></pre>
+
+        <share-button
+          dark-mode="--color-button: red; --color-border: blue;"
+        ></share-button>
 
         <h3>Icon</h3>
         <p>
@@ -257,7 +261,9 @@
           <code>false</code>
         </p>
 
-        <share-button icon="false"></share-button>
+        <div style="margin-block: 1rem">
+          <share-button icon="false"></share-button>
+        </div>
 
         <pre><code>&lt;share-button icon="false"&gt;&lt;/share-button&gt;</code></pre>
 

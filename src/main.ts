@@ -113,6 +113,10 @@ class ShareButton extends HTMLElement {
 
 		// dark mode
 		const darkModeStyles = createDarkModeStyles(this);
+		console.log(
+			"🚀 ~ file: main.ts:116 ~ ShareButton ~ connectedCallback ~ darkModeStyles:",
+			darkModeStyles,
+		);
 
 		const wrapper = document.createElement("div");
 		wrapper.setAttribute("class", "wrapper");

@@ -50,10 +50,19 @@ export const userCustomProps = [
 	"icon",
 ];
 
+const userStyles = [
+	"color-backdrop",
+	"color-border",
+	"color-button-text",
+	"color-button",
+	"color-element",
+	"color-surface",
+];
+
 export function createUserStyles(el: HTMLElement) {
 	const position = el.getAttribute("position");
 	const fixedPositionStyles = createFixedPosition(position);
-	const customStyles = createCustomStyle(el, userCustomProps);
+	const customStyles = createCustomStyle(el, userStyles);
 
 	return `
 .wrapper {
