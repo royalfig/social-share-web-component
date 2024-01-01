@@ -1,9 +1,9 @@
 .wrapper {
   --color-border: #e5e7eb;
   --color-surface: #f9fafb;
-  --color-element: hsl(221deg 39% 11%);
-  --color-button: var(--color-element);
-  --color-button-text: var(--color-surface);
+  --color-element: #111827;
+  --color-button: #111827;
+  --color-button-text: #f9fafb;
   --color-backdrop: hsl(210deg 20% 98% / 50%);
   --color-hover: rgb(255 255 255 / 15%);
   --border-radius-lg: 8px;

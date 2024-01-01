@@ -47,15 +47,20 @@ class ShareButton extends HTMLElement {
 		const shadow = this.attachShadow({ mode: "open" });
 
 		// icon
-		const iconChoice = this.getAttribute("icon") || "1";
-		const icon = icons[iconChoice as keyof typeof icons];
+		const icon = this.createIcon();
 
 		// user styles
 		const userStyles = createUserStyles(this);
 
 		// button
 		const button = document.createElement("button");
-		const buttonText = this.getAttribute("button-text") || "Share";
+		const buttonText = this.getAttribute("button-text") ?? "Share";
+
+		if (!buttonText) {
+			button.setAttribute("aria-label", "Share");
+			button.setAttribute("style", "border-radius: 50%; padding: 0.5rem;");
+		}
+
 		button.setAttribute("class", "share-button");
 		button.innerHTML = buttonText + icon;
 
@@ -117,6 +122,22 @@ class ShareButton extends HTMLElement {
 		const styles = new CSSStyleSheet();
 		styles.replaceSync(style + userStyles + darkModeStyles);
 		shadow.adoptedStyleSheets = [styles];
+	}
+
+	private createIcon() {
+		const iconChoice = this.getAttribute("icon") || "1";
+		let icon;
+		if (iconChoice === "false") {
+			icon = "";
+		} else if (!["1", "2", "3", "4", "5", "6", "7"].includes(iconChoice)) {
+			console.log(
+				'[Share Link] It looks like you did not specify a valid icon. Please add an icon attribute with a value of "1," "2," "3," "4," "5," "6," or "7"',
+			);
+			icon = icons["1" as keyof typeof icons];
+		} else {
+			icon = icons[iconChoice as keyof typeof icons];
+		}
+		return icon;
 	}
 }
 

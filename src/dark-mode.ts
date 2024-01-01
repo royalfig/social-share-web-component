@@ -1,9 +1,7 @@
 import darkModeStyles from "./dark-mode-styles.css?inline";
 
-export function createDarkModeStyles(el: HTMLElement, isInjection = false) {
-	const darkMode = el.getAttribute(
-		isInjection ? "data-dark-mode" : "dark-mode",
-	);
+export function createDarkModeStyles(el: HTMLElement) {
+	const darkMode = el.getAttribute("dark-mode");
 
 	if (darkMode === "false") {
 		return "";

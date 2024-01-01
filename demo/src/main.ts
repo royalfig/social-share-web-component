@@ -1,4 +1,8 @@
 import "./style.css";
+import "highlight.js/styles/tokyo-night-dark.css";
+import hljs from "highlight.js/lib/common";
+
+hljs.highlightAll();
 
 async function getLatestRelease() {
 	const res = await fetch(
@@ -15,7 +19,7 @@ async function getLatestRelease() {
 	});
 
 	const updatedOn = document.getElementById("updated-on");
-	const version = document.getElementById("version");
+	const version = document.getElementById("version") as HTMLAnchorElement;
 
 	if (!updatedOn || !version) {
 		return;
@@ -23,12 +27,10 @@ async function getLatestRelease() {
 
 	updatedOn.textContent = date;
 
-	const a = document.createElement("a");
-	a.href = html_url;
-	a.setAttribute("target", "_blank");
-	a.textContent = tag_name;
-
-	version.append(a);
+	version.href = html_url;
+	const svg = version.querySelector("svg");
+	version.textContent = tag_name;
+	svg && version.prepend(svg);
 }
 
 getLatestRelease();
