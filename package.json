@@ -1,45 +1,46 @@
 {
-	"name": "@royalfig/share-button",
-	"description": "Adds a web-component share button to your website",
-	"version": "0.0.16",
-	"type": "module",
-	"private": false,
-	"files": [
-		"dist"
-	],
-	"module": "./dist/share-button.es.js",
-	"main": "./dist/share-button.umd.js",
-	"exports": {
-		".": {
-			"import": "./dist/share-button.es.js",
-			"require": "./dist/share-button.umd.js"
-		}
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Ryan Feigenbaum",
-		"url": "https://ryanfeigenbaum.com/"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/royalfig/share-button.git"
-	},
-	"scripts": {
-		"dev": "vite",
-		"test": "biome lint ./src",
-		"build": "tsc && vite build",
-		"preview": "vite preview",
-		"prerelease": "git commit -am 'publish' && npm version patch && git push && git push --tags"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.4.1",
-		"stylelint": "^16.0.2",
-		"stylelint-config-recess-order": "^4.4.0",
-		"stylelint-config-standard": "^36.0.0",
-		"typescript": "^5.3.3",
-		"vite": "^5.0.8"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@royalfig/share-button",
+  "description": "Adds a web-component share button to your website",
+  "version": "0.0.16",
+  "type": "module",
+  "private": false,
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/share-button.es.js",
+  "main": "./dist/share-button.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/share-button.es.js",
+      "require": "./dist/share-button.umd.js"
+    }
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Ryan Feigenbaum",
+    "url": "https://ryanfeigenbaum.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/royalfig/share-button.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "test": "biome lint ./src",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "prerelease": "git commit -am 'publish' && npm version patch && git push && git push --tags"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.4.1",
+    "stylelint": "^16.0.2",
+    "stylelint-config-recess-order": "^4.4.0",
+    "stylelint-config-standard": "^36.0.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
