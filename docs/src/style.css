@@ -158,6 +158,7 @@ header > p {
 
 .feature-image {
   width: 100%;
+  height: auto;
   object-fit: cover;
   mix-blend-mode: multiply;
 }
@@ -203,18 +204,18 @@ table {
   border-radius: var(--br-small);
 }
 
-table td {
+table :where(td, th) {
   padding: 0.5rem 0.75rem;
 }
 
 table tr {
   border-bottom: 1px solid var(--color-border);
-  transition: border-bottom-color 300ms ease-out;
 }
 
-table tr:first-child {
+table th {
   font-size: var(--font-x-small);
   font-weight: 700;
+  text-align: left;
   text-transform: uppercase;
 }
 
