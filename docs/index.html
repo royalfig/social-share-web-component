@@ -38,7 +38,7 @@
         ></share-button>
         <h1>
           A fully customizable button to make sharing your content as easy as
-          possible.
+          possible
         </h1>
         <p>
           Add the ability to easily share your page to X (Twitter), Facebook,
@@ -80,21 +80,16 @@
     <div class="container">
       <div class="content">
         <p>
-          Amet magna pariatur Lorem est veniam ex Lorem. Minim reprehenderit
-          aliquip et sint in mollit minim nulla ea enim mollit non reprehenderit
-          excepteur. Aliqua pariatur veniam cupidatat aliquip. Pariatur culpa
-          voluptate nisi cupidatat consectetur aliquip tempor adipisicing labore
-          commodo. Nostrud elit ad duis ipsum excepteur aute excepteur. Proident
-          proident ad mollit commodo occaecat. Labore irure dolore labore quis
-          occaecat et mollit cupidatat consequat sint.
+          Share button is a custom element that makes it easy to add a share
+          button to your page. It's fully customizable and supports dark mode.
         </p>
         <h2>Installation</h2>
         <p>There are two ways to add your share button to the page.</p>
-        <h3>1. Use the CDN</h3>
+        <p><strong>1. Use the CDN</strong></p>
         <p>Add the following script tag to your <code>head</code>.</p>
         <pre><code class="language-html">&lt;script defer src="https://unpkg.com/@royalfig/share-button/dist/share-button.umd.js"&gt;&lt;/script&gt;</code></pre>
 
-        <h3>2. Install with NPM</h3>
+        <p><strong>2. Install with NPM</strong></p>
         <pre><code>npm install @royalfig/share-button</code></pre>
 
         <h2>Usage</h2>
@@ -186,7 +181,7 @@
           </tr>
           <tr>
             <td><code>icon</code></td>
-            <td>Custom icon</td>
+            <td><a href="#icon">Seven custom icons are available.</a></td>
             <td>1</td>
           </tr>
           <tr>
@@ -211,11 +206,12 @@
           added to the button indicating its text.
         </p>
 
-        <div style="margin-block: 2rem">
+        <figure class="example">
           <share-button
             button-text="Some totally different text"
           ></share-button>
-        </div>
+          <figcaption>Share button with custom button text</figcaption>
+        </figure>
         <h3 id="dark-mode">Dark Mode Customization</h3>
 
         <p>
@@ -237,11 +233,15 @@
 
         <pre><code>&lt;share-button dark-mode="--color-backdrop: #ff0; --color-border: #ff0; --color-button-text: #82b; --color-button: #333; --color-element: #010; --color-surface: #222;"&gt;&lt;/share-button&gt;</code></pre>
 
-        <share-button
-          dark-mode="--color-button: red; --color-border: blue;"
-        ></share-button>
+        <figure class="example">
+          <share-button dark-mode="--color-button: #00C0E8;"></share-button>
+          <figcaption>
+            Button with custom dark mode. Ensure dark mode is enabled to see the
+            example.
+          </figcaption>
+        </figure>
 
-        <h3>Icon</h3>
+        <h3 id="icon">Icon</h3>
         <p>
           There are seven icon possibilities. Set the icon using the `icon` data
           attribute followed by a number 1 - 7. See icons below for examples of
@@ -250,15 +250,7 @@
 
         <pre><code>&lt;share-button icon="1"&gt;&lt;/share-button&gt;</code></pre>
 
-        <div
-          style="
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-block: 2rem;
-          "
-        >
+        <figure class="example example-icons">
           <share-button icon="1" button-text="1"></share-button>
           <share-button icon="2" button-text="2"></share-button>
           <share-button icon="3" button-text="3"></share-button>
@@ -266,16 +258,18 @@
           <share-button icon="5" button-text="5"></share-button>
           <share-button icon="6" button-text="6"></share-button>
           <share-button icon="7" button-text="7"></share-button>
-        </div>
+          <figcaption>Available share button icons</figcaption>
+        </figure>
 
         <p>
           To omit an icon altogether, set the icon attribute to
-          <code>false</code>
+          <code>false</code>.
         </p>
 
-        <div style="margin-block: 1rem">
+        <figure class="example">
           <share-button icon="false"></share-button>
-        </div>
+          <figcaption>Button without icon</figcaption>
+        </figure>
 
         <pre><code>&lt;share-button icon="false"&gt;&lt;/share-button&gt;</code></pre>
 
