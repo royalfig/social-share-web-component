@@ -19,7 +19,7 @@ function createFixedPosition(fixed: string | null) {
 	}
 
 	console.error(
-		`[Share Link] It looks you specified an unknown value (${fixed}) for the fixed attribute. Available options are "left," "right," and "center"`,
+		`[Share Button] It looks you specified an unknown value (${fixed}) for the fixed attribute. Available options are "left," "right," and "center"`,
 	);
 	return "";
 }

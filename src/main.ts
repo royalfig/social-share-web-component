@@ -16,7 +16,7 @@ class ShareButton extends HTMLElement {
 
 			if (position == null || !["left", "right", "center"].includes(position)) {
 				throw Error(
-					'[Share Link] It looks like you did not specify a valid position for the button. Please add a data-inject attribute with a value of "left," "right," or "center"',
+					'[Share Button] It looks like you did not specify a valid position for the button. Please add a data-inject attribute with a value of "left," "right," or "center"',
 				);
 			}
 
@@ -107,7 +107,7 @@ class ShareButton extends HTMLElement {
 					text.textContent = "Copy link";
 				}, 5000);
 			} catch (err) {
-				console.log("We could not copy this");
+				console.log("[Share Button] We could not copy this");
 			}
 		});
 
@@ -131,7 +131,7 @@ class ShareButton extends HTMLElement {
 			icon = "";
 		} else if (!["1", "2", "3", "4", "5", "6", "7"].includes(iconChoice)) {
 			console.log(
-				'[Share Link] It looks like you did not specify a valid icon. Please add an icon attribute with a value of "1," "2," "3," "4," "5," "6," or "7"',
+				'[Share Button] It looks like you did not specify a valid icon. Please add an icon attribute with a value of "1," "2," "3," "4," "5," "6," or "7"',
 			);
 			icon = icons["1" as keyof typeof icons];
 		} else {
