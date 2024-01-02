@@ -144,7 +144,7 @@ dialog[open] {
 
 ::backdrop {
   background-color: rgb(0 0 0 / 0%);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(2px);
   transition: display 300ms allow-discrete, backdrop-filter 300ms ease-out,
     overlay 300ms allow-discrete, background-color 300ms;
 }
