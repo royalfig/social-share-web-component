@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Share Button Web Component</title>
-    <meta property="og:image" content="/share-button/abstract.png" />
+    <meta property="og:image" content="abstract.png" />
     <script type="module" src="./src/main.ts"></script>
     <script
       defer
@@ -13,10 +13,10 @@
       src="https://unpkg.com/@royalfig/share-button/dist/share-button.umd.js"
     ></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
   </head>
   <body>
     <div class="container">
@@ -108,7 +108,7 @@
         </p>
         <p>That's it!</p>
         <p>The share button is now fully active.</p>
-        <h3>Injection</h3>
+        <h3 id="injection">Injection</h3>
         <p>
           If you don't have access to your HTML, then you can use the injection
           method. When using this method, the button has fixed positioning,
@@ -160,12 +160,12 @@
           <tr>
             <td><code>color-button</code></td>
             <td>Button background color</td>
-            <td style="background-color: #111827; color: #fff">#111827</td>
+            <td style="background-color: #181b20; color: #fff">#181b20</td>
           </tr>
           <tr>
             <td><code>color-element</code></td>
             <td>Share dialog text and icon color</td>
-            <td style="background-color: #111827; color: #fff">#111827</td>
+            <td style="background-color: #181b20; color: #fff">#181b20</td>
           </tr>
           <tr>
             <td><code>color-surface</code></td>
@@ -187,12 +187,15 @@
           <tr>
             <td><code>icon</code></td>
             <td>Custom icon</td>
-            <td></td>
+            <td>1</td>
           </tr>
           <tr>
             <td><code>position</code></td>
-            <td>Position of the button</td>
-            <td></td>
+            <td>
+              Injects the button onto the page.
+              <a href="#injection">Learn more.</a>
+            </td>
+            <td>Not enabled by default.</td>
           </tr>
         </table>
 
@@ -207,6 +210,12 @@
           to make the button a circle and an <code>aria-label</code> will be
           added to the button indicating its text.
         </p>
+
+        <div style="margin-block: 2rem">
+          <share-button
+            button-text="Some totally different text"
+          ></share-button>
+        </div>
         <h3 id="dark-mode">Dark Mode Customization</h3>
 
         <p>

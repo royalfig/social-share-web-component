@@ -11,7 +11,7 @@ export function createDarkModeStyles(el: HTMLElement) {
 ${darkModeStyles}
 @media (prefers-color-scheme: dark) {
     .wrapper {
-        ${darkMode}
+        ${darkMode ? darkMode : ""}
     }
 }
 `;

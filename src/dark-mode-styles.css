@@ -1,7 +1,7 @@
 @media (prefers-color-scheme: dark) {
   .wrapper {
-    --color-border: hsl(215deg 14% 18%);
-    --color-surface: hsl(221deg 14% 11%);
+    --color-border: #272d34;
+    --color-surface: #181b20;
     --color-element: #f9fafb;
     --color-button: var(--color-element);
     --color-button-text: var(--color-surface);

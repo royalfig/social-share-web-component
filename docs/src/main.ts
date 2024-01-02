@@ -1,5 +1,5 @@
 import "./style.css";
-import "highlight.js/styles/tokyo-night-dark.css";
+import "highlight.js/styles/night-owl.css";
 import hljs from "highlight.js/lib/common";
 
 hljs.highlightAll();

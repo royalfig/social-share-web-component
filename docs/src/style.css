@@ -4,24 +4,24 @@
   --font-small: max(15px, 0.85rem);
   --font-x-small: max(12px, 0.75rem);
   --br-small: max(3px, 0.25rem);
-  --color-border: hsl(221deg 39% 86%);
+  --color-border: #cdd6e9;
   --color-border-hover: hsl(244deg 83% 51% / 80%);
   --color-surface: #f9fafb;
-  --color-element: #111827;
-  --color-inline-code: #111827;
+  --color-element: #181b20;
+  --color-inline-code: #181b20;
   --color-code: var(--color-border);
   --color-surface-1: hsl(220deg 13% 91%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-border: hsl(221deg 39% 26%);
+    --color-border: #272c34;
     --color-border-hover: hsl(244deg 83% 51% / 80%);
     --color-element: #f9fafb;
-    --color-surface: hsl(221deg 39% 11%);
+    --color-surface: #181b20;
     --color-inline-code: #f9fafb;
-    --color-code: hsl(221deg 39% 21%);
-    --color-surface-1: hsl(221deg 39% 16%);
+    --color-code: #212e4a;
+    --color-surface-1: #192339;
   }
 }
 
