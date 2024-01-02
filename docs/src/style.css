@@ -64,7 +64,7 @@ pre {
   display: grid;
   grid-template-columns:
     [gutter-start] var(--gutter) [content-wide-start] 1fr [content-start]
-    minmax(auto, var(--content-width))
+    minmax(0, var(--content-width))
     [content-end] 1fr [content-wide-end] var(--gutter) [gutter-end];
   margin-block-end: 3rem;
 }
