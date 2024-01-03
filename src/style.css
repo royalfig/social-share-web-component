@@ -174,7 +174,7 @@ dialog[open]::backdrop {
   gap: var(--gap-md);
   align-items: center;
   justify-content: flex-start;
-  min-width: 9em;
+  min-width: 7em;
   padding: 1em;
   font-size: var(--font-sm);
   font-weight: 600;
@@ -229,7 +229,17 @@ dialog[open]::backdrop {
 
 .preview-container {
   align-self: end;
-  padding: 2em 2em 0;
+  padding: 1em 1em 0;
+}
+
+@media (width >= 48rem) {
+  .social-media {
+    min-width: 9em;
+  }
+
+  .preview-container {
+    padding: 2em 2em 0;
+  }
 }
 
 .preview {
