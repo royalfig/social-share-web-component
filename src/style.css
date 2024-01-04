@@ -14,7 +14,7 @@
   --gap-sm: 0.5em;
   --gap-md: 0.75em;
   --gap-lg: 2em;
-  --gap-icon: 1em;
+  --gap-icon: 0.4em;
   --font-sm: max(15px, 0.85em);
   --font-lg: max(18px, 1.05em);
   --box-shadow: 0 0.7px 2.2px hsl(200deg 100% 9% / 2%),
