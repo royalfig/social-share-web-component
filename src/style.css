@@ -17,12 +17,13 @@
   --gap-icon: 5px;
   --font-sm: max(15px, 0.85em);
   --font-lg: max(18px, 1.05em);
-  --box-shadow: 0 0.7px 2.2px #001f2e05, 0 1.6px 5.3px rgb(0 31 46 / 2.8%),
-    0 3px 10px rgb(0 31 46 / 3.5%), 0 5.4px 17.9px rgb(0 31 46 / 4.2%),
-    0 10px 33.4px #001f2e0d, 0 24px 80px #001f2e12;
+  --box-shadow: 0 0.7px 2.2px hsl(200deg 100% 9% / 2%),
+    0 1.6px 5.3px rgb(0 31 46 / 2.8%), 0 3px 10px rgb(0 31 46 / 3.5%),
+    0 5.4px 17.9px rgb(0 31 46 / 4.2%), 0 10px 33.4px hsl(200deg 100% 9% / 5.1%),
+    0 24px 80px hsl(200deg 100% 9% / 7.1%);
 
-  font-size: 16px;
-  font-size: clamp(1em, 0.95em + 0.25vw, 1.25em);
+  /* This isn't ideal (because of accessibility issues) but we need to account for the inherited font-size... Probably a better solution in the future */
+  font-size: clamp(16px, 15.2px + 0.25vw, 20px);
 }
 
 button {
