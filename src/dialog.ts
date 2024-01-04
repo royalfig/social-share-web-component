@@ -26,9 +26,10 @@ export function createDialogEl({
         Twitter</a>
       <a
         class='social-media linkedin'
-        href='http://www.linkedin.com/shareArticle?mini=true&amp;url=${encodeURI(
+        href='https://www.linkedin.com/sharing/share-offsite/?url=${encodeURI(
 					url,
 				)}'
+        
         aria-label='Share on LinkedIn'
         target='_blank'
         rel='noopener noreferrer'
