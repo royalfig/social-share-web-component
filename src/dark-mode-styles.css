@@ -7,10 +7,9 @@
     --color-button-text: var(--color-surface);
     --color-backdrop: hsl(221deg 39% 11% / 50%);
     --color-hover: rgb(0 0 0 / 15%);
-    --box-shadow: 0 0.7px 2.2px hsl(200deg 100% 9% / 32%),
-      0 1.6px 5.3px rgb(0 31 46 / 32.8%), 0 3px 10px rgb(0 31 46 / 33.5%),
-      0 5.4px 17.9px rgb(0 31 46 / 34.2%),
-      0 10px 33.4px hsl(200deg 100% 9% / 35.1%),
-      0 24px 80px hsl(200deg 100% 9% / 37.1%);
+    --box-shadow: 0 0.7px 2.2px hsl(0deg 0 9% / 12%),
+      0 1.6px 5.3px rgb(0 0 0 / 12.8%), 0 3px 10px rgb(0 0 0 / 13.5%),
+      0 5.4px 17.9px rgb(0 0 0 / 14.2%), 0 10px 33.4px hsl(0deg 0 9% / 15.1%),
+      0 24px 80px hsl(0deg 0 9% / 17.1%);
   }
 }

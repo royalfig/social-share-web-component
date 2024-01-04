@@ -100,11 +100,9 @@ class ShareButton extends HTMLElement {
 			try {
 				await navigator.clipboard.writeText(window.location.href);
 				currentTarget.classList.toggle("copied");
-				text.textContent = "Copied 🥳";
 
 				setTimeout(() => {
 					currentTarget.classList.toggle("copied");
-					text.textContent = "Copy link";
 				}, 5000);
 			} catch (err) {
 				console.log("[Share Button] We could not copy this");
