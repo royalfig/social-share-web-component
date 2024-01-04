@@ -1,7 +1,7 @@
 {
   "name": "@royalfig/share-button",
   "description": "Adds a web-component share button to your website",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "type": "module",
   "private": false,
   "files": [
