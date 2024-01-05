@@ -78,7 +78,23 @@ class ShareButton extends HTMLElement {
 			dialog.close();
 		});
 		button.addEventListener("click", () => {
-			dialog.showModal();
+			const userAgent = navigator.userAgent;
+
+			if (
+				/android/i.test(userAgent) ||
+				(/iPhone|iPad|iPod/i.test(userAgent) && navigator.share)
+			) {
+				try {
+					navigator.share({
+						title,
+						url: window.location.href,
+					});
+				} catch (err) {
+					console.log(err);
+				}
+			} else {
+				dialog.showModal();
+			}
 		});
 
 		// copy button
