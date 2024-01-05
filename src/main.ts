@@ -81,8 +81,8 @@ class ShareButton extends HTMLElement {
 			const userAgent = navigator.userAgent;
 
 			if (
-				/android/i.test(userAgent) ||
-				(/iPhone|iPad|iPod/i.test(userAgent) && navigator.share)
+				(/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) &&
+				navigator.share
 			) {
 				try {
 					navigator.share({
