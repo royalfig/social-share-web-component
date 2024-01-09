@@ -4,7 +4,7 @@ import { icons } from "./icons";
 import style from "./style.css?inline";
 import { createUserStyles, userCustomProps } from "./user-styles";
 
-class ShareButton extends HTMLElement {
+export class ShareButton extends HTMLElement {
 	static init(): void {
 		const isInjected: HTMLElement | null = document.querySelector(
 			"script[data-position]",

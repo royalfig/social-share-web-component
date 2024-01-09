@@ -13,6 +13,7 @@
     "vite": "^5.0.8"
   },
   "dependencies": {
+    "@royalfig/share-button": "^0.0.29",
     "highlight.js": "^11.9.0"
   }
 }
