@@ -1,5 +1,6 @@
 // vite config to build web component
 import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
 	build: {
@@ -9,4 +10,5 @@ export default defineConfig({
 			fileName: (format) => `share-button.${format}.js`,
 		},
 	},
+	plugins: [dts({ rollupTypes: true })],
 });

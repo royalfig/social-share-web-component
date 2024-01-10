@@ -1,6 +1,7 @@
 import "./style.css";
 import "highlight.js/styles/nord.css";
 import hljs from "highlight.js/lib/common";
+import "@royalfig/share-button";
 
 // create a copy button as a plugin for highlight js
 hljs.addPlugin({
