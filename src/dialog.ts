@@ -1,54 +1,105 @@
-import { xIcon, fbIcon, liIcon, copyIcon, copiedIcon } from "./icons";
-import { renderPreview } from "./preview";
+import {
+	xIcon,
+	fbIcon,
+	liIcon,
+	copyIcon,
+	copiedIcon,
+	whatsappIcon,
+	telegramIcon,
+	emailIcon,
+} from "./icons";
+
+function createSocialMediaLink(
+	URL: string,
+	icon: string,
+	network: string,
+	shareURL: string,
+	text?: string,
+) {
+	let finalUrl = shareURL.replace(/{{url}}/g, URL);
+
+	if (text) {
+		finalUrl = finalUrl.replace(/{{text}}/g, text);
+	}
+
+	return `<a
+  class='social-media ${network.toLowerCase()}'
+  href='${encodeURI(finalUrl)}'
+  aria-label='Share on ${network}'
+  target='_blank'
+  rel='noopener noreferrer'
+  part='share-link'
+>${icon}
+  ${network}</a>`;
+}
 
 export function createDialogEl({
 	url,
 	title,
-	img,
 	shareText,
 }: Record<string, string>) {
 	return `
-  <header>
-    <p>${shareText ? shareText : "Share"}</p>
-    <button class="close-button">
-      <svg viewBox="0 0 24 24"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z" fill="currentColor"></path></svg>
-    </button>
-  </header>
-  <div class="dialog-body">
-    <div class="share-links">
-      <a
-        class='social-media twitter'
-        href='https://twitter.com/intent/tweet?text=${encodeURI(url)}'
-        aria-label='Share on Twitter'
-        target='_blank'
-        rel='noopener noreferrer'
-      >${xIcon}
-        Twitter</a>
-      <a
-        class='social-media linkedin'
-        href='https://www.linkedin.com/feed/?shareActive=true&text=${encodeURI(
-					url,
-				)}'
+  <div class="arrow"></div>
+  <div class="popover-inner">
+    <header part="header">
+      <p>${shareText ? shareText : "Share this link"}</p>
+    </header>
+    <div class="dialog-body" part="dialog-body">
+      <div class="share-links" part="share-links">
+
+        ${createSocialMediaLink(
+          url,
+          xIcon,
+          "X",
+          "https://twitter.com/intent/tweet?url={{url}}&text={{text}}",
+          title,
+        )}  
+
+        ${createSocialMediaLink(
+          url,
+          liIcon,
+          "LinkedIn",
+          "https://www.linkedin.com/feed/?shareActive=true&text={{text}} {{url}}",
+          title,
+        )}
         
-        aria-label='Share on LinkedIn'
-        target='_blank'
-        rel='noopener noreferrer'
-      >${liIcon}
-        Linkedin</a>
-      <a
-        class='social-media facebook'
-        href='http://www.facebook.com/sharer.php?u=${encodeURI(url)}'
-        aria-label='Share on Facebook'
-        target='_blank'
-        rel='noopener noreferrer'
-      >${fbIcon}
-        Facebook</a>
-      <button class='social-media copy-button' aria-label='Copy link'>
-        ${copyIcon}
-        ${copiedIcon}
-        <span>Copy link</span>
-      </button>
+        ${createSocialMediaLink(
+          url,
+          fbIcon,
+          "Facebook",
+          "http://www.facebook.com/sharer.php?u={{url}}",
+        )}
+        
+        ${createSocialMediaLink(
+          url,
+          emailIcon,
+          "Email",
+          "mailto:?subject=Check out {{text}}&body={{text}} {{url}}",
+          title,
+        )}
+
+        ${createSocialMediaLink(
+          url,
+          telegramIcon,
+          "Telegram",
+          "https://t.me/share/url?url={{url}}&text={{text}}",
+          title,
+        )}
+
+        ${createSocialMediaLink(
+          url,
+          whatsappIcon,
+          "WhatsApp",
+          "https://api.whatsapp.com/send?text={{text}} {{url}}",
+          title,
+        )}
+
+        <button class='social-media copy-button' aria-label='Copy link' part="share-link">
+          ${copyIcon}
+          ${copiedIcon}
+          <span>Copy link</span>
+        </button>
+      </div>
     </div>
-    ${renderPreview({ title, img })}
   </div>`;
 }

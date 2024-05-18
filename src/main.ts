@@ -21,6 +21,7 @@ export class ShareButton extends HTMLElement {
 			}
 
 			const button = document.createElement("share-button");
+			button.setAttribute("part", "share-button");
 			for (const key of userCustomProps) {
 				const value = isInjected.getAttribute(`data-${key}`);
 				value && button.setAttribute(key, value);
@@ -54,18 +55,29 @@ export class ShareButton extends HTMLElement {
 
 		// button
 		const button = document.createElement("button");
-		const buttonText = this.getAttribute("button-text") ?? "Share";
+		button.setAttribute("part", "share-button");
+		button.setAttribute("class", "share-button");
+		button.setAttribute("class", "share-button");
+		button.setAttribute("popovertarget", "share-popover");
+		const buttonText = this.textContent ?? "Share";
+		const isCircle = this.hasAttribute("circle");
 
-		if (!buttonText) {
+		if (isCircle) {
 			button.setAttribute("aria-label", "Share");
 			button.setAttribute("style", "border-radius: 50%; padding: 0.5rem;");
+			button.innerHTML = icon;
+		} else {
+			button.innerHTML = `${
+				this.textContent ? "<slot></slot>" : "Share"
+			}${icon}`;
 		}
 
-		button.setAttribute("class", "share-button");
-		button.innerHTML = buttonText + icon;
-
 		// dialog
-		const dialog = document.createElement("dialog");
+		const dialog = document.createElement("div");
+		dialog.setAttribute("id", "share-popover");
+		dialog.setAttribute("part", "share-popover");
+		dialog.setAttribute("popover", "auto");
+
 		const dialogContent = createDialogEl({
 			url: window.location.href,
 			title,
@@ -73,12 +85,10 @@ export class ShareButton extends HTMLElement {
 			shareText: buttonText,
 		});
 		dialog.innerHTML = dialogContent;
-		const closeButton = dialog.querySelector(".close-button");
-		closeButton?.addEventListener("click", () => {
-			dialog.close();
-		});
-		button.addEventListener("click", () => {
+
+		button.addEventListener("click", (e) => {
 			const userAgent = navigator.userAgent;
+			const target = e.currentTarget as Element;
 
 			if (
 				(/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) &&
@@ -89,11 +99,42 @@ export class ShareButton extends HTMLElement {
 						title,
 						url: window.location.href,
 					});
+					target.removeAttribute("popover");
 				} catch (err) {
 					console.log(err);
 				}
 			} else {
-				dialog.showModal();
+				const target = e.currentTarget as Element;
+
+				const buttonCoords = target.getBoundingClientRect();
+
+				const scrollY = window.scrollY;
+				const popover = shadow.querySelector("[popover]") as HTMLElement;
+				popover?.style.setProperty(
+					"left",
+					`calc(${
+						buttonCoords.left + buttonCoords.width / 2
+					}px - 1em - .75em/2)`,
+				);
+
+				console.log(
+					scrollY,
+					document.documentElement.clientHeight / 2 > buttonCoords.y,
+					popover,
+				);
+
+				if (document.documentElement.clientHeight / 2 > buttonCoords.y) {
+					// PUT below
+					popover.style.top = `${
+						scrollY + buttonCoords.top + buttonCoords.height + 10
+					}px`;
+					popover.style.translate = "initial";
+				} else {
+					// PUT above
+
+					popover.style.top = `${scrollY + buttonCoords.top - buttonCoords.height + 10 }px`;
+					popover.style.translate = "0 -100%";
+				}
 			}
 		});
 
@@ -130,6 +171,7 @@ export class ShareButton extends HTMLElement {
 
 		const wrapper = document.createElement("div");
 		wrapper.setAttribute("class", "wrapper");
+		wrapper.setAttribute("part", "wrapper");
 		wrapper.append(button, dialog);
 		shadow.append(wrapper);
 

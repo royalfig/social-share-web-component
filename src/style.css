@@ -21,9 +21,11 @@
     0 1.6px 5.3px rgb(0 31 46 / 2.8%), 0 3px 10px rgb(0 31 46 / 3.5%),
     0 5.4px 17.9px rgb(0 31 46 / 4.2%), 0 10px 33.4px hsl(200deg 100% 9% / 5.1%),
     0 24px 80px hsl(200deg 100% 9% / 7.1%);
+--filter:drop-shadow(2px 2px 8px rgb(0 0 0 / 15%));
 
   /* This isn't ideal (because of accessibility issues) but we need to account for the inherited font-size... Probably a better solution in the future */
-  font-size: clamp(16px, 15.2px + 0.25vw, 20px);
+  font-size: 0.875rem;
+  font-size: clamp(0.875rem, 0.85rem + 0.125vw, 1rem);
 }
 
 button {
@@ -62,7 +64,8 @@ button svg {
   background-color: var(--color-hover);
   border-radius: 9999px;
   opacity: 0;
-  transition: opacity 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* transition: opacity 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275); */
 }
 
 .share-button:hover::before {
@@ -70,104 +73,84 @@ button svg {
 }
 
 /* Modal */
-dialog {
+[popover] {
+  position: absolute;
   max-width: min(100% - 16px, 31.25em);
   padding: 0;
+  margin: 0;
   font-family: inherit;
   color: var(--color-element);
-  background-color: var(--color-surface);
+  background-color: transparent;
+  filter: var(--filter);
   border: none;
   border-radius: var(--border-radius-lg);
-  box-shadow: var(--box-shadow);
-  opacity: 0;
-  transition: opacity 300ms ease-out, overlay 300ms ease-out allow-discrete,
-    display 300ms ease-out allow-discrete;
+
+  /* box-shadow: var(--box-shadow); */
+
+  /* opacity: 0; */
+
+  /* transition: opacity 300ms ease-out, overlay 300ms ease-out allow-discrete,
+    display 300ms ease-out allow-discrete; */
 }
 
-dialog > header {
+[popover] .arrow {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  margin-inline-start: 1em;
+
+  /* content: ""; */
+  border-right: .75em solid transparent;
+  border-bottom: .75em solid  var(--color-surface);
+  border-left: .75em solid transparent;
+}
+
+:where(header, .dialog-body) {
+  background-color:  var(--color-surface);
+}
+
+[popover] header {
   display: flex;
   gap: var(--gap-lg);
   align-items: center;
   justify-content: space-between;
   padding: 0.75em 1em;
   border-bottom: 1px solid var(--color-border);
+  border-top-left-radius: var(--border-radius-lg);
+  border-top-right-radius: var(--border-radius-lg);
 }
 
-dialog > header > p {
+[popover] header>p {
   margin: 0;
-  font-size: 1em;
-  text-transform: uppercase;
+  font-size: .8em;
 }
 
-.close-button {
-  position: relative;
-  box-sizing: content-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  padding: 5px;
-  line-height: 0;
-  color: var(--color-element);
-  border-radius: 50%;
-  transition: background-color 0.3s;
-}
-
-.close-button:hover {
-  background-color: var(--color-border);
-}
-
-.close-button > svg {
-  width: 100%;
-  height: 100%;
-  fill: currentcolor;
-}
 
 .dialog-body {
   display: grid;
   grid-template-columns: auto 1fr;
 }
 
-dialog img {
+[popover] img {
   max-width: 100%;
   height: auto;
 }
 
-dialog[open] {
-  opacity: 1;
-}
-
-@starting-style {
-  dialog[open] {
-    opacity: 0;
-  }
-}
-
+/* 
 ::backdrop {
   background-color: rgb(0 0 0 / 0%);
   backdrop-filter: blur(2px);
   transition: display 300ms allow-discrete, backdrop-filter 300ms ease-out,
     overlay 300ms allow-discrete, background-color 300ms;
-}
+} */
 
-dialog[open]::backdrop {
-  background-color: var(--color-backdrop);
-}
-
-@starting-style {
-  dialog[open]::backdrop {
-    background-color: rgb(0 0 0 / 0%);
-    backdrop-filter: blur(0);
-  }
-}
 
 .share-links {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   height: 100%;
-  border-right: 1px solid var(--color-border);
 }
 
 .social-media {
@@ -200,7 +183,7 @@ dialog[open]::backdrop {
   color: #fff;
 }
 
-.twitter:hover {
+.x:hover {
   background-color: #1da1f2;
 }
 
@@ -212,20 +195,28 @@ dialog[open]::backdrop {
   background-color: #0a66c2;
 }
 
-.copy-button:hover {
+.telegram:hover {
+  background-color: #229ED9;
+}
+
+.whatsapp:hover {
+  background-color: #25D366;
+}
+
+:where(.email, .copy-button):hover {
   color: var(--color-element);
   background-color: var(--color-border);
 }
 
-.copy-button > svg:last-of-type {
+.copy-button>svg:last-of-type {
   display: none;
 }
 
-.copy-button.copied > svg:last-of-type {
+.copy-button.copied>svg:last-of-type {
   display: block;
 }
 
-.copy-button.copied > svg:first-child {
+.copy-button.copied>svg:first-child {
   display: none;
 }
 
@@ -234,7 +225,7 @@ dialog[open]::backdrop {
   padding: 1em 1em 0;
 }
 
-@media (width >= 48rem) {
+@media (width >=48rem) {
   .social-media {
     min-width: 9em;
   }
@@ -254,7 +245,7 @@ dialog[open]::backdrop {
   border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
 }
 
-.preview > p {
+.preview>p {
   margin-block: 0 1em;
   font-size: 0.8em;
   font-weight: 600;
@@ -368,16 +359,16 @@ dialog[open]::backdrop {
   width: 0.5em;
 }
 
-.dialog-body:has(.twitter:hover) .meta > div:not(.tw),
-.dialog-body:has(.facebook:hover) .meta > div:not(.fb),
-.dialog-body:has(.linkedin:hover) .meta > div:not(.li),
-.dialog-body:has(.copy-button:hover) .meta > div:not(.cp) {
+.dialog-body:has(.twitter:hover) .meta>div:not(.tw),
+.dialog-body:has(.facebook:hover) .meta>div:not(.fb),
+.dialog-body:has(.linkedin:hover) .meta>div:not(.li),
+.dialog-body:has(.copy-button:hover) .meta>div:not(.cp) {
   opacity: 0;
 }
 
-.dialog-body:has(.twitter:hover) .meta > .tw,
-.dialog-body:has(.facebook:hover) .meta > .fb,
-.dialog-body:has(.linkedin:hover) .meta > .li,
-.dialog-body:has(.copy-button:hover) .meta > .cp {
+.dialog-body:has(.twitter:hover) .meta>.tw,
+.dialog-body:has(.facebook:hover) .meta>.fb,
+.dialog-body:has(.linkedin:hover) .meta>.li,
+.dialog-body:has(.copy-button:hover) .meta>.cp {
   opacity: 1;
 }
