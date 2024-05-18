@@ -126,13 +126,13 @@ export class ShareButton extends HTMLElement {
 				if (document.documentElement.clientHeight / 2 > buttonCoords.y) {
 					// PUT below
 					popover.style.top = `${
-						scrollY + buttonCoords.top + buttonCoords.height + 10
+						scrollY + buttonCoords.top + buttonCoords.height + 5 
 					}px`;
 					popover.style.translate = "initial";
 				} else {
 					// PUT above
 
-					popover.style.top = `${scrollY + buttonCoords.top - buttonCoords.height + 10 }px`;
+					popover.style.top = `${scrollY + buttonCoords.top - 5 }px`;
 					popover.style.translate = "0 -100%";
 				}
 			}

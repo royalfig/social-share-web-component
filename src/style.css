@@ -21,7 +21,7 @@
     0 1.6px 5.3px rgb(0 31 46 / 2.8%), 0 3px 10px rgb(0 31 46 / 3.5%),
     0 5.4px 17.9px rgb(0 31 46 / 4.2%), 0 10px 33.4px hsl(200deg 100% 9% / 5.1%),
     0 24px 80px hsl(200deg 100% 9% / 7.1%);
---filter:drop-shadow(2px 2px 8px rgb(0 0 0 / 15%));
+  --filter: drop-shadow(2px 2px 8px rgb(0 0 0 / 15%));
 
   /* This isn't ideal (because of accessibility issues) but we need to account for the inherited font-size... Probably a better solution in the future */
   font-size: 0.875rem;
@@ -83,7 +83,6 @@ button svg {
   background-color: transparent;
   filter: var(--filter);
   border: none;
-  border-radius: var(--border-radius-lg);
 
   /* box-shadow: var(--box-shadow); */
 
@@ -93,21 +92,28 @@ button svg {
     display 300ms ease-out allow-discrete; */
 }
 
-[popover] .arrow {
+.popover-inner { 
+  position: relative;
+  margin-block: .75em;
+
+}
+
+.popover-inner::after {
   position: absolute;
-  top: 0;
+  top: -0.75em;
+  left: 1em;
   width: 0;
   height: 0;
-  margin-inline-start: 1em;
+  content: "";
 
   /* content: ""; */
   border-right: .75em solid transparent;
-  border-bottom: .75em solid  var(--color-surface);
+  border-bottom: .75em solid var(--color-surface);
   border-left: .75em solid transparent;
 }
 
 :where(header, .dialog-body) {
-  background-color:  var(--color-surface);
+  background-color: var(--color-surface);
 }
 
 [popover] header {
@@ -130,6 +136,10 @@ button svg {
 .dialog-body {
   display: grid;
   grid-template-columns: auto 1fr;
+}
+
+.share-links > *:last-child {
+  border-radius: var(--border-radius-lg);
 }
 
 [popover] img {

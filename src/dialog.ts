@@ -39,7 +39,6 @@ export function createDialogEl({
 	shareText,
 }: Record<string, string>) {
 	return `
-  <div class="arrow"></div>
   <div class="popover-inner">
     <header part="header">
       <p>${shareText ? shareText : "Share this link"}</p>
