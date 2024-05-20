@@ -1,3 +1,8 @@
+:host {
+  font-size: 0.875rem;
+  font-size: clamp(0.875rem, 0.85rem + 0.125vw, 1rem);
+}
+
 .wrapper {
   --color-border: #e5e7eb;
   --color-surface: #f9fafb;
@@ -15,17 +20,13 @@
   --gap-md: 0.75em;
   --gap-lg: 2em;
   --gap-icon: 0.4em;
-  --font-sm: max(15px, 0.85em);
+  --font-sm: max(14px, 0.75em);
   --font-lg: max(18px, 1.05em);
   --box-shadow: 0 0.7px 2.2px hsl(200deg 100% 9% / 2%),
     0 1.6px 5.3px rgb(0 31 46 / 2.8%), 0 3px 10px rgb(0 31 46 / 3.5%),
     0 5.4px 17.9px rgb(0 31 46 / 4.2%), 0 10px 33.4px hsl(200deg 100% 9% / 5.1%),
     0 24px 80px hsl(200deg 100% 9% / 7.1%);
   --filter: drop-shadow(2px 2px 8px rgb(0 0 0 / 15%));
-
-  /* This isn't ideal (because of accessibility issues) but we need to account for the inherited font-size... Probably a better solution in the future */
-  font-size: 0.875rem;
-  font-size: clamp(0.875rem, 0.85rem + 0.125vw, 1rem);
 }
 
 button {
@@ -83,6 +84,7 @@ button svg {
   background-color: transparent;
   filter: var(--filter);
   border: none;
+  translate: -50% 0;
 
   /* box-shadow: var(--box-shadow); */
 
@@ -94,14 +96,17 @@ button svg {
 
 .popover-inner { 
   position: relative;
+  display: flex;
+  flex-direction: column;
   margin-block: .75em;
-
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-lg);
 }
 
 .popover-inner::after {
   position: absolute;
-  top: -0.75em;
-  left: 1em;
+  top: 0;
+  left: 50%;
   width: 0;
   height: 0;
   content: "";
@@ -110,11 +115,16 @@ button svg {
   border-right: .75em solid transparent;
   border-bottom: .75em solid var(--color-surface);
   border-left: .75em solid transparent;
+  translate: -50% -100%;
 }
 
-:where(header, .dialog-body) {
-  background-color: var(--color-surface);
+.above .popover-inner::after {
+  top: auto;
+  bottom: 0;
+  rotate: 180deg;
+  translate: -50% 100%;
 }
+
 
 [popover] header {
   display: flex;
@@ -122,6 +132,7 @@ button svg {
   align-items: center;
   justify-content: space-between;
   padding: 0.75em 1em;
+  background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   border-top-left-radius: var(--border-radius-lg);
   border-top-right-radius: var(--border-radius-lg);
@@ -129,18 +140,10 @@ button svg {
 
 [popover] header>p {
   margin: 0;
-  font-size: .8em;
+  font-size: var(--font-sm);
 }
 
 
-.dialog-body {
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
-
-.share-links > *:last-child {
-  border-radius: var(--border-radius-lg);
-}
 
 [popover] img {
   max-width: 100%;
@@ -183,6 +186,11 @@ button svg {
   border-bottom: 1px solid var(--color-border);
 }
 
+.social-media:last-child {
+  border-bottom-right-radius: var(--border-radius-lg);
+  border-bottom-left-radius: var(--border-radius-lg);
+}
+
 .social-media svg {
   width: 1.15em;
   height: 1.15em;
@@ -213,7 +221,7 @@ button svg {
   background-color: #25D366;
 }
 
-:where(.email, .copy-button):hover {
+:is(.email, .copy-button):hover {
   color: var(--color-element);
   background-color: var(--color-border);
 }
@@ -230,155 +238,9 @@ button svg {
   display: none;
 }
 
-.preview-container {
-  align-self: end;
-  padding: 1em 1em 0;
-}
 
 @media (width >=48rem) {
   .social-media {
     min-width: 9em;
   }
-
-  .preview-container {
-    padding: 2em 2em 0;
-  }
-}
-
-.preview {
-  display: grid;
-  grid-template-rows: max-content auto;
-  padding: 0.75em 1em 0;
-  margin-inline: auto;
-  color: var(--color-element);
-  background-color: var(--color-border);
-  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-}
-
-.preview>p {
-  margin-block: 0 1em;
-  font-size: 0.8em;
-  font-weight: 600;
-  line-height: 1.2;
-  text-align: left;
-  text-wrap: balance;
-}
-
-.preview img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 1;
-  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
-  object-fit: cover;
-}
-
-.meta-placeholder-img {
-  height: 5em;
-  aspect-ratio: 3 / 1;
-  background-color: var(--color-element);
-  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
-  opacity: 0.15;
-}
-
-.meta {
-  position: relative;
-  height: 26px;
-  margin-block-end: 1em;
-}
-
-.avatar {
-  width: 1.35em;
-  height: 1.35em;
-  background-color: var(--color-element);
-  border-radius: 50%;
-  opacity: 0.15;
-}
-
-.fb,
-.tw,
-.li,
-.cp {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Linkedin */
-
-.fb,
-.li,
-.cp {
-  opacity: 0;
-}
-
-/* Placeholder */
-.ph {
-  height: 0.25em;
-  background-color: var(--color-element);
-  border-radius: var(--border-radius-sm);
-  opacity: 0.15;
-}
-
-.ph-large {
-  height: 0.35em;
-}
-
-.ph-flex-h {
-  display: flex;
-  gap: 0.25em;
-  align-items: center;
-}
-
-.ph-flex-v {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25em;
-}
-
-.ph-12 {
-  width: 6em;
-}
-
-.ph-10 {
-  width: 5em;
-}
-
-.ph-8 {
-  width: 4em;
-}
-
-.ph-6 {
-  width: 3em;
-}
-
-.ph-4 {
-  width: 2em;
-}
-
-.ph-3 {
-  width: 1.5em;
-}
-
-.ph-2 {
-  width: 1em;
-}
-
-.ph-1 {
-  width: 0.5em;
-}
-
-.dialog-body:has(.twitter:hover) .meta>div:not(.tw),
-.dialog-body:has(.facebook:hover) .meta>div:not(.fb),
-.dialog-body:has(.linkedin:hover) .meta>div:not(.li),
-.dialog-body:has(.copy-button:hover) .meta>div:not(.cp) {
-  opacity: 0;
-}
-
-.dialog-body:has(.twitter:hover) .meta>.tw,
-.dialog-body:has(.facebook:hover) .meta>.fb,
-.dialog-body:has(.linkedin:hover) .meta>.li,
-.dialog-body:has(.copy-button:hover) .meta>.cp {
-  opacity: 1;
 }

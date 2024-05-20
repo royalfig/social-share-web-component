@@ -1,90 +1,34 @@
 import { createDarkModeStyles } from "./dark-mode";
-import { createDialogEl } from "./dialog";
+import { createPopoverContent } from "./popover";
 import { icons } from "./icons";
 import style from "./style.css?inline";
-import { createUserStyles, userCustomProps } from "./user-styles";
+import { createUserStyles } from "./user-styles";
 
 export class ShareButton extends HTMLElement {
-	static init(): void {
-		const isInjected: HTMLElement | null = document.querySelector(
-			"script[data-position]",
-		);
-
-		if (isInjected) {
-			const { dataset } = isInjected;
-			const { position } = dataset;
-
-			if (position == null || !["left", "right", "center"].includes(position)) {
-				throw Error(
-					'[Share Button] It looks like you did not specify a valid position for the button. Please add a data-inject attribute with a value of "left," "right," or "center"',
-				);
-			}
-
-			const button = document.createElement("share-button");
-			button.setAttribute("part", "share-button");
-			for (const key of userCustomProps) {
-				const value = isInjected.getAttribute(`data-${key}`);
-				value && button.setAttribute(key, value);
-			}
-
-			// Set attributes
-			button.setAttribute("position", position);
-			document.body.append(button);
-		}
-
-		customElements.define("share-button", ShareButton);
-	}
+	isPopoverSupport = Object.prototype.hasOwnProperty.call(
+		HTMLElement.prototype,
+		"popover",
+	);
+	isMobile =
+		(/android/i.test(navigator.userAgent) ||
+			/iPhone|iPad|iPod/i.test(navigator.userAgent)) &&
+		navigator.share;
 
 	connectedCallback(): void {
+		const shadow = this.attachShadow({ mode: "open" });
 		const title =
 			document.querySelector("title")?.textContent ||
 			document.querySelector("h1")?.textContent ||
 			"";
-		const ogImage =
-			document
-				.querySelector('meta[property="og:image"]')
-				?.getAttribute("content") || "";
-
-		const shadow = this.attachShadow({ mode: "open" });
-
-		// icon
+		
+		const userStyles = createUserStyles(this);
 		const icon = this.createIcon();
 
-		// user styles
-		const userStyles = createUserStyles(this);
-
 		// button
-		const button = document.createElement("button");
-		button.setAttribute("part", "share-button");
-		button.setAttribute("class", "share-button");
-		button.setAttribute("class", "share-button");
-		button.setAttribute("popovertarget", "share-popover");
-		const buttonText = this.textContent ?? "Share";
-		const isCircle = this.hasAttribute("circle");
+		const button = this.createButton(icon);
 
-		if (isCircle) {
-			button.setAttribute("aria-label", "Share");
-			button.setAttribute("style", "border-radius: 50%; padding: 0.5rem;");
-			button.innerHTML = icon;
-		} else {
-			button.innerHTML = `${
-				this.textContent ? "<slot></slot>" : "Share"
-			}${icon}`;
-		}
-
-		// dialog
-		const dialog = document.createElement("div");
-		dialog.setAttribute("id", "share-popover");
-		dialog.setAttribute("part", "share-popover");
-		dialog.setAttribute("popover", "auto");
-
-		const dialogContent = createDialogEl({
-			url: window.location.href,
-			title,
-			img: ogImage,
-			shareText: buttonText,
-		});
-		dialog.innerHTML = dialogContent;
+		// popover
+		const popover = this.createPopover(title);
 
 		button.addEventListener("click", (e) => {
 			const userAgent = navigator.userAgent;
@@ -94,6 +38,7 @@ export class ShareButton extends HTMLElement {
 				(/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) &&
 				navigator.share
 			) {
+				button.removeAttribute("popover");
 				try {
 					navigator.share({
 						title,
@@ -109,76 +54,48 @@ export class ShareButton extends HTMLElement {
 				const buttonCoords = target.getBoundingClientRect();
 
 				const scrollY = window.scrollY;
-				const popover = shadow.querySelector("[popover]") as HTMLElement;
-				popover?.style.setProperty(
-					"left",
-					`calc(${
-						buttonCoords.left + buttonCoords.width / 2
-					}px - 1em - .75em/2)`,
-				);
-
-				console.log(
-					scrollY,
-					document.documentElement.clientHeight / 2 > buttonCoords.y,
-					popover,
-				);
+				popover.style.left = `${buttonCoords.left + buttonCoords.width / 2}px`;
 
 				if (document.documentElement.clientHeight / 2 > buttonCoords.y) {
 					// PUT below
 					popover.style.top = `${
-						scrollY + buttonCoords.top + buttonCoords.height + 5 
+						scrollY + buttonCoords.top + buttonCoords.height
 					}px`;
-					popover.style.translate = "initial";
+					popover.style.translate = "-50% 5px";
+					popover.classList.remove("above");
 				} else {
 					// PUT above
-
-					popover.style.top = `${scrollY + buttonCoords.top - 5 }px`;
-					popover.style.translate = "0 -100%";
+					popover.style.top = `${scrollY + buttonCoords.top}px`;
+					popover.style.translate = "-50% calc(-100% + -5px)";
+					popover.classList.add("above");
 				}
 			}
 		});
 
-		// copy button
-		const copyButton = dialog.querySelector('[aria-label="Copy link"]');
-		copyButton?.addEventListener("click", async (e) => {
-			const currentTarget = e.currentTarget as Element;
+		function closePopover() {
+			const popover = shadow.querySelector("[popover]") as HTMLElement;
+			popover.hidePopover();
+		}
 
-			if (!currentTarget) {
-				console.error("Error copying. Element not found");
-				return;
-			}
+		addEventListener("resize", closePopover);
+		addEventListener("scroll", closePopover);
 
-			const text = currentTarget.querySelector("span");
-
-			if (!text) {
-				return;
-			}
-
-			try {
-				await navigator.clipboard.writeText(window.location.href);
-				currentTarget.classList.toggle("copied");
-
-				setTimeout(() => {
-					currentTarget.classList.toggle("copied");
-				}, 5000);
-			} catch (err) {
-				console.log("[Share Button] We could not copy this");
-			}
-		});
-
+		
 		// dark mode
 		const darkModeStyles = createDarkModeStyles(this);
 
 		const wrapper = document.createElement("div");
 		wrapper.setAttribute("class", "wrapper");
 		wrapper.setAttribute("part", "wrapper");
-		wrapper.append(button, dialog);
+		wrapper.append(button, popover);
 		shadow.append(wrapper);
 
 		const styles = new CSSStyleSheet();
 		styles.replaceSync(style + userStyles + darkModeStyles);
 		shadow.adoptedStyleSheets = [styles];
 	}
+
+	render() {}
 
 	private createIcon() {
 		const iconChoice = this.getAttribute("icon") || "1";
@@ -195,6 +112,51 @@ export class ShareButton extends HTMLElement {
 		}
 		return icon;
 	}
+
+	createButton(icon: string) {
+		const button = document.createElement("button");
+		button.setAttribute("part", "share-button");
+		button.setAttribute("class", "share-button");
+		if (this.isPopoverSupport && !this.isMobile) {
+			button.setAttribute("popovertarget", "share-popover");
+		}
+		const isCircle = this.hasAttribute("circle");
+
+		if (isCircle) {
+			button.setAttribute("aria-label", "Share");
+			button.setAttribute("style", "border-radius: 50%; padding: 0.5rem;");
+			button.innerHTML = icon;
+		} else {
+			button.innerHTML = `${
+				this.textContent ? "<slot></slot>" : "Share"
+			}${icon}`;
+		}
+		return button;
+	}
+
+	createPopover(title: string) {
+		
+			const networks =
+			this.getAttribute("networks") ||
+			"x, linkedin, facebook, email, whatsapp, telegram, copy";
+			const popover = document.createElement("div");
+			popover.setAttribute("id", "share-popover");
+			popover.setAttribute("part", "share-popover");
+			popover.setAttribute("popover", "auto");
+	
+			const popoverContent = createPopoverContent({
+				url: window.location.href,
+				title,
+				shareText: this.textContent ?? "Share",
+				networks,
+			});
+	
+			popover.append(popoverContent);
+			return popover;
+		}
+
+		
+	
 }
 
-ShareButton.init();
+customElements.define("share-button", ShareButton);
