@@ -122,6 +122,11 @@ z-index: 100;
   left: 1.5em;
 }
 
+.right-adjust .popover-inner::after {
+  right: 1.5em;
+  left: auto;
+}
+
 
 [popover] header {
   display: flex;

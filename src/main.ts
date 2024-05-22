@@ -66,6 +66,12 @@ export class ShareButton extends HTMLElement {
 						xAdjust = buttonCoords.width / 2;
 						popover.classList.add("left-adjust")
 					}
+
+					if (buttonCoords.right > window.innerWidth - 100) {
+						xAdjust = -buttonCoords.width / 2;
+						popover.classList.add("right-adjust")
+					}
+					
 					const scrollY = window.scrollY;
 					
 					popover.style.left = `${
