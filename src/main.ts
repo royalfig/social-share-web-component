@@ -1,6 +1,6 @@
 import { createDarkModeStyles } from "./dark-mode";
 import { createPopoverContent } from "./popover";
-import { icons } from "./icons";
+import { copiedIcon, icons } from "./icons";
 import style from "./style.css?inline";
 import { createUserStyles } from "./user-styles";
 
@@ -13,89 +13,105 @@ export class ShareButton extends HTMLElement {
 		(/android/i.test(navigator.userAgent) ||
 			/iPhone|iPad|iPod/i.test(navigator.userAgent)) &&
 		navigator.share;
+	shadow = this.attachShadow({ mode: "open" });
 
+	static observedAttributes = ["dark-mode"];
 	connectedCallback(): void {
-		const shadow = this.attachShadow({ mode: "open" });
+		this.render();
+	}
+
+	attributeChangedCallback() {
+		console.log("attribute changed");
+		this.render();
+	}
+
+	render() {
 		const title =
 			document.querySelector("title")?.textContent ||
 			document.querySelector("h1")?.textContent ||
 			"";
-		
+
 		const userStyles = createUserStyles(this);
 		const icon = this.createIcon();
-
-		// button
+		const isAtomic = this.hasAttribute("atomic");
+		const popover = this.createPopover(title, isAtomic);
 		const button = this.createButton(icon);
 
-		// popover
-		const popover = this.createPopover(title);
-
-		button.addEventListener("click", (e) => {
-			const userAgent = navigator.userAgent;
-			const target = e.currentTarget as Element;
-
-			if (
-				(/android/i.test(userAgent) || /iPhone|iPad|iPod/i.test(userAgent)) &&
-				navigator.share
-			) {
-				button.removeAttribute("popover");
-				try {
-					navigator.share({
-						title,
-						url: window.location.href,
-					});
-					target.removeAttribute("popover");
-				} catch (err) {
-					console.log(err);
-				}
-			} else {
+		if (!isAtomic) {
+			button.addEventListener("click", (e) => {
 				const target = e.currentTarget as Element;
 
-				const buttonCoords = target.getBoundingClientRect();
+				// if mobile and share is supported
 
-				const scrollY = window.scrollY;
-				popover.style.left = `${buttonCoords.left + buttonCoords.width / 2}px`;
+				if (this.isMobile) {
+					try {
+						navigator.share({
+							title,
+							url: window.location.href,
+						});
+						target.removeAttribute("popover");
+					} catch (err) {
+						console.log(err);
+					}
 
-				if (document.documentElement.clientHeight / 2 > buttonCoords.y) {
-					// PUT below
-					popover.style.top = `${
-						scrollY + buttonCoords.top + buttonCoords.height
-					}px`;
-					popover.style.translate = "-50% 5px";
-					popover.classList.remove("above");
-				} else {
-					// PUT above
-					popover.style.top = `${scrollY + buttonCoords.top}px`;
-					popover.style.translate = "-50% calc(-100% + -5px)";
-					popover.classList.add("above");
+					return;
 				}
-			}
-		});
 
-		function closePopover() {
-			const popover = shadow.querySelector("[popover]") as HTMLElement;
-			popover.hidePopover();
+				if (this.isPopoverSupport) {
+					const buttonCoords = target.getBoundingClientRect();
+
+					const scrollY = window.scrollY;
+					popover.style.left = `${
+						buttonCoords.left + buttonCoords.width / 2
+					}px`;
+
+					if (document.documentElement.clientHeight / 2 > buttonCoords.y) {
+						// PUT below
+						popover.style.top = `${
+							scrollY + buttonCoords.top + buttonCoords.height
+						}px`;
+						popover.style.translate = "-50% 5px";
+						popover.classList.remove("above");
+					} else {
+						// PUT above
+						popover.style.top = `${scrollY + buttonCoords.top}px`;
+						popover.style.translate = "-50% calc(-100% + -5px)";
+						popover.classList.add("above");
+					}
+
+					return;
+				}
+
+				navigator.clipboard.writeText(window.location.href);
+				setTimeout(() => {
+					this.textContent = "Copied!";
+					this.createButton(copiedIcon);
+				});
+			});
 		}
+
+		const closePopover = () => {
+			const popover = this.shadow.querySelector("[popover]") as HTMLElement;
+			popover.hidePopover();
+		};
 
 		addEventListener("resize", closePopover);
 		addEventListener("scroll", closePopover);
 
-		
 		// dark mode
 		const darkModeStyles = createDarkModeStyles(this);
 
 		const wrapper = document.createElement("div");
 		wrapper.setAttribute("class", "wrapper");
 		wrapper.setAttribute("part", "wrapper");
-		wrapper.append(button, popover);
-		shadow.append(wrapper);
+		const contentEl = this.isPopoverSupport ? popover : "<div></div>";
+		wrapper.append(button, contentEl);
+		this.shadow.replaceChildren(wrapper);
 
 		const styles = new CSSStyleSheet();
 		styles.replaceSync(style + userStyles + darkModeStyles);
-		shadow.adoptedStyleSheets = [styles];
+		this.shadow.adoptedStyleSheets = [styles];
 	}
-
-	render() {}
 
 	private createIcon() {
 		const iconChoice = this.getAttribute("icon") || "1";
@@ -117,9 +133,13 @@ export class ShareButton extends HTMLElement {
 		const button = document.createElement("button");
 		button.setAttribute("part", "share-button");
 		button.setAttribute("class", "share-button");
+
+
+
 		if (this.isPopoverSupport && !this.isMobile) {
 			button.setAttribute("popovertarget", "share-popover");
 		}
+
 		const isCircle = this.hasAttribute("circle");
 
 		if (isCircle) {
@@ -127,36 +147,35 @@ export class ShareButton extends HTMLElement {
 			button.setAttribute("style", "border-radius: 50%; padding: 0.5rem;");
 			button.innerHTML = icon;
 		} else {
-			button.innerHTML = `${
+			button.innerHTML = `${icon} ${
 				this.textContent ? "<slot></slot>" : "Share"
-			}${icon}`;
+			}`;
 		}
 		return button;
 	}
 
-	createPopover(title: string) {
-		
-			const networks =
+	createPopover(title: string, isAtomic = false) {
+		const networks =
 			this.getAttribute("networks") ||
 			"x, linkedin, facebook, email, whatsapp, telegram, copy";
+		const popoverContent = createPopoverContent({
+			url: window.location.href,
+			title,
+			shareText: this.textContent ?? "Share",
+			networks,
+			isAtomic,
+		});
+		if (!isAtomic) {
 			const popover = document.createElement("div");
 			popover.setAttribute("id", "share-popover");
 			popover.setAttribute("part", "share-popover");
 			popover.setAttribute("popover", "auto");
-	
-			const popoverContent = createPopoverContent({
-				url: window.location.href,
-				title,
-				shareText: this.textContent ?? "Share",
-				networks,
-			});
-	
 			popover.append(popoverContent);
 			return popover;
 		}
 
-		
-	
+		return popoverContent;
+	}
 }
 
 customElements.define("share-button", ShareButton);

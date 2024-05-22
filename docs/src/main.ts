@@ -61,3 +61,10 @@ async function getLatestRelease() {
 }
 
 getLatestRelease();
+	const toggleBtn = document.getElementById("dark-mode-toggle");
+	const share = toggleBtn?.previousElementSibling;
+
+	toggleBtn?.addEventListener("click", () => {
+		const current = share?.getAttribute("dark-mode");
+		share?.setAttribute("dark-mode", current === "true" ? "false" : "true");
+	});

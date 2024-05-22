@@ -1,6 +1,5 @@
-@media (prefers-color-scheme: dark) {
-  .wrapper {
-    --color-border: #272d34;
+.wrapper {
+  --color-border: #272d34;
     --color-surface: #181b20;
     --color-element: #f9fafb;
     --color-button: var(--color-element);
@@ -12,5 +11,4 @@
       0 5.4px 17.9px rgb(0 0 0 / 14.2%), 0 10px 33.4px hsl(0deg 0 9% / 15.1%),
       0 24px 80px hsl(0deg 0 9% / 17.1%);
     --filter: drop-shadow(2px 2px 8px rgb(0 0 0 / 35%))
-  }
 }

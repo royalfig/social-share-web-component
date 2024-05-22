@@ -14,6 +14,7 @@ type PopoverContent = {
 	title: string;
 	shareText?: string;
 	networks: string;
+  isAtomic: boolean;
 };
 
 export function createPopoverContent({
@@ -21,8 +22,10 @@ export function createPopoverContent({
 	title,
 	shareText,
 	networks,
+  isAtomic,
 }: PopoverContent) {
-	function createSocialMediaLink(
+	
+  function createSocialMediaLink(
 		icon: string,
 		network: string,
 		shareURL: string,
@@ -40,7 +43,7 @@ export function createPopoverContent({
 		a.setAttribute("target", "_blank");
 		a.setAttribute("rel", "noopener noreferrer");
 		a.setAttribute("part", "share-link");
-		a.innerHTML = `${icon} ${network}`;
+		a.innerHTML = `${icon} ${isAtomic ? "" : ` ${network}`}`;
 
 		return a;
 	}
@@ -112,13 +115,7 @@ export function createPopoverContent({
 	const div = document.createElement("div");
 	div.classList.add("popover-inner");
 	div.setAttribute("part", "popover-inner");
-	const header = document.createElement("header");
-	header.setAttribute("part", "header");
-	const p = document.createElement("p");
-	p.textContent = shareText ? shareText : "Share this link";
-
-	header.appendChild(p);
-	div.appendChild(header);
+	
 
 	const parsedNetworks = networks.split(",").map((network) => {
 		const trimmedNetwork = network.trim().toLowerCase();
@@ -127,7 +124,7 @@ export function createPopoverContent({
 			btn.classList.add("social-media", "copy-button");
 			btn.setAttribute("aria-label", "Copy link");
 			btn.setAttribute("part", "share-link");
-			btn.innerHTML = `${copyIcon} ${copiedIcon} <span>Copy link</span>`;
+			btn.innerHTML = `${copyIcon} <span>Copy link</span>`;
 			btn.addEventListener("click", async (e) => {
 				const currentTarget = e.currentTarget as Element;
 
@@ -143,11 +140,14 @@ export function createPopoverContent({
 				}
 
 				try {
-					await navigator.clipboard.writeText(window.location.href);
-					currentTarget.classList.toggle("copied");
+          await navigator.clipboard.writeText(window.location.href);
+          btn.disabled = true;
+          btn.innerHTML = `${copiedIcon} <span>Copied!</span>`;
 
 					setTimeout(() => {
-						currentTarget.classList.toggle("copied");
+						btn.disabled = false;
+            btn.innerHTML = `${copyIcon} <span>Copy link</span>`;
+            
 					}, 5000);
 				} catch (err) {
 					console.log("[Share Button] We could not copy this");
