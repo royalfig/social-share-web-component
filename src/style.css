@@ -99,6 +99,7 @@ button {
   position: absolute;
   top: 0;
   left: 50%;
+z-index: 100;
   width: 0;
   height: 0;
   content: "";
@@ -115,6 +116,10 @@ button {
   bottom: 0;
   rotate: 180deg;
   translate: -50% 100%;
+}
+
+.left-adjust .popover-inner::after {
+  left: 1.5em;
 }
 
 

@@ -59,10 +59,17 @@ export class ShareButton extends HTMLElement {
 
 				if (this.isPopoverSupport) {
 					const buttonCoords = target.getBoundingClientRect();
+					
+					let xAdjust = 0;
 
+					if (buttonCoords.left < 100) {
+						xAdjust = buttonCoords.width / 2;
+						popover.classList.add("left-adjust")
+					}
 					const scrollY = window.scrollY;
+					
 					popover.style.left = `${
-						buttonCoords.left + buttonCoords.width / 2
+						buttonCoords.left + buttonCoords.width / 2 + xAdjust
 					}px`;
 
 					if (document.documentElement.clientHeight / 2 > buttonCoords.y) {
@@ -86,7 +93,7 @@ export class ShareButton extends HTMLElement {
 				setTimeout(() => {
 					this.textContent = "Copied!";
 					this.createButton(copiedIcon);
-				});
+				}, 1000);
 			});
 		}
 
@@ -94,9 +101,15 @@ export class ShareButton extends HTMLElement {
 			const popover = this.shadow.querySelector("[popover]") as HTMLElement;
 			popover.hidePopover();
 		};
-
+		popover.addEventListener("beforetoggle", e => {
+			console.log("b4 toggle", e.target?.getBoundingClientRect())
+		})
+		popover.addEventListener("toggle", e => {
+			console.log("toggle", e.target?.getBoundingClientRect())
+		})
 		addEventListener("resize", closePopover);
 		addEventListener("scroll", closePopover);
+	
 
 		// dark mode
 		const darkModeStyles = createDarkModeStyles(this);
@@ -169,7 +182,7 @@ export class ShareButton extends HTMLElement {
 			const popover = document.createElement("div");
 			popover.setAttribute("id", "share-popover");
 			popover.setAttribute("part", "share-popover");
-			popover.setAttribute("popover", "auto");
+			popover.setAttribute("popover", "");
 			popover.append(popoverContent);
 			return popover;
 		}
