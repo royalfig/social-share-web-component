@@ -20,7 +20,6 @@ type PopoverContent = {
 export function createPopoverContent({
 	url,
 	title,
-	shareText,
 	networks,
   isAtomic,
 }: PopoverContent) {
@@ -115,7 +114,6 @@ export function createPopoverContent({
 	const div = document.createElement("div");
 	div.classList.add("popover-inner");
 	div.setAttribute("part", "popover-inner");
-	
 
 	const parsedNetworks = networks.split(",").map((network) => {
 		const trimmedNetwork = network.trim().toLowerCase();
@@ -159,6 +157,15 @@ export function createPopoverContent({
 		return networkElement ? networkElement.html : "";
 	});
 
-	div.append(...parsedNetworks);
+  const socialMediaContainer = document.createElement("div");
+  socialMediaContainer.classList.add("social-media-container");
+  socialMediaContainer.append(...parsedNetworks);
+	div.append(socialMediaContainer);
+  const triangleUp = document.createElement("div");
+  triangleUp.classList.add("triangle-up");
+  div.prepend(triangleUp);
+  const triangleDown = document.createElement("div");
+  triangleDown.classList.add("triangle-down");
+  div.append(triangleDown);
 	return div;
 }

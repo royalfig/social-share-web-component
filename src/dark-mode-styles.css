@@ -1,14 +1,16 @@
 .wrapper {
   --color-border: #272d34;
-    --color-surface: #181b20;
-    --color-element: #f9fafb;
-    --color-button: var(--color-element);
-    --color-button-text: var(--color-surface);
-    --color-backdrop: hsl(221deg 39% 11% / 50%);
-    --color-hover: rgb(0 0 0 / 15%);
-    --box-shadow: 0 0.7px 2.2px hsl(0deg 0 9% / 12%),
-      0 1.6px 5.3px rgb(0 0 0 / 12.8%), 0 3px 10px rgb(0 0 0 / 13.5%),
-      0 5.4px 17.9px rgb(0 0 0 / 14.2%), 0 10px 33.4px hsl(0deg 0 9% / 15.1%),
-      0 24px 80px hsl(0deg 0 9% / 17.1%);
-    --filter: drop-shadow(2px 2px 8px rgb(0 0 0 / 35%))
+  --color-surface: #181b20;
+  --color-element: hsl(210deg 20% 98%);;
+  --color-button: var(--color-element);
+  --color-button-text: var(--color-surface);
+  --color-backdrop: hsl(221deg 39% 11% / 50%);
+  --color-hover: rgb(0 0 0 / 15%);
+  --box-shadow: 0 0.7px 2.2px hsl(0deg 0 9% / 12%),
+    0 1.6px 5.3px rgb(0 0 0 / 12.8%), 0 3px 10px rgb(0 0 0 / 13.5%),
+    0 5.4px 17.9px rgb(0 0 0 / 14.2%), 0 10px 33.4px hsl(0deg 0 9% / 15.1%),
+    0 24px 80px hsl(0deg 0 9% / 17.1%);
+  --color-green: hsl(120deg 99% 43%);
+  --filter: drop-shadow(0 0 0.5px hsl(0deg 0 100% / 7.5%)) drop-shadow(0 0 1px rgb(0 0 0 / 5%)) drop-shadow(0 0.3px 0.4px rgb(0 0 0 / 2%)) drop-shadow(0 0.9px 1.5px rgb(0 0 0 / 4.5%)) drop-shadow(0 3.5px 6px rgb(0 0 0 / 9%));
+  ;
 }

@@ -21,7 +21,6 @@ export class ShareButton extends HTMLElement {
 	}
 
 	attributeChangedCallback() {
-		console.log("attribute changed");
 		this.render();
 	}
 
@@ -83,13 +82,17 @@ export class ShareButton extends HTMLElement {
 						popover.style.top = `${
 							scrollY + buttonCoords.top + buttonCoords.height
 						}px`;
-						popover.style.translate = "-50% 5px";
-						popover.classList.remove("above");
+						popover.style.translate = "-50% 0";
+						popover.classList.remove("down");
+						popover.classList.add("up");
+						
+						
 					} else {
 						// PUT above
-						popover.style.top = `${scrollY + buttonCoords.top}px`;
-						popover.style.translate = "-50% calc(-100% + -5px)";
-						popover.classList.add("above");
+						popover.style.top = `${scrollY + buttonCoords.top }px`;
+						popover.style.translate = "-50% -100%";
+						popover.classList.remove("up");
+						popover.classList.add("down");
 					}
 
 					return;
@@ -107,12 +110,7 @@ export class ShareButton extends HTMLElement {
 			const popover = this.shadow.querySelector("[popover]") as HTMLElement;
 			popover.hidePopover();
 		};
-		popover.addEventListener("beforetoggle", e => {
-			console.log("b4 toggle", e.target?.getBoundingClientRect())
-		})
-		popover.addEventListener("toggle", e => {
-			console.log("toggle", e.target?.getBoundingClientRect())
-		})
+		
 		addEventListener("resize", closePopover);
 		addEventListener("scroll", closePopover);
 	
