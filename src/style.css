@@ -71,9 +71,16 @@ button {
 
 
 /* Modal */
+[popover] {
+  opacity: 0;
+  transition: opacity 100ms ease-in, scale 100ms ease-in;
+  scale: 0.9;
+}
+
 :popover-open {
   position: absolute;
   max-width: min(100% - 16px, 31.25em);
+  height: fit-content;
   padding: 0;
   margin: 0;
   font-family: inherit;
@@ -81,7 +88,17 @@ button {
   background-color: transparent;
   filter: var(--filter);
   border: none;
+  opacity: 1;
+  transition: opacity 100ms ease-out, scale 100ms ease-out;
+  scale: 1;
   translate: -50% 0;
+}
+
+@starting-style {
+  :popover-open {
+    opacity: 0;
+    scale: 0.9;
+  }
 }
 
 .popover-inner {
@@ -192,8 +209,6 @@ button {
     left: 44px;
   }
 }
-
-
 
 .social-media {
   display: flex;
