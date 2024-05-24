@@ -58,21 +58,21 @@ export class ShareButton extends HTMLElement {
 
 				if (this.isPopoverSupport) {
 					const buttonCoords = target.getBoundingClientRect();
-					
+
 					let xAdjust = 0;
 
 					if (buttonCoords.left < 100) {
-						xAdjust = buttonCoords.width / 2;
-						popover.classList.add("left-adjust")
+						xAdjust = buttonCoords.width / 2 - 20 ;
+						popover.classList.add("left-adjust");
 					}
 
 					if (buttonCoords.right > window.innerWidth - 100) {
-						xAdjust = -buttonCoords.width / 2;
-						popover.classList.add("right-adjust")
+						xAdjust = -buttonCoords.width / 2 + 20;
+						popover.classList.add("right-adjust");
 					}
-					
+
 					const scrollY = window.scrollY;
-					
+
 					popover.style.left = `${
 						buttonCoords.left + buttonCoords.width / 2 + xAdjust
 					}px`;
@@ -85,11 +85,9 @@ export class ShareButton extends HTMLElement {
 						popover.style.translate = "-50% 0";
 						popover.classList.remove("down");
 						popover.classList.add("up");
-						
-						
 					} else {
 						// PUT above
-						popover.style.top = `${scrollY + buttonCoords.top }px`;
+						popover.style.top = `${scrollY + buttonCoords.top}px`;
 						popover.style.translate = "-50% -100%";
 						popover.classList.remove("up");
 						popover.classList.add("down");
@@ -110,10 +108,13 @@ export class ShareButton extends HTMLElement {
 			const popover = this.shadow.querySelector("[popover]") as HTMLElement;
 			popover.hidePopover();
 		};
-		
+
 		addEventListener("resize", closePopover);
 		addEventListener("scroll", closePopover);
 	
+	
+
+		
 
 		// dark mode
 		const darkModeStyles = createDarkModeStyles(this);
@@ -150,23 +151,26 @@ export class ShareButton extends HTMLElement {
 		const button = document.createElement("button");
 		button.setAttribute("part", "share-button");
 		button.setAttribute("class", "share-button");
+		const isNoText = this.hasAttribute("notext");
 
-
-
+		console.log(this, this.textContent);
 		if (this.isPopoverSupport && !this.isMobile) {
 			button.setAttribute("popovertarget", "share-popover");
 		}
 
 		const isCircle = this.hasAttribute("circle");
 
-		if (isCircle) {
+		if (isCircle || isNoText) {
 			button.setAttribute("aria-label", "Share");
-			button.setAttribute("style", "border-radius: 50%; padding: 0.5rem;");
+			button.setAttribute("style", "border-radius: 50%; padding: 0.75rem; line-height: 1;");
 			button.innerHTML = icon;
 		} else {
-			button.innerHTML = `${icon} ${
-				this.textContent ? "<slot></slot>" : "Share"
-			}`;
+			
+			
+				button.innerHTML = `${icon} ${
+					this.textContent ? "<slot></slot>" : "Share"
+				}`;
+			
 		}
 		return button;
 	}
@@ -182,6 +186,7 @@ export class ShareButton extends HTMLElement {
 			networks,
 			isAtomic,
 		});
+		
 		if (!isAtomic) {
 			const popover = document.createElement("div");
 			popover.setAttribute("id", "share-popover");

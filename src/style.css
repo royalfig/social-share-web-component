@@ -1,22 +1,19 @@
 :host {
-  font-size: 0.875rem;
-  font-size: clamp(0.875rem, 0.85rem + 0.125vw, 1rem);
+  font-size: 16px;
+  font-size: max(16px, clamp(0.875rem, 0.85rem + 0.125vw, 1rem));
 }
 
 .wrapper {
-  --color-border: #e5e7eb;
-  --color-surface: hsl(210deg 20% 98%);
-  --color-surface-light: #fff;
-  --color-element: #111827;
-  --color-button: hsl(221deg 39% 11%);
-  --color-button-text: hsl(210deg 20% 98%);
-  --color-backdrop: hsl(210deg 20% 98% / 50%);
-  --color-hover: rgb(255 255 255 / 15%);
+  --color-border: hsl(242deg 9.58% 87.7%);
+  --color-surface: hsl(242deg 9.58% 98%);
+  --color-element: hsl(242deg 55.5% 2.74%);
+  --color-button: var(--color-element);
+  --color-button-text: var(--color-surface);
   --border-radius-lg: 8px;
   --border-radius-md: 5px;
   --border-radius-sm: 2.5px;
   --border-radius-pill: 9999px;
-  --padding-button: .375rem 1rem;
+  --padding-button: .375em 1em;
   --padding-box: 1em;
   --gap-sm: 0.5em;
   --gap-md: 0.75em;
@@ -24,26 +21,29 @@
   --gap-icon: 0.5rem;
   --font-sm: max(15px, 0.875em);
   --font-lg: max(18px, 1.05em);
-  --box-shadow: 0 0.7px 2.2px hsl(200deg 100% 9% / 2%),
-    0 1.6px 5.3px rgb(0 31 46 / 2.8%), 0 3px 10px rgb(0 31 46 / 3.5%),
-    0 5.4px 17.9px rgb(0 31 46 / 4.2%), 0 10px 33.4px hsl(200deg 100% 9% / 5.1%),
-    0 24px 80px hsl(200deg 100% 9% / 7.1%);
+  --box-shadow: inset 0 0 0.5px 1px hsl(0deg 0% 100% / 7.5%),
+    0 0 0 1px hsl(0deg 0% 0% / 5%),
+    0 0.3px 0.4px hsl(0deg 0% 0% / 2%),
+    0 0.9px 1.5px hsl(0deg 0% 0% / 4.5%),
+    0 3.5px 6px hsl(0deg 0% 0% / 9%);
+  ;
   --filter: drop-shadow(0 0 0.5px hsl(0deg 0 100% / 7.5%)) drop-shadow(0 0 1px rgb(0 0 0 / 5%)) drop-shadow(0 0.3px 0.4px rgb(0 0 0 / 2%)) drop-shadow(0 0.9px 1.5px rgb(0 0 0 / 4.5%)) drop-shadow(0 3.5px 6px rgb(0 0 0 / 9%));
   ;
   --color-green: green;
 }
 
 button {
-  display: inline-block;
+  display: inline-flex;
   gap: var(--gap-icon);
   align-items: center;
   justify-content: center;
   padding: var(--padding-button);
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 1em;
   line-height: 1.5;
   color: var(--color-button-text);
   text-align: center;
+  white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
   background-color: var(--color-button);
@@ -52,17 +52,20 @@ button {
   transition: filter 200ms ease-out;
 
   &:hover:not(.copy-button) {
-    filter: brightness(1.3);
+    filter: brightness(1.2);
   }
 
   svg {
     display: inline-block;
-    width: 1em;
-    height: 1em;
-    margin-inline-end: .25em;
-    vertical-align: -.125em;
+    width: 1.15em;
+    height: 1.15em;
     fill: currentcolor;
   }
+}
+
+[aria-label="Share"] svg {
+  margin-inline-end: 0;
+  line-height: 1;
 }
 
 
@@ -89,6 +92,7 @@ button {
 .social-media-container {
   display: flex;
   flex-direction: column;
+  padding: .75rem;
   background-color: var(--color-surface);
   border: 1px solid hsl(0deg 0 100% / 7.5%);
   border-radius: var(--border-radius-lg);
@@ -109,11 +113,10 @@ button {
     border: 12px solid transparent;
     border-bottom-color: hsl(0deg 0 100% / 7.5%);
     translate: -50% 0;
-    
   }
 
   &::after {
-    position:absolute;
+    position: absolute;
     bottom: 0;
     left: 50%;
     width: 0;
@@ -122,7 +125,7 @@ button {
     border: 11px solid transparent;
     border-bottom-color: var(--color-surface);
     translate: -50% 0;
-    
+
   }
 }
 
@@ -147,20 +150,20 @@ button {
     border: 11px solid transparent;
     border-top-color: hsl(0deg 0 100% / 7.5%);
     translate: -50% 0;
-    
+
   }
 
   &::after {
-    position:absolute;
+    position: absolute;
     bottom: 0;
     left: 50%;
     width: 0;
     height: 0;
     content: '';
-    border:  12px solid transparent;
+    border: 12px solid transparent;
     border-top-color: var(--color-surface);
     translate: -50% 0;
-    
+
   }
 }
 
@@ -168,32 +171,29 @@ button {
   display: block;
 }
 
-.right-adjust :where(.triangle-down, .triangle-up) { 
+.right-adjust :where(.triangle-down, .triangle-up) {
   &::before {
-    left: 75%;
+    right: 20px;
+    left: auto;
+  }
+
+  &::after {
+    right: 20px;
+    left: auto;
+  }
 }
 
-&::after {
-    left: 75%;
-}
-}
-
-.left-adjust :where(.triangle-down, .triangle-up) { 
+.left-adjust :where(.triangle-down, .triangle-up) {
   &::before {
-    left: 25%;
+    left: 44px;
+  }
+
+  &::after {
+    left: 44px;
+  }
 }
 
-&::after {
-    left: 25%;
-}
-}
 
-.share-links {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-}
 
 .social-media {
   display: flex;
@@ -201,11 +201,11 @@ button {
   gap: var(--gap-md);
   align-items: center;
   justify-content: flex-start;
-  min-width: 7rem;
-  padding: 1rem;
+  min-width: 7em;
+  padding: 1em .5em;
   font-size: var(--font-sm);
   font-weight: 400;
-  line-height: calc(1.2 * var(--font-sm));
+  line-height: 1.25em;
   color: inherit;
   text-decoration: none;
   background: none;
@@ -219,13 +219,13 @@ button {
 }
 
 .social-media svg {
-  width: 1.15rem;
-  height: 1.15rem;
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  line-height: 1.25em;
   fill: currentcolor;
   transition: color 300ms ease-out;
 }
-
-
 
 .x:hover svg {
   color: #1da1f2;
@@ -250,7 +250,6 @@ button {
 :is(.email, .copy-button):hover svg {
   opacity: .8;
 }
-
 
 .copy-button {
   background: none;

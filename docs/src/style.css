@@ -4,23 +4,23 @@
   --font-small: max(15px, 0.85rem);
   --font-x-small: max(12px, 0.75rem);
   --br-small: max(3px, 0.25rem);
-  --color-border: #cdd6e9;
+  --color-border: hsl(242deg 9.58% 93%);
   --color-border-hover: hsl(244deg 83% 51% / 80%);
-  --color-surface: #f9fafb;
-  --color-element: #181b20;
-  --color-inline-code: #181b20;
+  --color-surface: hsl(242deg 9.58% 100%);
+  --color-element: hsl(242deg 55.5% 2.74%);
+  --color-inline-code: hsl(242deg 55.5% 2.74%);
   --color-code: var(--color-border);
-  --color-surface-1: hsl(220deg 13% 91%);
+  --color-surface-1: hsl(242deg 13% 95%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-border: #272c34;
     --color-border-hover: hsl(244deg 83% 51% / 80%);
-    --color-element: #f9fafb;
-    --color-surface: #181b20;
-    --color-inline-code: #f9fafb;
-    --color-code: #212e4a;
+    --color-element: hsl(242deg 9.58% 100%);
+    --color-surface: hsl(242deg 55.5% 1.74%);
+    --color-inline-code: hsl(242deg 9.58% 100%);
+    --color-code: hsl(241deg 6.53% 13%);
     --color-surface-1: #192339;
   }
 }
