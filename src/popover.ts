@@ -14,17 +14,16 @@ type PopoverContent = {
 	title: string;
 	shareText?: string;
 	networks: string;
-  isAtomic: boolean;
+	isAtomic: boolean;
 };
 
 export function createPopoverContent({
 	url,
 	title,
 	networks,
-  isAtomic,
+	isAtomic,
 }: PopoverContent) {
-	
-  function createSocialMediaLink(
+	function createSocialMediaLink(
 		icon: string,
 		network: string,
 		shareURL: string,
@@ -122,7 +121,10 @@ export function createPopoverContent({
 			btn.classList.add("social-media", "copy-button");
 			btn.setAttribute("aria-label", "Copy link");
 			btn.setAttribute("part", "share-link");
-			btn.innerHTML = `${copyIcon} <span>Copy link</span>`;
+			const initial = `${copyIcon} <span>Copy link</span>`;
+			const initialAtomic = copyIcon;
+			btn.innerHTML = isAtomic ? initialAtomic : initial;
+
 			btn.addEventListener("click", async (e) => {
 				const currentTarget = e.currentTarget as Element;
 
@@ -131,21 +133,20 @@ export function createPopoverContent({
 					return;
 				}
 
-				const text = currentTarget.querySelector("span");
-
-				if (!text) {
-					return;
-				}
-
 				try {
-          await navigator.clipboard.writeText(window.location.href);
-          btn.disabled = true;
-          btn.innerHTML = `${copiedIcon} <span>Copied!</span>`;
+					await navigator.clipboard.writeText(window.location.href);
+					btn.disabled = true;
+
+					if (isAtomic) {
+						console.log(copiedIcon)
+						btn.innerHTML = copiedIcon;
+					} else {
+						btn.innerHTML = `${copiedIcon} <span>Copied!</span>`;
+					}
 
 					setTimeout(() => {
 						btn.disabled = false;
-            btn.innerHTML = `${copyIcon} <span>Copy link</span>`;
-            
+						btn.innerHTML = isAtomic ? initialAtomic : initial;
 					}, 5000);
 				} catch (err) {
 					console.log("[Share Button] We could not copy this");
@@ -157,15 +158,21 @@ export function createPopoverContent({
 		return networkElement ? networkElement.html : "";
 	});
 
-  const socialMediaContainer = document.createElement("div");
-  socialMediaContainer.classList.add("social-media-container");
-  socialMediaContainer.append(...parsedNetworks);
+	const socialMediaContainer = document.createElement("div");
+	isAtomic && socialMediaContainer.classList.add("atomic");
+	socialMediaContainer.classList.add("social-media-container");
+	socialMediaContainer.append(...parsedNetworks);
 	div.append(socialMediaContainer);
-  const triangleUp = document.createElement("div");
-  triangleUp.classList.add("triangle-up");
-  div.prepend(triangleUp);
-  const triangleDown = document.createElement("div");
-  triangleDown.classList.add("triangle-down");
-  div.append(triangleDown);
-	return div;
+	const triangleUp = document.createElement("div");
+	triangleUp.classList.add("triangle-up");
+	div.prepend(triangleUp);
+	const triangleDown = document.createElement("div");
+	triangleDown.classList.add("triangle-down");
+	div.append(triangleDown);
+
+	if (!isAtomic) {
+		return div;
+	}
+
+	return socialMediaContainer;
 }

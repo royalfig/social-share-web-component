@@ -34,9 +34,9 @@ export class ShareButton extends HTMLElement {
 		const icon = this.createIcon();
 		const isAtomic = this.hasAttribute("atomic");
 		const popover = this.createPopover(title, isAtomic);
-		const button = this.createButton(icon);
+		const button = isAtomic ? "" : this.createButton(icon);
 
-		if (!isAtomic) {
+		if (!isAtomic && button) {
 			button.addEventListener("click", (e) => {
 				const target = e.currentTarget as Element;
 
@@ -62,12 +62,12 @@ export class ShareButton extends HTMLElement {
 					let xAdjust = 0;
 
 					if (buttonCoords.left < 100) {
-						xAdjust = buttonCoords.width / 2 - 20 ;
+						xAdjust = buttonCoords.width / 2  - 10;
 						popover.classList.add("left-adjust");
 					}
 
 					if (buttonCoords.right > window.innerWidth - 100) {
-						xAdjust = -buttonCoords.width / 2 + 20;
+						xAdjust = -buttonCoords.width / 2 + 10;
 						popover.classList.add("right-adjust");
 					}
 
@@ -104,18 +104,19 @@ export class ShareButton extends HTMLElement {
 			});
 		}
 
+		
+
+		if (!isAtomic) {
 		const closePopover = () => {
 			const popover = this.shadow.querySelector("[popover]") as HTMLElement;
 			popover.hidePopover();
 		};
 
+
+
 		addEventListener("resize", closePopover);
 		addEventListener("scroll", closePopover);
-	
-	
-
-		
-
+	}
 		// dark mode
 		const darkModeStyles = createDarkModeStyles(this);
 
