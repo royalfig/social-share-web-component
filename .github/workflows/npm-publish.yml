@@ -1,9 +1,9 @@
 name: Publish to npm
 
 on:
-  pull_request:
-    branches:
-      - main
+  push:
+    tags:
+      - "*"
 
 jobs:
   build-and-publish:
@@ -30,6 +30,7 @@ jobs:
         uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: dist/*.js
+          bodyFile: CHANGE.md
 
       - name: Publish to npm
         run: npm publish
