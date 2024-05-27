@@ -35,7 +35,7 @@ jobs:
           bodyFile: CHANGE.md
 
       - name: Publish to npm
-        run: npm publish --provenance
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
