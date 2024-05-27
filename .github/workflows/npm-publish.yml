@@ -1,8 +1,9 @@
 name: Publish to npm
 
 on:
-  release:
-    types: [created]
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build-and-publish:
@@ -29,7 +30,7 @@ jobs:
         uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: dist/*.js
-          
+
       - name: Publish to npm
         run: npm publish
         env:
