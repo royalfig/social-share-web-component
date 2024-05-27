@@ -3,6 +3,8 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: "https://royalfig.github.io/",
+	base: "/share-button/",
 	integrations: [
 		starlight({
 			title: 'Share Button',
