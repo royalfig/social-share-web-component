@@ -253,6 +253,7 @@ button {
   flex-flow: row wrap;
   gap: var(--gap-sm);
   justify-content: space-between;
+  background-color: transparent;
 
   .social-media {
     flex: 0;

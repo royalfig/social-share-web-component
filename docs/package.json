@@ -1,20 +1,19 @@
 {
-  "name": "demo",
-  "private": true,
-  "version": "0.0.0",
+  "name": "",
   "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@royalfig/share-button": "^0.0.31",
-    "emoji-picker-element": "^1.21.0",
-    "highlight.js": "^11.9.0"
+    "@astrojs/starlight": "^0.23.1",
+    "astro": "^4.8.6",
+    "sharp": "^0.32.5",
+    "@astrojs/check": "^0.7.0",
+    "typescript": "^5.4.5"
   }
 }
