@@ -35,6 +35,22 @@ export class ShareButton extends HTMLElement {
 		const isAtomic = this.hasAttribute("atomic");
 		const popover = this.createPopover(title, isAtomic);
 		const button = isAtomic ? "" : this.createButton(icon);
+		// dark mode
+		const darkModeStyles = createDarkModeStyles(this);
+
+		const wrapper = document.createElement("div");
+		wrapper.setAttribute("class", "wrapper");
+		wrapper.setAttribute("part", "wrapper");
+		const contentEl = this.isPopoverSupport ? popover : "<div></div>";
+		wrapper.append(button, contentEl);
+		this.shadow.replaceChildren(wrapper);
+
+		const styles = new CSSStyleSheet();
+		styles.replaceSync(style + userStyles + darkModeStyles);
+		this.shadow.adoptedStyleSheets = [styles];
+
+
+		
 
 		if (!isAtomic && button) {
 			button.addEventListener("click", (e) => {
@@ -58,7 +74,7 @@ export class ShareButton extends HTMLElement {
 
 				if (this.isPopoverSupport) {
 					const buttonCoords = target.getBoundingClientRect();
-
+					
 					let xAdjust = 0;
 
 					if (buttonCoords.left < 100) {
@@ -117,19 +133,7 @@ export class ShareButton extends HTMLElement {
 		addEventListener("resize", closePopover);
 		addEventListener("scroll", closePopover);
 	}
-		// dark mode
-		const darkModeStyles = createDarkModeStyles(this);
-
-		const wrapper = document.createElement("div");
-		wrapper.setAttribute("class", "wrapper");
-		wrapper.setAttribute("part", "wrapper");
-		const contentEl = this.isPopoverSupport ? popover : "<div></div>";
-		wrapper.append(button, contentEl);
-		this.shadow.replaceChildren(wrapper);
-
-		const styles = new CSSStyleSheet();
-		styles.replaceSync(style + userStyles + darkModeStyles);
-		this.shadow.adoptedStyleSheets = [styles];
+		
 	}
 
 	private createIcon() {
