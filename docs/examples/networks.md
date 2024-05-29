@@ -30,3 +30,7 @@ To customize networks and their order, use the `networks` attribute and pass in 
 ::: tip Hey there!
 Don't see a network you want to use? File a GitHub issue to get it added!
 :::
+
+<script>
+    import "@royalfig/share-button"
+</script>

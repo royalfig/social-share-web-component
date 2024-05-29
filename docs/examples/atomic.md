@@ -15,3 +15,7 @@ To enable individual buttons, use the `atomic` attribute.
 <div class="sb-container">
 <share-button atomic></share-button>
 </div>
+
+<script>
+    import "@royalfig/share-button"
+</script>

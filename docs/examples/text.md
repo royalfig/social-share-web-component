@@ -26,3 +26,7 @@ To omit text altogether, use the `circle` attribute. The button will render with
 ::: tip Icon
 Use the [`icon`](/examples/icon.md) attribute to change the icon.
 :::
+
+<script>
+    import "@royalfig/share-button"
+</script>

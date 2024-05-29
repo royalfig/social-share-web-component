@@ -1,19 +1,18 @@
+
 import { defineConfig } from "vitepress";
-// import vue from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-	// vite: {
-	//   plugins: [
-	//     vue({
-	//       template: {
-	//         compilerOptions: {
-	//           // treat all tags with a dash as custom elements
-	//           isCustomElement: (tag) => tag.includes('-')
-	//         }
-	//       }
-	//     })
-	//   ]
-	// },
+  vue: {
+    template: {
+      compilerOptions: {
+        // treat all tags with a dash as custom elements
+        isCustomElement: (tag) => tag.includes('-')
+      }
+    }
+  },
+
+  
 	title: "Share Button ",
 	description: "A custom web component for seamless sharing",
 	head: [
@@ -29,7 +28,7 @@ export default defineConfig({
       border: 1px solid var(--vp-c-divider);
       border-radius: 8px;
   }`,
-		],
+		]
 	],
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
@@ -62,6 +61,7 @@ export default defineConfig({
 					{ text: "Color", link: "/examples/color" },
 					{ text: "Text", link: "/examples/text" },
 					{ text: "Networks", link: "/examples/networks" },
+					{ text: "Icons only", link: "/examples/atomic" },
 				],
 			},
 		],

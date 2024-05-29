@@ -25,5 +25,5 @@ title: Color
 </div>
 
 <script>
-import "@royalfig/share-button"
+    import "@royalfig/share-button"
 </script>
