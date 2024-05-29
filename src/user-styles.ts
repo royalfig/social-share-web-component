@@ -39,24 +39,21 @@ function createCustomStyle(el: HTMLElement, variables: string[]) {
 }
 
 export const userCustomProps = [
-	"color-backdrop",
-	"color-border",
 	"color-button-text",
-	"color-button",
-	"color-element",
-	"color-surface",
+	"color-button-bg",
+	"color-popover-bg",
+	"color-popover-text",
 	"button-text",
 	"dark-mode",
 	"icon",
 ];
 
 const userStyles = [
-	"color-backdrop",
-	"color-border",
+
 	"color-button-text",
-	"color-button",
-	"color-element",
-	"color-surface",
+	"color-button-bg",
+	"color-popover-bg",
+	"color-popover-text",
 ];
 
 export function createUserStyles(el: HTMLElement) {

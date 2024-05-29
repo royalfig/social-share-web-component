@@ -1,8 +1,7 @@
 .wrapper {
-  --color-border: hsl(241deg 55.5% 2.74%);
-  --color-surface: hsl(242deg 55.5% 2.74%);
-  --color-element: hsl(242deg 9.58% 98%);;
-  --color-button: var(--color-element);
-  --color-button-text: var(--color-surface);
+  --color-popover-bg: hsl(242deg 55.5% 2.74%);
+  --color-popover-text: hsl(242deg 9.58% 98%);
+  --color-button-bg: hsl(242deg 9.58% 98%);
+  --color-button-text: hsl(242deg 55.5% 2.74%);
   --color-green: hsl(120deg 99% 43%);
 }
