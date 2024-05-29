@@ -57,7 +57,6 @@ export class ShareButton extends HTMLElement {
 		const styles = new CSSStyleSheet();
 		styles.replaceSync(style + userStyles + darkModeStyles);
 		this.shadow.adoptedStyleSheets = [styles];
-		
 
 		if (!isAtomic && button) {
 			button.addEventListener("click", (e) => {
