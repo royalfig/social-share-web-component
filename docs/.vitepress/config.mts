@@ -1,8 +1,9 @@
 
 import { defineConfig } from "vitepress";
-import vue from '@vitejs/plugin-vue'
 // https://vitepress.dev/reference/site-config
+
 export default defineConfig({
+  base: "/share-button/",
   vue: {
     template: {
       compilerOptions: {
