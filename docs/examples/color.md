@@ -11,17 +11,17 @@ title: Color
 ```
 
 <div class="sb-container">
-    <share-button color-button="red"></share-button>
+    <share-button color-button-bg="red"></share-button>
 </div>
 
 ## Change pop up color
 
 ```html
-<share-button color-surface="blue" color-element="white"></share-button>
+<share-button color-popup-bg="blue" color-popup-text="white"></share-button>
 ```
 
 <div class="sb-container">
-    <share-button color-surface="blue" color-element="white"></share-button>
+    <share-button color-popup-bg="blue" color-popup-text="white"></share-button>
 </div>
 
 <script>

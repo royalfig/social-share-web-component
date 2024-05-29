@@ -38,6 +38,7 @@ export class ShareButton extends HTMLElement {
 			"";
 
 		const userStyles = createUserStyles(this);
+		console.log("🚀 ~ ShareButton ~ render ~ userStyles:", userStyles, this)
 		const icon = this.createIcon();
 		const isAtomic = this.hasAttribute("atomic");
 		const popover = this.createPopover(title, isAtomic);

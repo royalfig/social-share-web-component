@@ -28,7 +28,7 @@ function createCustomStyle(el: HTMLElement, variables: string[]) {
 	return variables
 		.map((variable) => {
 			const value = el.getAttribute(variable);
-
+console.log(el, el.getAttribute(variable))
 			if (!value) {
 				return "";
 			}
@@ -38,22 +38,12 @@ function createCustomStyle(el: HTMLElement, variables: string[]) {
 		.join("\n");
 }
 
-export const userCustomProps = [
-	"color-button-text",
-	"color-button-bg",
-	"color-popover-bg",
-	"color-popover-text",
-	"button-text",
-	"dark-mode",
-	"icon",
-];
 
 const userStyles = [
-
 	"color-button-text",
 	"color-button-bg",
-	"color-popover-bg",
-	"color-popover-text",
+	"color-popup-bg",
+	"color-popup-text",
 ];
 
 export function createUserStyles(el: HTMLElement) {
