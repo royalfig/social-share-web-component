@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Share Button "
   text: "A custom web component for seamless sharing"
-  tagline: My great project tagline
+  tagline: Shout it from the mountaintop
   actions:
     - theme: brand
       text: Get started
@@ -15,11 +15,14 @@ hero:
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: 🛠️
+    title: Built on web standards
+    details: Use this custom web component anywhere
+  - icon: 🏎️
+    title: Go viral faster
+    details: Let your readers share your content more easily
+  - icon: 👁️
+    title: No tracking
+    details: Don't let them watch you (more)
 ---
 
