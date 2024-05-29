@@ -24,6 +24,10 @@ title: Color
     <share-button color-popup-bg="blue" color-popup-text="white"></share-button>
 </div>
 
-<script>
-    import "@royalfig/share-button"
+<script setup>
+    import {onMounted} from 'vue'
+
+    onMounted(() => {
+        import("@royalfig/share-button")
+    })
 </script>

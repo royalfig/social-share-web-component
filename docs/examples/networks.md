@@ -31,6 +31,10 @@ To customize networks and their order, use the `networks` attribute and pass in 
 Don't see a network you want to use? File a GitHub issue to get it added!
 :::
 
-<script>
-    import "@royalfig/share-button"
+<script setup>
+    import {onMounted} from 'vue'
+
+    onMounted(() => {
+        import("@royalfig/share-button")
+    })
 </script>

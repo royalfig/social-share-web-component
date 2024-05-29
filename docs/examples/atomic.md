@@ -16,6 +16,10 @@ To enable individual buttons, use the `atomic` attribute.
 <share-button atomic></share-button>
 </div>
 
-<script>
-    import "@royalfig/share-button"
+<script setup>
+    import {onMounted} from 'vue'
+
+    onMounted(() => {
+        import("@royalfig/share-button")
+    })
 </script>

@@ -27,6 +27,10 @@ To omit text altogether, use the `circle` attribute. The button will render with
 Use the [`icon`](/examples/icon.md) attribute to change the icon.
 :::
 
-<script>
-    import "@royalfig/share-button"
+<script setup>
+    import {onMounted} from 'vue'
+
+    onMounted(() => {
+        import("@royalfig/share-button")
+    })
 </script>
