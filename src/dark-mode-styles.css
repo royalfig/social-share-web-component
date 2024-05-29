@@ -1,7 +1,7 @@
 .wrapper {
-  --color-popup-bg: hsl(242deg 55.5% 2.74%);
-  --color-popup-text: hsl(242deg 9.58% 98%);
   --color-button-bg: hsl(242deg 9.58% 98%);
   --color-button-text: hsl(242deg 55.5% 2.74%);
-  --color-green: hsl(120deg 99% 43%);
+  --color-copy-success: hsl(120deg 99% 43%);
+  --color-popover-bg: hsl(242deg 55.5% 2.74%);
+  --color-popover-text: hsl(242deg 9.58% 98%);
 }

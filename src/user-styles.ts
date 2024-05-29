@@ -42,8 +42,8 @@ console.log(el, el.getAttribute(variable))
 const userStyles = [
 	"color-button-text",
 	"color-button-bg",
-	"color-popup-bg",
-	"color-popup-text",
+	"color-popover-bg",
+	"color-popover-text",
 ];
 
 export function createUserStyles(el: HTMLElement) {

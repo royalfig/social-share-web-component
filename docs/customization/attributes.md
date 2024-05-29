@@ -38,3 +38,11 @@ There are several
 <style>
    
 </style>
+
+<script setup>
+    import {onMounted} from 'vue'
+
+    onMounted(() => {
+        import("@royalfig/share-button")
+    })
+</script>

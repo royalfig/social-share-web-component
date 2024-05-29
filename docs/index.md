@@ -26,3 +26,9 @@ features:
     details: Don't let them watch you (more)
 ---
 
+<style>
+  :root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
+}
+</style>
