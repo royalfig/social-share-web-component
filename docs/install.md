@@ -22,7 +22,7 @@ npm install @royalfig/share-button
 import "@royalfig/share-button";
 ```
 
-## Use the latest release
+## Use the latest release <Badge type="info" :text=data.version />
 
 Download the latest release and copy the code into your site.
 
@@ -30,9 +30,6 @@ Download the latest release and copy the code into your site.
     <a class="sb-button" :href="data.download" download>Download</a>
     <button class="sb-button" @click="copy">Copy</button>
 </div>
-
-
-
 
 ## Use with Ghost
 
@@ -64,5 +61,7 @@ function copy() {
         },  3000)
     })
 }
+
+
 
 </script>
