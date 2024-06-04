@@ -56,7 +56,7 @@ export default defineConfig({
       { icon: "github", link: "https://github.com/royalfig/share-button" },
       { icon: "x", link: "https://twitter.com/theroyalfig/" },
       { icon: "mastodon", link: "https://mastodon.social/@royalfig" },
-      { icon: "linkedin", link: "https://www.linkedin.com/in/ryanfeigenbaum/"},
+      { icon: "linkedin", link: "https://www.linkedin.com/in/ryan-w-feigenbaum/"},
     ],
   },
 });
