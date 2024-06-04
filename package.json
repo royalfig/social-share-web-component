@@ -32,13 +32,13 @@
     "prerelease": "git commit -am 'publish' && npm version patch && git push && git push --tags"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.4.1",
-    "stylelint": "^16.0.2",
-    "stylelint-config-recess-order": "^4.4.0",
+    "@biomejs/biome": "1.8.0",
+    "stylelint": "^16.6.1",
+    "stylelint-config-recess-order": "^5.0.1",
     "stylelint-config-standard": "^36.0.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.8",
-    "vite-plugin-dts": "^3.7.0"
+    "typescript": "^5.4.5",
+    "vite": "^5.2.12",
+    "vite-plugin-dts": "^3.9.1"
   },
   "publishConfig": {
     "access": "public"
