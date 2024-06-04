@@ -159,7 +159,9 @@ export class ShareButton extends HTMLElement {
 
 	private createIcon() {
 		const iconChoice = this.getAttribute("icon") || "1";
-		let icon;
+		
+		let icon: string;
+
 		if (iconChoice === "false") {
 			icon = "";
 		} else if (!["1", "2", "3", "4", "5", "6", "7"].includes(iconChoice)) {
