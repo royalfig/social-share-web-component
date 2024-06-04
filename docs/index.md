@@ -3,12 +3,12 @@
 layout: home
 
 hero:
-  name: "Share Button "
-  text: "A custom web component for seamless sharing"
-  tagline: Shout it from the mountaintop
+  name: Share Button
+  text: A seamless, customizable sharing solution for web devs and designers
+  tagline: Sending good vibes your way 
   image: 
     src: /galaxy.avif
-    alt: Social media logos with a circle divided into three to represent sharing
+    alt: An abstract portrayal of the share icon, with planets 
   actions:
     - theme: brand
       icon: arrow
@@ -20,17 +20,17 @@ hero:
 
 features:
   - icon: 🛠️
-    title: Built on web standards
-    details: Use this custom web component anywhere
+    title: Universal compatibility
+    details: Built on standards, use this custom web component anywhere
   - icon: 😴
-    title: Easy enough to use, you can do it in your sleep
-    details: xxx
-  - icon: 👁️
-    title: No tracking
-    details: Don't let them watch you (more)
+    title: Effortless integration
+    details: Install via NPM or use the latest release directly on your site
   - icon: 💅
     title: Fully customizable
-    details: Great out of the box defaults with the ability to make the button look however you want
+    details: Great out of the box styles with the ability to match your site's design
+  - icon: 🔋
+    title: Batteries included
+    details: 1-click share to X, WhatsApp, Telegram, Facebook, and more.
 ---
 
 <style>

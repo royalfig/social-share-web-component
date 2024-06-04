@@ -53,7 +53,7 @@ export class ShareButton extends HTMLElement {
 
 		const wrapper = document.createElement("div");
 		wrapper.setAttribute("class", "wrapper");
-		wrapper.setAttribute("part", "wrapper");
+		wrapper.setAttribute("part", "share-wrapper");
 		const contentEl = this.isPopoverSupport ? popover : "<div></div>";
 		wrapper.append(button, contentEl);
 		this.shadow.replaceChildren(wrapper);
@@ -90,9 +90,7 @@ export class ShareButton extends HTMLElement {
 					popoverClone.style.pointerEvents = "none";
 					popoverClone.classList.add("up","popover-clone");
 					popoverCoords = popoverClone.getBoundingClientRect();
-					console.log(popoverCoords);
 					popoverClone.remove();
-					// popover.hidePopover();
 					const buttonCoords = target.getBoundingClientRect();
 					let left = `${
 						buttonCoords.left + buttonCoords.width / 2 - popoverCoords.width / 2

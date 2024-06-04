@@ -161,6 +161,7 @@ export function createPopoverContent({
 	const socialMediaContainer = document.createElement("div");
 	isAtomic && socialMediaContainer.classList.add("atomic");
 	socialMediaContainer.classList.add("social-media-container");
+	socialMediaContainer.setAttribute("part", "share-social-media");
 	socialMediaContainer.append(...parsedNetworks);
 	div.append(socialMediaContainer);
 	const triangleUp = document.createElement("div");

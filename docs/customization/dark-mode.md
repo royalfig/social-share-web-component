@@ -1,7 +1,3 @@
----
-title: Dark mode
----
-
 # Dark mode
 
 Out of the box, the share button will respect the user's system preference, using dark mode when dark mode is preferred and vice versa.
