@@ -30,7 +30,7 @@ features:
     details: Great out of the box styles with the ability to match your site's design
   - icon: 🔋
     title: Batteries included
-    details: 1-click share to X, WhatsApp, Telegram, Facebook, and more.
+    details: 1-click share to X, LinkedIn, Facebook, Email, WhatsApp, Telegram, and link copy.
 ---
 
 <style>
