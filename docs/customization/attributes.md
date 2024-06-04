@@ -78,7 +78,7 @@ You can also change the color of the button's text with `color-button-text`:
 
 ```html
 <share-button
-  color-button="lch(85% 130.5 140.21)"
+  color-button-bg="lch(85% 130.5 140.21)"
   color-button-text="#000"
 ></share-button>
 ```

@@ -15,8 +15,7 @@ function createFixedPosition(fixed: string | null) {
 	}
 
 	if (fixLowercase === "center") {
-		
-		return `${fixedPosition} left: 50%;`;
+		return `${fixedPosition} left: 50%; translate: -50% 0;`;
 	}
 
 	console.error(
@@ -50,9 +49,10 @@ export function createUserStyles(el: HTMLElement) {
 	const position = el.getAttribute("position");
 	const fixedPositionStyles = createFixedPosition(position);
 	const customStyles = createCustomStyle(el, userStyles);
+	const baseFixedStyles = position ? fixedStyles : "";
 
-	return `.wrapper {
-	${position && fixedStyles}
+	return `${baseFixedStyles}
+	.share-button {
 	${fixedPositionStyles}
 	${customStyles}
 }`;
