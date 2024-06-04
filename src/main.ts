@@ -38,7 +38,6 @@ export class ShareButton extends HTMLElement {
 			"";
 
 		const userStyles = createUserStyles(this);
-		console.log("🚀 ~ ShareButton ~ render ~ userStyles:", userStyles, this)
 		const icon = this.createIcon();
 		const isAtomic = this.hasAttribute("atomic");
 		const popover = this.createPopover(title, isAtomic);
@@ -47,6 +46,11 @@ export class ShareButton extends HTMLElement {
 		// dark mode
 		const darkModeStyles = createDarkModeStyles(this);
 
+		// styles
+		const styles = new CSSStyleSheet();
+		styles.replaceSync(style + userStyles + darkModeStyles);
+		this.shadow.adoptedStyleSheets = [styles];
+
 		const wrapper = document.createElement("div");
 		wrapper.setAttribute("class", "wrapper");
 		wrapper.setAttribute("part", "wrapper");
@@ -54,10 +58,6 @@ export class ShareButton extends HTMLElement {
 		wrapper.append(button, contentEl);
 		this.shadow.replaceChildren(wrapper);
 		let popoverCoords: PopoverCoords = null;
-
-		const styles = new CSSStyleSheet();
-		styles.replaceSync(style + userStyles + darkModeStyles);
-		this.shadow.adoptedStyleSheets = [styles];
 
 		if (!isAtomic && button) {
 			button.addEventListener("click", (e) => {
@@ -86,7 +86,8 @@ export class ShareButton extends HTMLElement {
 					popoverClone.removeAttribute('id');
 					popoverClone.removeAttribute('popover');
 					wrapper.append(popoverClone);
-					// popoverClone.style.visibility = "hidden";
+					popoverClone.style.visibility = "hidden";
+					popoverClone.style.pointerEvents = "none";
 					popoverClone.classList.add("up","popover-clone");
 					popoverCoords = popoverClone.getBoundingClientRect();
 					console.log(popoverCoords);
@@ -96,13 +97,6 @@ export class ShareButton extends HTMLElement {
 					let left = `${
 						buttonCoords.left + buttonCoords.width / 2 - popoverCoords.width / 2
 					}px`;
-
-					console.log(
-						buttonCoords.left,
-						buttonCoords.width,
-						popoverCoords.width,
-						left,
-					);
 
 					if (buttonCoords.left < 100) {
 						left = `${
@@ -124,6 +118,7 @@ export class ShareButton extends HTMLElement {
 
 					const scrollY = window.scrollY;
 
+					
 					popover.style.left = left;
 
 					if (document.documentElement.clientHeight / 2 > buttonCoords.y) {
@@ -131,7 +126,6 @@ export class ShareButton extends HTMLElement {
 						popover.style.top = `${
 							scrollY + buttonCoords.top + buttonCoords.height
 						}px`;
-						// popover.style.translate = "-50% 0";
 						popover.classList.remove("down");
 						popover.classList.add("up");
 					} else {
@@ -139,7 +133,6 @@ export class ShareButton extends HTMLElement {
 						popover.style.top = `${
 							scrollY + buttonCoords.top - popoverCoords.height
 						}px`;
-						// popover.style.translate = "-50% -100%";
 						popover.classList.remove("up");
 						popover.classList.add("down");
 					}

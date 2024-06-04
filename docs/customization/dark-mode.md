@@ -36,41 +36,15 @@ If you site has a dark mode toggle, you can also control the button's dark mode 
 
 <div class="sb-container">
     <share-button id="share"></share-button>
-    <button id="toggle">Toggle dark mode</button>
+    <button class="sb-button" id="toggle">Toggle dark mode</button>
 </div>
 
-
-<style>
-    button {
-        border-radius: 8px;
-        border-color: var(--vp-button-alt-border);
-        color: var(--vp-button-alt-text);
-        background-color: var(--vp-button-alt-bg);
-        border-radius: 20px;
-        padding: 0 20px;
-        line-height: 38px;
-        font-size: 14px;
-        display: inline-block;
-        border: 1px solid transparent;
-        text-align: center;
-        font-weight: 600;
-        white-space: nowrap;
-        transition: color 0.25s, border-color 0.25s, background-color 0.25s;
-
-            &:hover {
-                border-color: var(--vp-button-alt-hover-border);
-                color: var(--vp-button-alt-hover-text);
-                background-color: var(--vp-button-alt-hover-bg);
-            }
-    }
-</style>
 
 
 <script setup>
     import {onMounted} from 'vue'
 
     onMounted(() => {
-        import("@royalfig/share-button");
 
         const share = document.querySelector("#share");
         const toggle = document.querySelector("#toggle");

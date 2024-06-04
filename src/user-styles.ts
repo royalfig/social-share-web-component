@@ -2,7 +2,7 @@ import fixedStyles from "./fixed.css?inline";
 
 function createFixedPosition(fixed: string | null) {
 	const distance = "28px";
-	const fixedPosition = `position: fixed; bottom: ${distance};`;
+	const fixedPosition = `position: fixed; bottom: ${distance}; z-index: 9999;`;
 
 	if (!fixed) {
 		return "";
@@ -15,7 +15,8 @@ function createFixedPosition(fixed: string | null) {
 	}
 
 	if (fixLowercase === "center") {
-		return `${fixedPosition} left: 50%; translate: -50% 0;`;
+		
+		return `${fixedPosition} left: 50%;`;
 	}
 
 	console.error(
@@ -28,7 +29,6 @@ function createCustomStyle(el: HTMLElement, variables: string[]) {
 	return variables
 		.map((variable) => {
 			const value = el.getAttribute(variable);
-console.log(el, el.getAttribute(variable))
 			if (!value) {
 				return "";
 			}
@@ -51,10 +51,9 @@ export function createUserStyles(el: HTMLElement) {
 	const fixedPositionStyles = createFixedPosition(position);
 	const customStyles = createCustomStyle(el, userStyles);
 
-	return `
-.wrapper {
+	return `.wrapper {
+	${position && fixedStyles}
 	${fixedPositionStyles}
 	${customStyles}
-	${position && fixedStyles}
 }`;
 }

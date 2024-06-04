@@ -1,55 +1,49 @@
 {
-  "hash": "e71b8f6c",
-  "configHash": "3276595c",
+  "hash": "1c5ea000",
+  "configHash": "520c33ad",
   "lockfileHash": "f32476c5",
-  "browserHash": "d8133560",
+  "browserHash": "a822aa3b",
   "optimized": {
     "vue": {
       "src": "../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "62ce1fc5",
+      "fileHash": "9843b331",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "2e0aa744",
+      "fileHash": "87be02b1",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "78dce1ab",
+      "fileHash": "10da2960",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
       "src": "../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "d5bf3ae8",
+      "fileHash": "9c8e424f",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "dc34aa8a",
+      "fileHash": "37d7a4e2",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "f4e9e7e6",
-      "needsInterop": false
-    },
-    "@theme/index": {
-      "src": "../../../node_modules/vitepress/dist/client/theme-default/index.js",
-      "file": "@theme_index.js",
-      "fileHash": "35da2138",
+      "fileHash": "42ef56a1",
       "needsInterop": false
     },
     "@royalfig/share-button": {
       "src": "../../../node_modules/@royalfig/share-button/dist/share-button.es.js",
       "file": "@royalfig_share-button.js",
-      "fileHash": "95ece686",
+      "fileHash": "1656fcd6",
       "needsInterop": false
     }
   },
