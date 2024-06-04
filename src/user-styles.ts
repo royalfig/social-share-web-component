@@ -53,7 +53,9 @@ export function createUserStyles(el: HTMLElement) {
 
 	return `${baseFixedStyles}
 	.share-button {
-	${fixedPositionStyles}
-	${customStyles}
-}`;
+		${fixedPositionStyles}
+	}
+	.wrapper {
+		${customStyles}
+	}`;
 }

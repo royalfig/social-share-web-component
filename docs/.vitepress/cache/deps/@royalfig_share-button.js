@@ -138,32 +138,32 @@ function z({
 }
 var I = ':host{font-size:16px;font-size:max(16px,clamp(.875rem,.85rem + .125vw,1rem))}.wrapper{--aspect-ratio: 1.65 / 1;--border-radius-lg: 8px;--border-radius-md: 5px;--border-radius-pill: 9999px;--border-radius-sm: 2.5px;--color-button-bg: hsl(242deg 55.5% 2.74%);--color-button-text: hsl(242deg 9.58% 98%);--color-copy-success: green;--color-popover-bg: hsl(242deg 9.58% 98%);--color-popover-border: hsl(0deg 0 100% / 7.5%);--color-popover-text: hsl(242deg 55.5% 2.74%);--font-lg: max(18px, 1.05em);--font-sm: max(15px, .875em);--gap-icon: .5rem;--gap-lg: 2em;--gap-md: .75em;--gap-sm: .5em;--padding-box: 1em;--padding-button: .375em 1em;--triangle: 20px;--box-shadow: inset 0 0 .5px 1px hsl(0deg 0% 100% / 7.5%), 0 0 0 1px hsl(0deg 0% 0% / 5%), 0 .3px .4px hsl(0deg 0% 0% / 2%), 0 .9px 1.5px hsl(0deg 0% 0% / 4.5%), 0 3.5px 6px hsl(0deg 0% 0% / 9%);--filter: drop-shadow(0 0 .5px hsl(0deg 0 100% / 7.5%)) drop-shadow(0 0 1px rgb(0 0 0 / 5%)) drop-shadow(0 .3px .4px rgb(0 0 0 / 2%)) drop-shadow(0 .9px 1.5px rgb(0 0 0 / 4.5%)) drop-shadow(0 3.5px 6px rgb(0 0 0 / 9%))}button{display:inline-flex;gap:var(--gap-icon);align-items:center;justify-content:center;padding:var(--padding-button);font-family:inherit;font-size:1em;line-height:1.5;color:var(--color-button-text);text-align:center;white-space:nowrap;vertical-align:middle;cursor:pointer;background-color:var(--color-button-bg);border:none;border-radius:var(--border-radius-pill);transition:filter .2s ease-out}button:hover:not(.copy-button){filter:brightness(1.2)}button svg{display:inline-block;width:1.15em;height:1.15em;fill:currentcolor}[aria-label=Share] svg{margin-inline-end:0;line-height:1}[popover]{opacity:0;transition:opacity .1s ease-in,scale .1s ease-in}:popover-open,.popover-clone{position:absolute;max-width:min(100% - 16px,31.25em);height:fit-content;padding:0;padding-block:var(--triangle);margin:0;font-family:inherit;color:var(--color-popover-text);background-color:transparent;filter:var(--filter);border:none;opacity:1;transition:opacity .1s ease-out,scale .1s ease-out}.popover-clone{position:fixed;width:fit-content;height:fit-content}.popover-inner{position:relative}.social-media-container{display:flex;flex-direction:column;padding:.75rem;background-color:var(--color-popover-bg);border:1px solid var(--color-popover-border);border-radius:var(--border-radius-lg)}:where(.triangle-up,.triangle-down){position:absolute;left:50%;display:none;height:20px;aspect-ratio:var(--aspect-ratio);clip-path:polygon(50% 0%,0 100%,100% 100%);background-color:var(--color-popover-border);translate:-50% -1.5px}.triangle-down{clip-path:polygon(100% 0%,0% 0,50% 100%)}.triangle-down:after{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;height:var(--triangle);aspect-ratio:var(--aspect-ratio);clip-path:polygon(100% 0%,0% 0,50% 100%);content:"";background-color:var(--color-popover-bg);translate:0 -1px}.triangle-up{translate:-50% calc(-100% + 1.5px)}.triangle-up:after{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;height:var(--triangle);aspect-ratio:var(--aspect-ratio);clip-path:polygon(50% 0%,0 100%,100% 100%);content:"";background-color:var(--color-popover-bg);translate:0 1px}.down .triangle-down,.up .triangle-up{display:block}.left-adjust :where(.triangle-down,.triangle-up){left:25%}.right-adjust :where(.triangle-down,.triangle-up){left:75%}.social-media{display:flex;flex:1;gap:var(--gap-md);align-items:center;justify-content:flex-start;min-width:7em;padding:1em .5em;font-size:1em;font-weight:400;line-height:1.25em;color:inherit;text-decoration:none;background:none;border-radius:var(--border-radius-lg)}.social-media:last-child{border-bottom-right-radius:var(--border-radius-lg);border-bottom-left-radius:var(--border-radius-lg)}.social-media svg{display:inline-block;width:max(22px,1.25em);height:max(22px,1.25em);line-height:1.25em;fill:currentcolor;transition:color .3s ease-out}.x:hover svg{color:#1da1f2}.facebook:hover svg{color:#1877f2}.linkedin:hover svg{color:#0a66c2}.telegram:hover svg{color:#229ed9}.whatsapp:hover svg{color:#25d366}:is(.email,.copy-button):hover svg{opacity:.8}.copy-button{background:none}.copy-button:hover{outline:none}.copy-button[disabled]{font-weight:700;color:var(--color-copy-success)}@media (width >=48rem){.social-media{min-width:9em}}.atomic{display:flex;flex-flow:row wrap;gap:var(--gap-sm);justify-content:space-between;background-color:transparent}.atomic .social-media{flex:0;width:min-content;min-width:min-content}.atomic .social-media svg{width:2em;height:2em}';
 var j = ".share-button{display:flex;gap:8px;align-items:center;min-width:60px;height:60px;padding:0 16px;font-size:16px;box-shadow:#0000003d 0 8px 16px -2px}.share-button svg{width:24px;height:24px;margin-inline-end:0}";
-function N(n) {
+function F(n) {
   const o = "28px", e = `position: fixed; bottom: ${o}; z-index: 9999;`;
   if (!n)
     return "";
   const t = n.toLowerCase();
-  return t === "left" || t === "right" ? `${e} ${t}: ${o};` : t === "center" ? `${e} left: 50%;` : (console.error(
+  return t === "left" || t === "right" ? `${e} ${t}: ${o};` : t === "center" ? `${e} left: 50%; translate: -50% 0;` : (console.error(
     `[Share Button] It looks you specified an unknown value (${n}) for the fixed attribute. Available options are "left," "right," and "center"`
   ), "");
 }
-function U(n, o) {
+function N(n, o) {
   return o.map((e) => {
     const t = n.getAttribute(e);
     return t ? `--${e}: ${t};` : "";
   }).join(`
 `);
 }
-var q = [
+var U = [
   "color-button-text",
   "color-button-bg",
   "color-popover-bg",
   "color-popover-text"
 ];
-function R(n) {
-  const o = n.getAttribute("position"), e = N(o), t = U(n, q);
-  return `.wrapper {
-	${o && j}
+function q(n) {
+  const o = n.getAttribute("position"), e = F(o), t = N(n, U);
+  return `${o ? j : ""}
+	.share-button {
 	${e}
 	${t}
 }`;
@@ -187,7 +187,9 @@ var H = class extends HTMLElement {
   }
   render() {
     var u, i;
-    const e = ((u = document.querySelector("title")) == null ? void 0 : u.textContent) || ((i = document.querySelector("h1")) == null ? void 0 : i.textContent) || "", t = R(this), a = this.createIcon(), d = this.hasAttribute("atomic"), r = this.createPopover(e, d), m = d ? "" : this.createButton(a), h = V(this), C = new CSSStyleSheet();
+    const e = ((u = document.querySelector("title")) == null ? void 0 : u.textContent) || ((i = document.querySelector("h1")) == null ? void 0 : i.textContent) || "", t = q(this);
+    console.log("🚀 ~ ShareButton ~ render ~ userStyles:", t);
+    const a = this.createIcon(), d = this.hasAttribute("atomic"), r = this.createPopover(e, d), m = d ? "" : this.createButton(a), h = V(this), C = new CSSStyleSheet();
     C.replaceSync(I + t + h), this.shadow.adoptedStyleSheets = [C];
     const g = document.createElement("div");
     g.setAttribute("class", "wrapper"), g.setAttribute("part", "share-wrapper");
