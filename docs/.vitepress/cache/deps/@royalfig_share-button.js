@@ -37,11 +37,11 @@ function z({
   networks: e,
   isAtomic: t
 }) {
-  function a(b, c, u) {
+  function a(b, l, u) {
     let i = u.replace(/{{url}}/g, n);
     o && (i = i.replace(/{{text}}/g, o));
     const s = document.createElement("a");
-    return s.classList.add("social-media", c.toLowerCase()), s.href = encodeURI(i), s.setAttribute("aria-label", `Share on ${c}`), s.setAttribute("target", "_blank"), s.setAttribute("rel", "noopener noreferrer"), s.setAttribute("part", "share-link"), s.innerHTML = `${b} ${t ? "" : ` ${c}`}`, s;
+    return s.classList.add("social-media", l.toLowerCase()), s.href = encodeURI(i), s.setAttribute("aria-label", `Share on ${l}`), s.setAttribute("target", "_blank"), s.setAttribute("rel", "noopener noreferrer"), s.setAttribute("part", "share-link"), s.innerHTML = `${b} ${t ? "" : ` ${l}`}`, s;
   }
   const d = /* @__PURE__ */ new Map([
     [
@@ -108,10 +108,10 @@ function z({
   ]), r = document.createElement("div");
   r.classList.add("popover-inner"), r.setAttribute("part", "popover-inner");
   const m = e.split(",").map((b) => {
-    const c = b.trim().toLowerCase();
-    if (c === "copy") {
+    const l = b.trim().toLowerCase();
+    if (l === "copy") {
       const i = document.createElement("button");
-      i.classList.add("social-media", "copy-button"), i.setAttribute("aria-label", "Copy link"), i.setAttribute("part", "share-link");
+      i.classList.add("social-media", "copy-button"), i.setAttribute("aria-label", "Copy link"), i.setAttribute("part", `share-link, ${l}`);
       const s = `${y} <span>Copy link</span>`, v = y;
       return i.innerHTML = t ? v : s, i.addEventListener("click", async (p) => {
         if (!p.currentTarget) {
@@ -127,7 +127,7 @@ function z({
         }
       }), i;
     }
-    const u = d.get(c);
+    const u = d.get(l);
     return u ? u.html : "";
   }), h = document.createElement("div");
   t && h.classList.add("atomic"), h.classList.add("social-media-container"), h.setAttribute("part", "share-social-media"), h.append(...m), r.append(h);
@@ -164,9 +164,11 @@ function q(n) {
   const o = n.getAttribute("position"), e = F(o), t = N(n, U);
   return `${o ? j : ""}
 	.share-button {
-	${e}
-	${t}
-}`;
+		${e}
+	}
+	.wrapper {
+		${t}
+	}`;
 }
 var H = class extends HTMLElement {
   constructor() {
@@ -195,7 +197,7 @@ var H = class extends HTMLElement {
     g.setAttribute("class", "wrapper"), g.setAttribute("part", "share-wrapper");
     const b = this.isPopoverSupport ? r : "<div></div>";
     g.append(m, b), this.shadow.replaceChildren(g);
-    let c = null;
+    let l = null;
     if (!d && m && m.addEventListener("click", (s) => {
       const v = s.currentTarget;
       if (this.isMobile) {
@@ -211,12 +213,12 @@ var H = class extends HTMLElement {
       }
       if (this.isPopoverSupport) {
         const p = r.cloneNode(true);
-        p.removeAttribute("id"), p.removeAttribute("popover"), g.append(p), p.style.visibility = "hidden", p.style.pointerEvents = "none", p.classList.add("up", "popover-clone"), c = p.getBoundingClientRect(), p.remove();
-        const l = v.getBoundingClientRect();
-        let x = `${l.left + l.width / 2 - c.width / 2}px`;
-        l.left < 100 && (x = `${l.left + l.width / 2 - c.width * 0.25}px`, r.classList.add("left-adjust")), l.right > window.innerWidth - 100 && (x = `${l.left + l.width / 2 - c.width * 0.75}px`, r.classList.add("right-adjust"));
+        p.removeAttribute("id"), p.removeAttribute("popover"), g.append(p), p.style.visibility = "hidden", p.style.pointerEvents = "none", p.classList.add("up", "popover-clone"), l = p.getBoundingClientRect(), p.remove();
+        const c = v.getBoundingClientRect();
+        let x = `${c.left + c.width / 2 - l.width / 2}px`;
+        c.left < 100 && (x = `${c.left + c.width / 2 - l.width * 0.25}px`, r.classList.add("left-adjust")), c.right > window.innerWidth - 100 && (x = `${c.left + c.width / 2 - l.width * 0.75}px`, r.classList.add("right-adjust"));
         const L = window.scrollY;
-        r.style.left = x, document.documentElement.clientHeight / 2 > l.y ? (r.style.top = `${L + l.top + l.height}px`, r.classList.remove("down"), r.classList.add("up")) : (r.style.top = `${L + l.top - c.height}px`, r.classList.remove("up"), r.classList.add("down"));
+        r.style.left = x, document.documentElement.clientHeight / 2 > c.y ? (r.style.top = `${L + c.top + c.height}px`, r.classList.remove("down"), r.classList.add("up")) : (r.style.top = `${L + c.top - l.height}px`, r.classList.remove("up"), r.classList.add("down"));
         return;
       }
       navigator.clipboard.writeText(window.location.href), setTimeout(() => {

@@ -1,6 +1,5 @@
 :host {
   font-size: 16px;
-  font-size: max(16px, clamp(0.875rem, 0.85rem + 0.125vw, 1rem));
 }
 
 .wrapper {
@@ -105,7 +104,8 @@ button {
 .social-media-container {
   display: flex;
   flex-direction: column;
-  padding: 0.75rem;
+  padding: 0.5em;
+  font-size: 14px;
   background-color: var(--color-popover-bg);
   border: 1px solid var(--color-popover-border);
   border-radius: var(--border-radius-lg);
@@ -174,8 +174,7 @@ button {
   align-items: center;
   justify-content: flex-start;
   min-width: 7em;
-  padding: 1em 0.5em;
-  font-size: 1em;
+  padding: 0.5em;
   font-weight: 400;
   line-height: 1.25em;
   color: inherit;
@@ -191,8 +190,8 @@ button {
 
 .social-media svg {
   display: inline-block;
-  width: max(22px, 1.25em);
-  height: max(22px, 1.25em);
+  width: 20px;
+  height: 20px;
   line-height: 1.25em;
   fill: currentcolor;
   transition: color 300ms ease-out;
