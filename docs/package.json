@@ -8,6 +8,6 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
-    "@royalfig/share-button": "^1.0.14"
+    "@royalfig/share-button": "^1.0.15"
   }
 }
