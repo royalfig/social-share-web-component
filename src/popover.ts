@@ -120,7 +120,7 @@ export function createPopoverContent({
       const btn = document.createElement("button");
       btn.classList.add("social-media", "copy-button");
       btn.setAttribute("aria-label", "Copy link");
-      btn.setAttribute("part", `share-link, ${trimmedNetwork}`);
+      btn.setAttribute("part", `share-link ${trimmedNetwork}`);
       const initial = `${copyIcon} <span>Copy link</span>`;
       const initialAtomic = copyIcon;
       btn.innerHTML = isAtomic ? initialAtomic : initial;
