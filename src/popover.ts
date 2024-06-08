@@ -40,7 +40,7 @@ export function createPopoverContent({
     a.setAttribute("aria-label", `Share on ${network}`);
     a.setAttribute("target", "_blank");
     a.setAttribute("rel", "noopener noreferrer");
-    a.setAttribute("part", `share-link, ${network.toLowerCase()}`);
+    a.setAttribute("part", `share-link ${network.toLowerCase()}`);
     a.innerHTML = `${icon} ${isAtomic ? "" : ` ${network}`}`;
 
     return a;
