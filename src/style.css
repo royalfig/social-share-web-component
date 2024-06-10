@@ -31,6 +31,11 @@
     drop-shadow(0 0.3px 0.4px rgb(0 0 0 / 2%))
     drop-shadow(0 0.9px 1.5px rgb(0 0 0 / 4.5%))
     drop-shadow(0 3.5px 6px rgb(0 0 0 / 9%));
+  --x: #1da1f2;
+  --fb: #1877f2;
+  --li: #0a66c2;
+  --tg: #229ed9;
+  --wa: #25d366;
 }
 
 button {
@@ -75,7 +80,8 @@ button {
   transition: opacity 100ms ease-in, scale 100ms ease-in;
 }
 
-:popover-open, .popover-clone {
+:popover-open,
+.popover-clone {
   position: absolute;
   max-width: min(100% - 16px, 31.25em);
   height: fit-content;
@@ -198,23 +204,23 @@ button {
 }
 
 .x:hover svg {
-  color: #1da1f2;
+  color: var(--x);
 }
 
 .facebook:hover svg {
-  color: #1877f2;
+  color: var(--fb);
 }
 
 .linkedin:hover svg {
-  color: #0a66c2;
+  color: var(--li);
 }
 
 .telegram:hover svg {
-  color: #229ed9;
+  color: var(--tg);
 }
 
 .whatsapp:hover svg {
-  color: #25d366;
+  color: var(--wa);
 }
 
 :is(.email, .copy-button):hover svg {
@@ -258,4 +264,10 @@ button {
       height: 2em;
     }
   }
+}
+
+.circle {
+  padding: 0.75rem;
+  line-height: 1;
+  border-radius: 50%;
 }

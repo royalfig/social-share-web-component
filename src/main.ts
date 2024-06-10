@@ -154,7 +154,7 @@ export class ShareButton extends HTMLElement {
     }
   }
 
-  private createIcon() {
+  createIcon() {
     const iconChoice = this.getAttribute("icon") || "1";
 
     let icon: string;
@@ -186,10 +186,7 @@ export class ShareButton extends HTMLElement {
 
     if (isCircle || isNoText) {
       button.setAttribute("aria-label", "Share");
-      button.setAttribute(
-        "style",
-        "border-radius: 50%; padding: 0.75rem; line-height: 1;"
-      );
+
       button.innerHTML = icon;
     } else {
       button.innerHTML = `${icon} ${
