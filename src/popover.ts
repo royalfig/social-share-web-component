@@ -138,7 +138,6 @@ export function createPopoverContent({
           btn.disabled = true;
 
           if (isAtomic) {
-            console.log(copiedIcon);
             btn.innerHTML = copiedIcon;
           } else {
             btn.innerHTML = `${copiedIcon} <span>Copied!</span>`;
