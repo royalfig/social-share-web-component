@@ -1,11 +1,14 @@
 import {
+  notNullish,
+  toValue,
   tryOnScopeDispose,
   unrefElement
-} from "./chunk-7K4EPTTS.js";
+} from "./chunk-LK5ND2UG.js";
 import {
+  computed,
   ref,
   watch
-} from "./chunk-JWA4H7QR.js";
+} from "./chunk-7W4HJJHH.js";
 
 // node_modules/tabbable/dist/index.esm.js
 var candidateSelectors = ["input:not([inert])", "select:not([inert])", "textarea:not([inert])", "a[href]:not([inert])", "button:not([inert])", "[tabindex]:not(slot):not([inert])", "audio[controls]:not([inert])", "video[controls]:not([inert])", '[contenteditable]:not([contenteditable="false"]):not([inert])', "details>summary:first-of-type:not([inert])", "details:not([inert])"];
@@ -375,13 +378,11 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 function _toPrimitive(input, hint) {
-  if (typeof input !== "object" || input === null)
-    return input;
+  if (typeof input !== "object" || input === null) return input;
   var prim = input[Symbol.toPrimitive];
   if (prim !== void 0) {
     var res = prim.call(input, hint || "default");
-    if (typeof res !== "object")
-      return res;
+    if (typeof res !== "object") return res;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
   return (hint === "string" ? String : Number)(input);
@@ -1040,12 +1041,19 @@ function useFocusTrap(target, options = {}) {
       isPaused.value = false;
     }
   };
+  const targets = computed(() => {
+    const _targets = toValue(target);
+    return (Array.isArray(_targets) ? _targets : [_targets]).map((el) => {
+      const _el = toValue(el);
+      return typeof _el === "string" ? _el : unrefElement(_el);
+    }).filter(notNullish);
+  });
   watch(
-    () => unrefElement(target),
-    (el) => {
-      if (!el)
+    targets,
+    (els) => {
+      if (!els.length)
         return;
-      trap = createFocusTrap(el, {
+      trap = createFocusTrap(els, {
         ...focusTrapOptions,
         onActivate() {
           hasFocus.value = true;

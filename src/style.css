@@ -184,6 +184,7 @@ button {
   text-decoration: none;
   background: none;
   border-radius: var(--border-radius-lg);
+  transition: background-color 100ms ease-out;
 
   &:hover {
     background-color: var(--color-popover-bg-accent);
@@ -204,36 +205,8 @@ button {
   transition: color 300ms ease-out;
 }
 
-/* .x:hover svg {
-  color: var(--x);
-}
-
-.facebook:hover svg {
-  color: var(--fb);
-}
-
-.linkedin:hover svg {
-  color: var(--li);
-}
-
-.telegram:hover svg {
-  color: var(--tg);
-}
-
-.whatsapp:hover svg {
-  color: var(--wa);
-} */
-
-/* :is(.email, .copy-button):hover svg {
-  opacity: 0.8;
-} */
-
 .copy-button {
-  background: none;
-
-  &:hover {
-    outline: none;
-  }
+  font-size: inherit;
 
   &[disabled] {
     font-weight: bold;
@@ -253,6 +226,10 @@ button {
   flex-flow: row wrap;
   justify-content: space-between;
   background-color: transparent;
+
+  &.social-media-container {
+    border: none;
+  }
 
   .social-media {
     flex: 0;
