@@ -1,4 +1,6 @@
+<div style="max-width: 350px">
 ![Sharing symnbol](./docs/public/galaxy.avif)
+</div>
 
 # Sharing Button Web Component
 
@@ -12,8 +14,4 @@ Use this web component to add a button for sharing the current page to social me
 npm install @royalfig/share-button
 ```
 
-See the docs below for more installation options.
-
-## Docs
-
-For customization and advanced usage, see the [official docs](https://royalfig.github.io/share-button/)
+See the [official docs](https://royalfig.github.io/share-button/) for more installation options and for customization options.
