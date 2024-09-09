@@ -57,6 +57,7 @@ The most common use case for advanced customization is when you want to customiz
     --color-button-text: hsl(242deg 55.5% 2.74%);
     --color-copy-success: hsl(120deg 99% 43%);
     --color-popover-bg: hsl(242deg 55.5% 2.74%);
+    --color-popover-bg-accent: hsl(242deg 55.5% 12.74%);
     --color-popover-text: hsl(242deg 9.58% 98%);
   }
 }

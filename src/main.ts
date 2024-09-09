@@ -23,6 +23,7 @@ export class ShareButton extends HTMLElement {
   shadow = this.attachShadow({ mode: "open" });
   state = false;
   static observedAttributes = ["dark-mode"];
+
   connectedCallback(): void {
     this.render();
   }

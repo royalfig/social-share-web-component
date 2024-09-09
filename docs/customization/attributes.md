@@ -105,12 +105,13 @@ Change the popover color and text like this:
 
 Here is the full list of color attributes and their default values:
 
-| Attribute            | Description                  | Default                                                                                                                 |
-| -------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `color-button-bg`    | The button background color  | <span style="padding: .5rem; background-color: hsl(242deg 55.5% 2.74%); color: #ffffff;">hsl(242deg 55.5% 2.74%)</span> |
-| `color-button-text`  | The button text color        | <span style="padding: .5rem; background-color: hsl(242deg 9.58% 98%); color: #000000;">hsl(242deg 9.58% 98%)</span>     |
-| `color-popover-bg`   | The popover background color | <span style="padding: .5rem; background-color: hsl(242deg 9.58% 98%); color: #000000;">hsl(242deg 9.58% 98%)</span>     |
-| `color-popover-text` | The popover text color       | <span style="padding: .5rem; background-color: hsl(242deg 55.5% 2.74%); color: #ffffff;">hsl(242deg 55.5% 2.74%)</span> |
+| Attribute            | Description              | Default                                                                                                                 |
+| -------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `color-button-bg`    | Button background        | <span style="padding: .5rem; background-color: hsl(242deg 55.5% 2.74%); color: #ffffff;">hsl(242deg 55.5% 2.74%)</span> |
+| `color-button-text`  | Button text              | <span style="padding: .5rem; background-color: hsl(242deg 9.58% 98%); color: #000000;">hsl(242deg 9.58% 98%)</span>     |
+| `color-popover-bg`   | Popover background       | <span style="padding: .5rem; background-color: hsl(242deg 9.58% 98%); color: #000000;">hsl(242deg 9.58% 98%)</span>     |
+| `color-popover-bg`   | Popover background hover | <span style="padding: .5rem; background-color: hsl(242deg 9.58% 88%); color: #000000;">hsl(242deg 9.58% 88%)</span>     |
+| `color-popover-text` | Popover text             | <span style="padding: .5rem; background-color: hsl(242deg 55.5% 2.74%); color: #ffffff;">hsl(242deg 55.5% 2.74%)</span> |
 
 ## Networks
 
@@ -150,11 +151,9 @@ It's also possible to only display the social media icons and omit the button al
 <share-button atomic></share-button>
 ```
 
-
 <div class="sb-container">
 <share-button atomic></share-button>
 </div>
-
 
 ## Sticky share button
 
@@ -167,4 +166,3 @@ Use the `position` attribute with `left`, `center`, or `right` to customize the 
 ```
 
 <share-button position="left"></share-button>
-
