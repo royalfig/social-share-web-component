@@ -1,24 +1,22 @@
 <script setup>
-import { onMounted } from "vue";
-onMounted(() => {
-  const share = document.querySelector("#share");
-  const toggle = document.querySelector("#toggle");
+import { onMounted, useTemplateRef } from "vue";
+const share = useTemplateRef("share");
+const toggle = useTemplateRef("toggle");
 
-  toggle.addEventListener("click", () => {
-    const state = share.getAttribute("dark-mode");
+function toggleDarkMode() {
+  const state = share.value.getAttribute("dark-mode");
 
-    if (state === "true") {
-      share.setAttribute("dark-mode", "false");
-    } else {
-      share.setAttribute("dark-mode", "true");
-    }
-  });
-});
+  if (state === "true") {
+    share.value.setAttribute("dark-mode", "false");
+  } else {
+    share.value.setAttribute("dark-mode", "true");
+  }
+}
 </script>
 
 <template>
   <div class="sb-container">
-    <share-button id="share"></share-button>
-    <button class="sb-button" id="toggle">Toggle dark mode</button>
+    <share-button ref="share"></share-button>
+    <button class="sb-button" @click="toggleDarkMode">Toggle dark mode</button>
   </div>
 </template>
