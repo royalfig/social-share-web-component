@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, useTemplateRef } from "vue";
+import { useTemplateRef } from "vue";
 const share = useTemplateRef("share");
 const toggle = useTemplateRef("toggle");
 
