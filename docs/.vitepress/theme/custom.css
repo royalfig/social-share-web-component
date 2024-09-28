@@ -1,52 +1,52 @@
 .sb-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    padding: 2rem;
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 2rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
 }
 
 .sb-button:is(a, button) {
-    display: inline-block;
-    padding: 0 20px;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 38px;
-    color: var(--vp-button-alt-text);
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    background-color: var(--vp-button-alt-bg);
-    border: 1px solid transparent;
-    border-color: var(--vp-button-alt-border);
-    border-radius: 20px;
-    transition: color 0.25s, border-color 0.25s, background-color 0.25s;
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 38px;
+  color: var(--vp-button-alt-text);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: var(--vp-button-alt-bg);
+  border: 1px solid transparent;
+  border-color: var(--vp-button-alt-border);
+  border-radius: 20px;
+  transition: color 0.25s, border-color 0.25s, background-color 0.25s;
 
-        &:hover {
-            color: var(--vp-button-alt-hover-text);
-            background-color: var(--vp-button-alt-hover-bg);
-            border-color: var(--vp-button-alt-hover-border);
-        }
+  &:hover {
+    color: var(--vp-button-alt-hover-text);
+    background-color: var(--vp-button-alt-hover-bg);
+    border-color: var(--vp-button-alt-hover-border);
+  }
 
-        &::after {
-            display: none !important;
-        }
+  &::after {
+    display: none !important;
+  }
 }
 
 :root {
-    --vp-button-brand-bg: #f02c69;
-    --vp-c-brand-1: hsl(341deg 87% 56%);
-    --vp-button-brand-hover-bg: hsl(341deg 100% 65%);
-    --vp-c-brand-2: hsl(341deg 100% 65%);
+  --vp-button-brand-bg: #f02c69;
+  --vp-c-brand-1: hsl(341deg 87% 56%);
+  --vp-button-brand-hover-bg: hsl(341deg 100% 65%);
+  --vp-c-brand-2: hsl(341deg 100% 65%);
 }
 
 .dark {
-    --vp-button-brand-bg: #ffaec8;
-    --vp-c-brand-1: #ffaec8;
-    --vp-c-brand-2: hsl(341deg 100% 95%);
-    --vp-button-brand-text: #000;
-    --vp-button-brand-hover-bg: hsl(341deg 100% 95%);
-    --vp-button-brand-hover-text: #000;
+  --vp-button-brand-bg: #ffaec8;
+  --vp-c-brand-1: #ffaec8;
+  --vp-c-brand-2: hsl(341deg 100% 95%);
+  --vp-button-brand-text: #000;
+  --vp-button-brand-hover-bg: hsl(341deg 100% 95%);
+  --vp-button-brand-hover-text: #000;
 }

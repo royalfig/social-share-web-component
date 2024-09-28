@@ -1,10 +1,10 @@
 // node_modules/@royalfig/share-button/dist/share-button.es.js
 var S = Object.defineProperty;
-var V = (n, o, e) => o in n ? S(n, o, { enumerable: true, configurable: true, writable: true, value: e }) : n[o] = e;
-var b = (n, o, e) => (V(n, typeof o != "symbol" ? o + "" : o, e), e);
-var M = ".wrapper{--color-button-bg: hsl(242deg 9.58% 98%);--color-button-text: hsl(242deg 55.5% 2.74%);--color-copy-success: hsl(120deg 99% 43%);--color-popover-bg: hsl(242deg 55.5% 2.74%);--color-popover-bg-accent: hsl(242deg 55.5% 12.74%);--color-popover-text: hsl(242deg 9.58% 98%)}";
-function A(n) {
-  let o = n.getAttribute("dark-mode");
+var V = (i, o, e) => o in i ? S(i, o, { enumerable: true, configurable: true, writable: true, value: e }) : i[o] = e;
+var b = (i, o, e) => (V(i, typeof o != "symbol" ? o + "" : o, e), e);
+var M = ".wrapper{--color-button-bg: hsl(242deg 9.58% 98%);--color-button-text: hsl(242deg 55.5% 2.74%);--color-copy-success: hsl(120deg 99% 43%);--color-popover-bg: hsl(242deg 55.5% 2.74%);--color-popover-bg-accent: hsl(242deg 16% 25%);--color-popover-text: hsl(242deg 9.58% 98%)}";
+function A(i) {
+  let o = i.getAttribute("dark-mode");
   if (o ?? (o = "auto"), o === "auto")
     return `@media (prefers-color-scheme: dark) {
 			${M}
@@ -32,16 +32,16 @@ var E = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.3362 18.339H1
 var T = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>';
 var P = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 2C17.5238 2 22.001 6.47715 22.001 12C22.001 17.5228 17.5238 22 12.001 22C10.1671 22 8.44851 21.5064 6.97086 20.6447L2.00516 22L3.35712 17.0315C2.49494 15.5536 2.00098 13.8345 2.00098 12C2.00098 6.47715 6.47813 2 12.001 2ZM8.59339 7.30019L8.39232 7.30833C8.26293 7.31742 8.13607 7.34902 8.02057 7.40811C7.93392 7.45244 7.85348 7.51651 7.72709 7.63586C7.60774 7.74855 7.53857 7.84697 7.46569 7.94186C7.09599 8.4232 6.89729 9.01405 6.90098 9.62098C6.90299 10.1116 7.03043 10.5884 7.23169 11.0336C7.63982 11.9364 8.31288 12.8908 9.20194 13.7759C9.4155 13.9885 9.62473 14.2034 9.85034 14.402C10.9538 15.3736 12.2688 16.0742 13.6907 16.4482C13.6907 16.4482 14.2507 16.5342 14.2589 16.5347C14.4444 16.5447 14.6296 16.5313 14.8153 16.5218C15.1066 16.5068 15.391 16.428 15.6484 16.2909C15.8139 16.2028 15.8922 16.159 16.0311 16.0714C16.0311 16.0714 16.0737 16.0426 16.1559 15.9814C16.2909 15.8808 16.3743 15.81 16.4866 15.6934C16.5694 15.6074 16.6406 15.5058 16.6956 15.3913C16.7738 15.2281 16.8525 14.9166 16.8838 14.6579C16.9077 14.4603 16.9005 14.3523 16.8979 14.2854C16.8936 14.1778 16.8047 14.0671 16.7073 14.0201L16.1258 13.7587C16.1258 13.7587 15.2563 13.3803 14.7245 13.1377C14.6691 13.1124 14.6085 13.1007 14.5476 13.097C14.4142 13.0888 14.2647 13.1236 14.1696 13.2238C14.1646 13.2218 14.0984 13.279 13.3749 14.1555C13.335 14.2032 13.2415 14.3069 13.0798 14.2972C13.0554 14.2955 13.0311 14.292 13.0074 14.2858C12.9419 14.2685 12.8781 14.2457 12.8157 14.2193C12.692 14.1668 12.6486 14.1469 12.5641 14.1105C11.9868 13.8583 11.457 13.5209 10.9887 13.108C10.8631 12.9974 10.7463 12.8783 10.6259 12.7616C10.2057 12.3543 9.86169 11.9211 9.60577 11.4938C9.5918 11.4705 9.57027 11.4368 9.54708 11.3991C9.50521 11.331 9.45903 11.25 9.44455 11.1944C9.40738 11.0473 9.50599 10.9291 9.50599 10.9291C9.50599 10.9291 9.74939 10.663 9.86248 10.5183C9.97128 10.379 10.0652 10.2428 10.125 10.1457C10.2428 9.95633 10.2801 9.76062 10.2182 9.60963C9.93764 8.92565 9.64818 8.24536 9.34986 7.56894C9.29098 7.43545 9.11585 7.33846 8.95659 7.32007C8.90265 7.31384 8.84875 7.30758 8.79459 7.30402C8.66053 7.29748 8.5262 7.29892 8.39232 7.30833L8.59339 7.30019Z"></path></svg>';
 function I({
-  url: n,
+  url: i,
   title: o,
   networks: e,
   isAtomic: t
 }) {
   function s(f, l, g) {
-    let i = g.replace(/{{url}}/g, n);
-    o && (i = i.replace(/{{text}}/g, o));
+    let n = g.replace(/{{url}}/g, i);
+    o && (n = n.replace(/{{text}}/g, o));
     const a = document.createElement("a");
-    return a.classList.add("social-media", l.toLowerCase()), a.href = encodeURI(i), a.setAttribute("aria-label", `Share on ${l}`), a.setAttribute("target", "_blank"), a.setAttribute("rel", "noopener noreferrer"), a.setAttribute("part", `share-link ${l.toLowerCase()}`), a.innerHTML = `${f} ${t ? "" : ` ${l}`}`, a;
+    return a.classList.add("social-media", l.toLowerCase()), a.href = encodeURI(n), a.setAttribute("aria-label", `Share on ${l}`), a.setAttribute("target", "_blank"), a.setAttribute("rel", "noopener noreferrer"), a.setAttribute("part", `share-link ${l.toLowerCase()}`), a.innerHTML = `${f} ${t ? "" : ` ${l}`}`, a;
   }
   const d = /* @__PURE__ */ new Map([
     [
@@ -110,22 +110,22 @@ function I({
   const v = e.split(",").map((f) => {
     const l = f.trim().toLowerCase();
     if (l === "copy") {
-      const i = document.createElement("button");
-      i.classList.add("social-media", "copy-button"), i.setAttribute("aria-label", "Copy link"), i.setAttribute("part", `share-link ${l}`);
+      const n = document.createElement("button");
+      n.classList.add("social-media", "copy-button"), n.setAttribute("aria-label", "Copy link"), n.setAttribute("part", `share-link ${l}`);
       const a = `${w} <span>Copy link</span>`, C = w;
-      return i.innerHTML = t ? C : a, i.addEventListener("click", async (p) => {
+      return n.innerHTML = t ? C : a, n.addEventListener("click", async (p) => {
         if (!p.currentTarget) {
           console.error("Error copying. Element not found");
           return;
         }
         try {
-          await navigator.clipboard.writeText(window.location.href), i.disabled = true, t ? i.innerHTML = L : i.innerHTML = `${L} <span>Copied!</span>`, setTimeout(() => {
-            i.disabled = false, i.innerHTML = t ? C : a;
+          await navigator.clipboard.writeText(window.location.href), n.disabled = true, t ? n.innerHTML = L : n.innerHTML = `${L} <span>Copied!</span>`, setTimeout(() => {
+            n.disabled = false, n.innerHTML = t ? C : a;
           }, 5e3);
         } catch {
           console.log("[Share Button] We could not copy this");
         }
-      }), i;
+      }), n;
     }
     const g = d.get(l);
     return g ? g.html : "";
@@ -136,20 +136,20 @@ function I({
   const u = document.createElement("div");
   return u.classList.add("triangle-down"), r.append(u), t ? h : r;
 }
-var j = ':host{font-size:16px}.wrapper{--aspect-ratio: 1.65 / 1;--border-radius-lg: 8px;--border-radius-md: 5px;--border-radius-pill: 9999px;--border-radius-sm: 2.5px;--color-button-bg: hsl(242deg 55.5% 2.74%);--color-button-text: hsl(242deg 9.58% 98%);--color-copy-success: green;--color-popover-bg: hsl(242deg 9.58% 98%);--color-popover-bg-accent: hsl(242deg 9.58% 88%);--color-popover-border: hsl(0deg 0 100% / 7.5%);--color-popover-text: hsl(242deg 55.5% 2.74%);--font-lg: max(18px, 1.05em);--font-sm: max(15px, .875em);--gap-icon: .5rem;--gap-lg: 2em;--gap-md: .75em;--gap-sm: .5em;--padding-box: 1em;--padding-button: .5em 1em;--triangle: 20px;--box-shadow: inset 0 0 .5px 1px hsl(0deg 0% 100% / 7.5%), 0 0 0 1px hsl(0deg 0% 0% / 5%), 0 .3px .4px hsl(0deg 0% 0% / 2%), 0 .9px 1.5px hsl(0deg 0% 0% / 4.5%), 0 3.5px 6px hsl(0deg 0% 0% / 9%);--filter: drop-shadow(0 0 .5px hsl(0deg 0 100% / 7.5%)) drop-shadow(0 0 1px rgb(0 0 0 / 5%)) drop-shadow(0 .3px .4px rgb(0 0 0 / 2%)) drop-shadow(0 .9px 1.5px rgb(0 0 0 / 4.5%)) drop-shadow(0 3.5px 6px rgb(0 0 0 / 9%));--x: #1da1f2;--fb: #1877f2;--li: #0a66c2;--tg: #229ed9;--wa: #25d366}button{display:inline-flex;gap:var(--gap-icon);align-items:center;justify-content:center;height:40px;padding:var(--padding-button);font-family:inherit;font-size:.875em;line-height:20px;color:var(--color-button-text);text-align:center;white-space:nowrap;vertical-align:middle;cursor:pointer;background-color:var(--color-button-bg);border:none;border-radius:var(--border-radius-pill);transition:filter .2s ease-out}button:hover:not(.copy-button){filter:brightness(1.2)}button svg{display:inline-block;width:1em;height:1em;fill:currentcolor}[popover]{opacity:0;transition:opacity .1s ease-in,scale .1s ease-in}:popover-open,.popover-clone{position:absolute;max-width:min(100% - 16px,31.25em);height:fit-content;padding:0;padding-block:var(--triangle);margin:0;font-family:inherit;color:var(--color-popover-text);background-color:transparent;filter:var(--filter);border:none;opacity:1;transition:opacity .1s ease-out,scale .1s ease-out}.popover-clone{position:fixed;width:fit-content;height:fit-content}.popover-inner{position:relative}.social-media-container{display:flex;flex-direction:column;padding:.5em;font-size:16px;background-color:var(--color-popover-bg);border:1px solid var(--color-popover-border);border-radius:var(--border-radius-lg)}:where(.triangle-up,.triangle-down){position:absolute;left:50%;display:none;height:20px;aspect-ratio:var(--aspect-ratio);clip-path:polygon(50% 0%,0 100%,100% 100%);background-color:var(--color-popover-border);translate:-50% -1.5px}.triangle-down{clip-path:polygon(100% 0%,0% 0,50% 100%)}.triangle-down:after{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;height:var(--triangle);aspect-ratio:var(--aspect-ratio);clip-path:polygon(100% 0%,0% 0,50% 100%);content:"";background-color:var(--color-popover-bg);translate:0 -1px}.triangle-up{translate:-50% calc(-100% + 1.5px)}.triangle-up:after{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;height:var(--triangle);aspect-ratio:var(--aspect-ratio);clip-path:polygon(50% 0%,0 100%,100% 100%);content:"";background-color:var(--color-popover-bg);translate:0 1px}.down .triangle-down,.up .triangle-up{display:block}.left-adjust :where(.triangle-down,.triangle-up){left:25%}.right-adjust :where(.triangle-down,.triangle-up){left:75%}.social-media{display:flex;flex:1;gap:var(--gap-md);align-items:center;justify-content:flex-start;min-width:7em;padding:.5em;font-weight:400;line-height:1.25em;color:inherit;text-decoration:none;background:none;border-radius:var(--border-radius-lg)}.social-media:hover{background-color:var(--color-popover-bg-accent)}.social-media:last-child{border-bottom-right-radius:var(--border-radius-lg);border-bottom-left-radius:var(--border-radius-lg)}.social-media svg{display:block;width:1em;height:1em;line-height:1.25em;fill:currentcolor;transition:color .3s ease-out}.copy-button{background:none}.copy-button:hover{outline:none}.copy-button[disabled]{font-weight:700;color:var(--color-copy-success)}@media (width >=48rem){.social-media{min-width:9em}}.atomic{display:flex;flex-flow:row wrap;justify-content:space-between;background-color:transparent}.atomic .social-media{flex:0;width:min-content;min-width:min-content}.atomic .social-media svg{width:1.5em;height:1.5em}[aria-label=Share]{padding:.75rem;line-height:1;border-radius:50%}[aria-label=Share] svg{width:1.25em;height:1.25em}';
-var z = ".share-button{display:flex;gap:8px;align-items:center;min-width:60px;height:60px;padding:0 16px;font-size:16px;box-shadow:#0000003d 0 8px 16px -2px}.share-button svg{width:24px;height:24px;margin-inline-end:0}";
-function F(n) {
+var z = ':host{font-size:16px}.wrapper{--aspect-ratio: 1.65 / 1;--border-radius-lg: 8px;--border-radius-md: 5px;--border-radius-pill: 9999px;--border-radius-sm: 2.5px;--color-button-bg: hsl(242deg 55.5% 2.74%);--color-button-text: hsl(242deg 9.58% 98%);--color-copy-success: green;--color-popover-bg: hsl(242deg 9.58% 98%);--color-popover-bg-accent: hsl(242deg 9.58% 88%);--color-popover-border: hsl(0deg 0 100% / 7.5%);--color-popover-text: hsl(242deg 55.5% 2.74%);--font-lg: max(18px, 1.05em);--font-sm: max(15px, .875em);--gap-icon: .5rem;--gap-lg: 2em;--gap-md: .75em;--gap-sm: .5em;--padding-box: 1em;--padding-button: .5em 1em;--triangle: 20px;--box-shadow: inset 0 0 .5px 1px hsl(0deg 0% 100% / 7.5%), 0 0 0 1px hsl(0deg 0% 0% / 5%), 0 .3px .4px hsl(0deg 0% 0% / 2%), 0 .9px 1.5px hsl(0deg 0% 0% / 4.5%), 0 3.5px 6px hsl(0deg 0% 0% / 9%);--filter: drop-shadow(0 0 .5px hsl(0deg 0 100% / 7.5%)) drop-shadow(0 0 1px rgb(0 0 0 / 5%)) drop-shadow(0 .3px .4px rgb(0 0 0 / 2%)) drop-shadow(0 .9px 1.5px rgb(0 0 0 / 4.5%)) drop-shadow(0 3.5px 6px rgb(0 0 0 / 9%));--x: #1da1f2;--fb: #1877f2;--li: #0a66c2;--tg: #229ed9;--wa: #25d366}button{display:inline-flex;gap:var(--gap-icon);align-items:center;justify-content:center;height:40px;padding:var(--padding-button);font-family:inherit;font-size:.875em;line-height:20px;color:var(--color-button-text);text-align:center;white-space:nowrap;vertical-align:middle;cursor:pointer;background-color:var(--color-button-bg);border:none;border-radius:var(--border-radius-pill);transition:filter .2s ease-out}button:hover:not(.copy-button){filter:brightness(1.2)}button svg{display:inline-block;width:1em;height:1em;fill:currentcolor}[popover]{opacity:0;transition:opacity .1s ease-in,scale .1s ease-in}:popover-open,.popover-clone{position:absolute;max-width:min(100% - 16px,31.25em);height:fit-content;padding:0;padding-block:var(--triangle);margin:0;font-family:inherit;color:var(--color-popover-text);background-color:transparent;filter:var(--filter);border:none;opacity:1;transition:opacity .1s ease-out,scale .1s ease-out}.popover-clone{position:fixed;width:fit-content;height:fit-content}.popover-inner{position:relative}.social-media-container{display:flex;flex-direction:column;padding:.5em;font-size:16px;background-color:var(--color-popover-bg);border:1px solid var(--color-popover-border);border-radius:var(--border-radius-lg)}:where(.triangle-up,.triangle-down){position:absolute;left:50%;display:none;height:20px;aspect-ratio:var(--aspect-ratio);clip-path:polygon(50% 0%,0 100%,100% 100%);background-color:var(--color-popover-border);translate:-50% -1.5px}.triangle-down{clip-path:polygon(100% 0%,0% 0,50% 100%)}.triangle-down:after{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;height:var(--triangle);aspect-ratio:var(--aspect-ratio);clip-path:polygon(100% 0%,0% 0,50% 100%);content:"";background-color:var(--color-popover-bg);translate:0 -1px}.triangle-up{translate:-50% calc(-100% + 1.5px)}.triangle-up:after{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;height:var(--triangle);aspect-ratio:var(--aspect-ratio);clip-path:polygon(50% 0%,0 100%,100% 100%);content:"";background-color:var(--color-popover-bg);translate:0 1px}.down .triangle-down,.up .triangle-up{display:block}.left-adjust :where(.triangle-down,.triangle-up){left:25%}.right-adjust :where(.triangle-down,.triangle-up){left:75%}.social-media{display:flex;flex:1;gap:var(--gap-md);align-items:center;justify-content:flex-start;min-width:7em;padding:.5em;font-weight:400;line-height:1.25em;color:inherit;text-decoration:none;background:none;border-radius:var(--border-radius-lg);transition:background-color .1s ease-out}.social-media:hover{background-color:var(--color-popover-bg-accent)}.social-media:last-child{border-bottom-right-radius:var(--border-radius-lg);border-bottom-left-radius:var(--border-radius-lg)}.social-media svg{display:block;width:1em;height:1em;line-height:1.25em;fill:currentcolor;transition:color .3s ease-out}.copy-button{font-size:inherit}.copy-button[disabled]{font-weight:700;color:var(--color-copy-success)}@media (width >=48rem){.social-media{min-width:9em}}.atomic{display:flex;flex-flow:row wrap;justify-content:space-between;background-color:transparent}.atomic.social-media-container{border:none}.atomic .social-media{flex:0;width:min-content;min-width:min-content}.atomic .social-media svg{width:1.5em;height:1.5em}[aria-label=Share]{padding:.75rem;line-height:1;border-radius:50%}[aria-label=Share] svg{width:1.25em;height:1.25em}';
+var j = ".share-button{display:flex;gap:8px;align-items:center;min-width:60px;height:60px;padding:0 16px;font-size:16px;box-shadow:#0000003d 0 8px 16px -2px}.share-button svg{width:24px;height:24px;margin-inline-end:0}";
+function F(i) {
   const o = "28px", e = `position: fixed; bottom: ${o}; z-index: 9999;`;
-  if (!n)
+  if (!i)
     return "";
-  const t = n.toLowerCase();
+  const t = i.toLowerCase();
   return t === "left" || t === "right" ? `${e} ${t}: ${o};` : t === "center" ? `${e} left: 50%; translate: -50% 0;` : (console.error(
-    `[Share Button] It looks you specified an unknown value (${n}) for the fixed attribute. Available options are "left," "right," and "center"`
+    `[Share Button] It looks you specified an unknown value (${i}) for the fixed attribute. Available options are "left," "right," and "center"`
   ), "");
 }
-function N(n, o) {
+function N(i, o) {
   return o.map((e) => {
-    const t = n.getAttribute(e);
+    const t = i.getAttribute(e);
     return t ? `--${e}: ${t};` : "";
   }).join(`
 `);
@@ -158,11 +158,12 @@ var U = [
   "color-button-text",
   "color-button-bg",
   "color-popover-bg",
+  "color-popover-bg-accent",
   "color-popover-text"
 ];
-function q(n) {
-  const o = n.getAttribute("position"), e = F(o), t = N(n, U);
-  return `${o ? z : ""}
+function q(i) {
+  const o = i.getAttribute("position"), e = F(o), t = N(i, U);
+  return `${o ? j : ""}
 	.share-button {
 		${e}
 	}
@@ -188,9 +189,9 @@ var k = class extends HTMLElement {
     this.render();
   }
   render() {
-    var g, i;
-    const e = ((g = document.querySelector("title")) == null ? void 0 : g.textContent) || ((i = document.querySelector("h1")) == null ? void 0 : i.textContent) || "", t = q(this), s = this.createIcon(), d = this.hasAttribute("atomic"), r = this.createPopover(e, d), v = d ? "" : this.createButton(s), h = A(this), m = new CSSStyleSheet();
-    m.replaceSync(j + t + h), this.shadow.adoptedStyleSheets = [m];
+    var g, n;
+    const e = ((g = document.querySelector("title")) == null ? void 0 : g.textContent) || ((n = document.querySelector("h1")) == null ? void 0 : n.textContent) || "", t = q(this), s = this.createIcon(), d = this.hasAttribute("atomic"), r = this.createPopover(e, d), v = d ? "" : this.createButton(s), h = A(this), m = new CSSStyleSheet();
+    m.replaceSync(z + t + h), this.shadow.adoptedStyleSheets = [m];
     const u = document.createElement("div");
     u.setAttribute("class", "wrapper"), u.setAttribute("part", "share-wrapper");
     const f = this.isPopoverSupport ? r : "<div></div>";

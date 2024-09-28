@@ -8,13 +8,13 @@
   --border-radius-md: 5px;
   --border-radius-pill: 9999px;
   --border-radius-sm: 2.5px;
-  --color-button-bg: hsl(242deg 55.5% 2.74%);
-  --color-button-text: hsl(242deg 9.58% 98%);
+  --color-button-bg: hsl(240deg 10% 3.9%);
+  --color-button-text: hsl(0deg 0 100%);
   --color-copy-success: green;
-  --color-popover-bg: hsl(242deg 9.58% 98%);
-  --color-popover-bg-accent: hsl(242deg 9.58% 88%);
-  --color-popover-border: hsl(0deg 0 100% / 7.5%);
-  --color-popover-text: hsl(242deg 55.5% 2.74%);
+  --color-popover-bg: hsl(0deg 0 100%);
+  --color-popover-bg-accent: hsl(240deg 4.8% 95.9%);
+  --color-popover-border: hsl(240deg 5.9% 90%);
+  --color-popover-text: hsl(240deg 10% 3.9%);
   --font-lg: max(18px, 1.05em);
   --font-sm: max(15px, 0.875em);
   --gap-icon: 0.5rem;
@@ -108,7 +108,7 @@ button {
   display: flex;
   flex-direction: column;
   padding: 0.5em;
-  font-size: 16px;
+  font-size: 14px;
   background-color: var(--color-popover-bg);
   border: 1px solid var(--color-popover-border);
   border-radius: var(--border-radius-lg);
@@ -122,7 +122,7 @@ button {
   aspect-ratio: var(--aspect-ratio);
   clip-path: polygon(50% 0%, 0 100%, 100% 100%);
   background-color: var(--color-popover-border);
-  translate: -50% -1.5px;
+  translate: -50% -1px;
 }
 
 .triangle-down {
@@ -198,11 +198,20 @@ button {
 
 .social-media svg {
   display: block;
-  width: 1em;
-  height: 1em;
+  width: 18px;
+  height: 18px;
   line-height: 1.25em;
   fill: currentcolor;
   transition: color 300ms ease-out;
+}
+
+.x {
+  gap: calc(var(--gap-md) + 2px);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .copy-button {
@@ -217,6 +226,17 @@ button {
 @media (width >=48rem) {
   .social-media {
     min-width: 9em;
+  }
+}
+
+[aria-label="Share"] {
+  padding: 0.75rem;
+  line-height: 1;
+  border-radius: 50%;
+
+  svg {
+    width: 1.25em;
+    height: 1.25em;
   }
 }
 
@@ -240,16 +260,12 @@ button {
       width: 1.5em;
       height: 1.5em;
     }
-  }
-}
 
-[aria-label="Share"] {
-  padding: 0.75rem;
-  line-height: 1;
-  border-radius: 50%;
-
-  svg {
-    width: 1.25em;
-    height: 1.25em;
+    &.x {
+      svg {
+        width: 1.25em;
+        height: 1.25em;
+      }
+    }
   }
 }

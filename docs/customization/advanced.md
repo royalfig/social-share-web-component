@@ -32,9 +32,11 @@ This technique is used to change the color of the button below.
     }
 </style>
 
+<ClientOnly>
 <div class="sb-container"> 
     <share-button id="part-test"></share-button>
 </div>
+</ClientOnly>
 
 ## Parts
 

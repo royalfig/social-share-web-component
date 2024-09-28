@@ -38,9 +38,11 @@ The button defaults to "Share." Customize text by adding it between the tags:
 <share-button>Compartir</share-button>
 ```
 
+<ClientOnly>
 <div class="sb-container">
 <share-button>Compartir</share-button>
 </div>
+</ClientOnly>
 
 For a button without text, use the `circle` attribute. The attribute makes the button round, omitting the text and keeping the icon centered.
 
@@ -48,9 +50,11 @@ For a button without text, use the `circle` attribute. The attribute makes the b
 <share-button circle></share-button>
 ```
 
+<ClientOnly>
 <div class="sb-container">
 <share-button circle></share-button>
 </div>
+</ClientOnly>
 
 For a button without an icon, set the `icon` attribute to `false`.
 
@@ -58,9 +62,11 @@ For a button without an icon, set the `icon` attribute to `false`.
 <share-button icon="false"></share-button>
 ```
 
+<ClientOnly>
 <div class="sb-container">
 <share-button icon="false"></share-button>
 </div>
+</ClientOnly>
 
 ## Color
 
@@ -83,9 +89,11 @@ You can also change the color of the button's text with `color-button-text`:
 ></share-button>
 ```
 
+<ClientOnly>
 <div class="sb-container">
     <share-button color-button-bg="lch(85% 130.5 140.21)" color-button-text="#000"></share-button>
 </div>
+</ClientOnly>
 
 Change the popover color and text like this:
 
@@ -96,12 +104,14 @@ Change the popover color and text like this:
 ></share-button>
 ```
 
+<ClientOnly>
 <div class="sb-container">
 <share-button
   color-popover-bg="#f02c69"
   color-popover-text="#fff"
 ></share-button>
 </div>
+</ClientOnly>
 
 Here is the full list of color attributes and their default values:
 
@@ -135,9 +145,11 @@ To customize networks and their order, use the `networks` attribute and pass in 
 <share-button networks="email,copy,facebook"></share-button>
 ```
 
+<ClientOnly>
 <div class="sb-container">
 <share-button networks="email,copy,facebook"></share-button>
 </div>
+</ClientOnly>
 
 ::: tip Hey there!
 Don't see a network you want to use? File a [GitHub issue](https://github.com/royalfig/share-button/issues) to get it added!
@@ -151,9 +163,11 @@ It's also possible to only display the social media icons and omit the button al
 <share-button atomic></share-button>
 ```
 
+<ClientOnly>
 <div class="sb-container">
 <share-button atomic></share-button>
 </div>
+</ClientOnly>
 
 ## Sticky share button
 
@@ -165,4 +179,6 @@ Use the `position` attribute with `left`, `center`, or `right` to customize the 
 <share-button position="left"></share-button>
 ```
 
+<ClientOnly>
 <share-button position="left"></share-button>
+</ClientOnly>
